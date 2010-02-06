@@ -15,7 +15,6 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.genotype.BooleanGenotype;
 
 /**
@@ -34,18 +33,16 @@ public class DiversityBooleanFraction implements DiversityBoolean {
 	 * @see org.opt4j.operator.diversity.Diversity#diversity(org.opt4j.core.Genotype,
 	 *      org.opt4j.core.Genotype)
 	 */
-	public double diversity(Genotype a, Genotype b) {
-		BooleanGenotype genotypeA = (BooleanGenotype) a;
-		BooleanGenotype genotypeB = (BooleanGenotype) b;
+	public double diversity(BooleanGenotype a, BooleanGenotype b) {
 
 		double diversity = 0;
-		for (int i = 0; i < genotypeA.size(); i++) {
-			if (genotypeA.get(i) != genotypeB.get(i)) {
+		for (int i = 0; i < a.size(); i++) {
+			if (a.get(i) != b.get(i)) {
 				diversity++;
 			}
 		}
 
-		return diversity / genotypeA.size();
+		return diversity / a.size();
 
 	}
 

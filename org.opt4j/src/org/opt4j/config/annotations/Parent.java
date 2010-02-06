@@ -22,7 +22,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Indicates a parent relationship (hierarchical).
+ * The {@code Parent} annotation assigns a module an explicit parent category.
+ * The parent can be any class.
  * 
  * @author lukasiewycz
  * 

@@ -16,7 +16,6 @@
 package org.opt4j.operator.diversity;
 
 import org.opt4j.genotype.DoubleGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -33,7 +32,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(DiversityDoubleEuclidean.class)
-@Apply(DoubleGenotype.class)
-public interface DiversityDouble extends Diversity {
+public interface DiversityDouble extends Diversity<DoubleGenotype> {
 
 }

@@ -2,6 +2,7 @@ package org.opt4j.optimizer.mopso;
 
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.algebra.Add;
 import org.opt4j.operator.algebra.Index;
 import org.opt4j.operator.algebra.Mult;
@@ -33,7 +34,7 @@ public class VelocityTerm implements Term {
 	 * @param random
 	 *            the random number generator
 	 */
-	public VelocityTerm(Random random) {
+	public VelocityTerm(Rand random) {
 		this.random = random;
 
 		Index x = new Index(0);

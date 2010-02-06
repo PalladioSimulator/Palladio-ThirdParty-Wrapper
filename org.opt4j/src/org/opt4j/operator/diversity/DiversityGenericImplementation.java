@@ -17,13 +17,13 @@ package org.opt4j.operator.diversity;
 
 import java.util.Collection;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.BooleanGenotype;
 import org.opt4j.genotype.CompositeGenotype;
 import org.opt4j.genotype.DoubleGenotype;
 import org.opt4j.genotype.IntegerGenotype;
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.AbstractGenericOperator;
+import org.opt4j.operator.AbstractGenericOperator;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -37,7 +37,7 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class DiversityGenericImplementation extends
-		AbstractGenericOperator<Diversity> implements DiversityGeneric {
+		AbstractGenericOperator<Diversity<Genotype>> implements DiversityGeneric {
 
 	/**
 	 * Constructs the {@link DiversityGenericImplementation}.
@@ -56,7 +56,7 @@ public class DiversityGenericImplementation extends
 	 * @author lukasiewycz
 	 * 
 	 */
-	static class DiversityHolder extends OperatorHolder<Diversity> {
+	static class DiversityHolder extends OperatorHolder<Diversity<?>> {
 
 		/**
 		 * Constructs a {@code DiversityHolder}.
@@ -93,9 +93,10 @@ public class DiversityGenericImplementation extends
 	 * @param diversities
 	 *            the diversity operators
 	 */
-	public DiversityGenericImplementation(Collection<Diversity> diversities) {
-		for (Diversity diversity : diversities) {
-			addHandler(diversity);
+	@SuppressWarnings("unchecked")
+	public DiversityGenericImplementation(Collection<Diversity<?>> diversities) {
+		for (Diversity<?> diversity : diversities) {
+			addOperator((Diversity<Genotype>)diversity);
 		}
 	}
 
@@ -107,7 +108,7 @@ public class DiversityGenericImplementation extends
 	 * org.opt4j.core.Genotype)
 	 */
 	public double diversity(Genotype a, Genotype b) {
-		Diversity diversity = getHandler(a.getClass());
+		Diversity<Genotype> diversity = getOperator(a.getClass());
 
 		return diversity.diversity(a, b);
 	}

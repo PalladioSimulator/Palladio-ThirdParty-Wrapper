@@ -15,10 +15,9 @@
 
 package org.opt4j.operator.crossover;
 
-import java.util.Random;
+import org.opt4j.common.random.Rand;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * The default crossover operator for the binary vector is the
@@ -27,7 +26,6 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class CrossoverBooleanDefault extends CrossoverBooleanRate {
 
 	/**
@@ -37,7 +35,7 @@ public class CrossoverBooleanDefault extends CrossoverBooleanRate {
 	 *            the random number generator
 	 */
 	@Inject
-	public CrossoverBooleanDefault(Random random) {
+	public CrossoverBooleanDefault(Rand random) {
 		super(0.5, random);
 	}
 

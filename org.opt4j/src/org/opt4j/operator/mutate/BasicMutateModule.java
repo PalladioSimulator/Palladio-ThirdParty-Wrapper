@@ -18,24 +18,23 @@ package org.opt4j.operator.mutate;
 import org.opt4j.config.annotations.Info;
 import org.opt4j.config.annotations.Required;
 import org.opt4j.start.Constant;
-import org.opt4j.start.Opt4JModule;
 
 /**
- * The basic {@code MutateModule}.
+ * The basic {@code CopyModule}.
  * 
  * @author lukasiewycz
  * 
  */
-@Info("Setting for the basic mutate operators for genotype manipulation.")
-public class BasicMutateModule extends Opt4JModule implements MutateModule {
+@Info("Setting for the basic mutate operators for genotype variation.")
+public class BasicMutateModule extends MutateModule {
 
-	@Info("The type of mutation rate")
+	@Info("The type of mutation rate.")
 	protected MutationRateType mutationRateType = MutationRateType.ADAPTIVE;
 
-	@Info("The type of the mutate operator for the Permutation genotype")
+	@Info("The type of the mutate operator for the Permutation genotype.")
 	protected PermutationType permutationType = PermutationType.MIXED;
 
-	@Info("The type of the mutate operator for the Double genotype")
+	@Info("The type of the mutate operator for the Double genotype.")
 	protected DoubleType doubleType = DoubleType.POLYNOMIAL;
 
 	@Required(property = "doubleType", elements = { "POLYNOMIAL" })
@@ -94,18 +93,22 @@ public class BasicMutateModule extends Opt4JModule implements MutateModule {
 		/**
 		 * Use the {@link MutatePermutationMixed}.
 		 */
+		@Info("Use randomly SWAP,INSERT, or REVERT")
 		MIXED,
 		/**
 		 * Use the {@link MutatePermutationSwap}.
 		 */
+		@Info("Swaps two elements")
 		SWAP,
 		/**
 		 * Use the {@link MutatePermutationInsert}.
 		 */
+		@Info("Moves one element to another position")
 		INSERT,
 		/**
 		 * Use the {@link MutatePermutationRevert}.
 		 */
+		@Info("Reverts a part for the genotype")
 		REVERT;
 	}
 

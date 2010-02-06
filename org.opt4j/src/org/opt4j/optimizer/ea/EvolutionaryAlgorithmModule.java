@@ -23,14 +23,14 @@ import org.opt4j.core.optimizer.OptimizerModule;
 import org.opt4j.start.Constant;
 
 /**
- * The {@code EvolutionaryAlgorithmModule} is used to configure the
+ * The {@code EvolutionaryAlgorithmModule} configures the
  * {@link EvolutionaryAlgorithm}.
  * 
  * @author lukasiewycz
  * 
  */
 
-@Info("A Multi-Objective Evolutionary Algorithm.")
+@Info("Multi-Objective Evolutionary Algorithm that performs a Crossover and Mutate for variation and uses a Selector for the environmental selection.")
 public class EvolutionaryAlgorithmModule extends OptimizerModule {
 
 	@Info("The number of generations.")
@@ -49,7 +49,7 @@ public class EvolutionaryAlgorithmModule extends OptimizerModule {
 	protected int mu = 25;
 
 	@Constant(value = "lambda", namespace = EvolutionaryAlgorithm.class)
-	@Info("The number of children per generation.")
+	@Info("The number of offspring per generation.")
 	@Order(3)
 	protected int lambda = 25;
 
@@ -73,13 +73,6 @@ public class EvolutionaryAlgorithmModule extends OptimizerModule {
 		 * Use a constant crossover rate.
 		 */
 		CONSTANT;
-	}
-
-	/**
-	 * Constructs an {@code EAOptimizerModule}.
-	 */
-	public EvolutionaryAlgorithmModule() {
-		super();
 	}
 
 	/**

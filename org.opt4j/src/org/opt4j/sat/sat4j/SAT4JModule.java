@@ -35,23 +35,23 @@ import org.opt4j.start.Constant;
 @Info("The SAT/PB-Solver configuration for <a href=\"http://www.sat4j.org\">Sat4J.org</a>.")
 public class SAT4JModule extends SATModule {
 
-	@Info("Timeout in seconds")
+	@Info("Timeout in seconds.")
 	@Order(0)
 	@Constant(value = "timeout", namespace = SAT4JSolver.class)
 	protected int timeout = 3600;
 
-	@Info("Learned clauses up to this size are kept")
+	@Info("Learned clauses up to this size are kept.")
 	@Required(property = "learning", elements = { "FIXEDLENGTH" })
 	@Order(2)
 	@Constant(value = "clauseLearningLength", namespace = SAT4JSolver.class)
 	protected int learnSize = 10;
 
-	@Info("Learning strategy")
+	@Info("Learning strategy.")
 	@Order(1)
 	@Constant(value = "learning", namespace = SAT4JSolver.class)
 	protected Learning learning = Learning.FIXEDLENGTH;
 
-	@Info("Restart strategy")
+	@Info("Restart strategy.")
 	@Order(3)
 	@Constant(value = "restarts", namespace = SAT4JSolver.class)
 	protected Restarts restarts = Restarts.MINISAT;

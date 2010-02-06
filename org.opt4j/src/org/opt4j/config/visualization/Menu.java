@@ -17,6 +17,7 @@ package org.opt4j.config.visualization;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.JDialog;
@@ -85,15 +86,19 @@ public class Menu extends JMenuBar implements FileOperationsListener,
 		JMenu file = new JMenu("File");
 		JMenu etc = new JMenu("?");
 
+		file.setMnemonic(KeyEvent.VK_F);
+
 		add(file);
 		add(etc);
 
+		load.setMnemonic(KeyEvent.VK_L);
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fileOperations.load();
 			}
 		});
 
+		save.setMnemonic(KeyEvent.VK_S);
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fileOperations.save();
@@ -101,12 +106,14 @@ public class Menu extends JMenuBar implements FileOperationsListener,
 		});
 		save.setEnabled(false);
 
+		saveAs.setMnemonic(KeyEvent.VK_A);
 		saveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fileOperations.saveAs();
 			}
 		});
 
+		about.setMnemonic(KeyEvent.VK_A);
 		about.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog = aboutInfo.getDialog(frame.get());
@@ -133,7 +140,9 @@ public class Menu extends JMenuBar implements FileOperationsListener,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.opt4j.conf.gui.FileOperations.FileOperationsListener#setCurrentFile(java.io.File)
+	 * @see
+	 * org.opt4j.conf.gui.FileOperations.FileOperationsListener#setCurrentFile
+	 * (java.io.File)
 	 */
 	public void setCurrentFile(File file) {
 		if (file != null) {

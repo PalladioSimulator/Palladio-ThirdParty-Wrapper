@@ -15,13 +15,13 @@
 
 package org.opt4j.benchmark.queens;
 
-import org.opt4j.core.Phenotype;
+import org.opt4j.core.problem.Phenotype;
 
 /**
  * A board with queens.
  * 
  * @author lukasiewycz
- *
+ * 
  */
 public class QueensBoard implements Phenotype {
 
@@ -29,11 +29,11 @@ public class QueensBoard implements Phenotype {
 
 	protected int size;
 
-
 	/**
 	 * Constructs a board with the side length {@code size}.
 	 * 
-	 * @param size the size of the board
+	 * @param size
+	 *            the size of the board
 	 */
 	public QueensBoard(int size) {
 		this.size = size;
@@ -50,9 +50,12 @@ public class QueensBoard implements Phenotype {
 	/**
 	 * Adds or removes queen from a field.
 	 * 
-	 * @param i the row
-	 * @param j the column
-	 * @param value {@code true} if a queen is on the field, else {@code false}
+	 * @param i
+	 *            the row
+	 * @param j
+	 *            the column
+	 * @param value
+	 *            {@code true} if a queen is on the field, else {@code false}
 	 */
 	public void setQueen(int i, int j, boolean value) {
 		board[i][j] = value;
@@ -61,8 +64,10 @@ public class QueensBoard implements Phenotype {
 	/**
 	 * Returns {@code true} if a queen is on this field.
 	 * 
-	 * @param i the row
-	 * @param j the column
+	 * @param i
+	 *            the row
+	 * @param j
+	 *            the column
 	 * @return {@code true} if a queen is on the field, else {@code false}
 	 */
 	public boolean isQueen(int i, int j) {
@@ -70,7 +75,7 @@ public class QueensBoard implements Phenotype {
 	}
 
 	/**
-	 * Returns  the size of the board.
+	 * Returns the size of the board.
 	 * 
 	 * @return the size of the board
 	 */
@@ -78,7 +83,9 @@ public class QueensBoard implements Phenotype {
 		return size;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -87,11 +94,11 @@ public class QueensBoard implements Phenotype {
 
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				s += board[i][j] ? "0" : "-";
+				if (board[i][j]) {
+					s += "[" + i + "," + j + "]";
+				}
 			}
-			s += "\n";
 		}
 		return s;
 	}
-
 }

@@ -17,7 +17,8 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
+import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
 
@@ -56,7 +57,7 @@ public class NeighborPermutationMixed implements NeighborPermutation {
 	@Inject
 	public NeighborPermutationMixed(NeighborPermutationSwap swap,
 			NeighborPermutationInsert insert, NeighborPermutationRevert revert,
-			Random random) {
+			Rand random) {
 		this.swap = swap;
 		this.insert = insert;
 		this.random = random;
@@ -68,7 +69,7 @@ public class NeighborPermutationMixed implements NeighborPermutation {
 	 * 
 	 * @see org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
-	public void neighbor(Genotype genotype) {
+	public void neighbor(PermutationGenotype<?> genotype) {
 		if (random.nextDouble() < 0.33) {
 			swap.neighbor(genotype);
 		} else if (random.nextBoolean()) {

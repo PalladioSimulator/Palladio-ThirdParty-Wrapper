@@ -15,11 +15,9 @@
 
 package org.opt4j.benchmark.queens;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 import org.opt4j.core.problem.Decoder;
 import org.opt4j.genotype.PermutationGenotype;
@@ -54,7 +52,7 @@ public class QueensPermutationDecoder implements
 	 * 
 	 */
 	@Inject
-	public QueensPermutationDecoder(QueensProblem problem, Random random) {
+	public QueensPermutationDecoder(QueensProblem problem, Rand random) {
 		this.problem = problem;
 		this.random = random;
 	}
@@ -67,19 +65,11 @@ public class QueensPermutationDecoder implements
 	public PermutationGenotype<Integer> create() {
 		int size = problem.size();
 
-		List<Integer> list = new ArrayList<Integer>();
-
-		for (int i = 0; i < size; i++) {
-			list.add(i);
-		}
-
-		Collections.shuffle(list, random);
-
 		PermutationGenotype<Integer> genotype = new PermutationGenotype<Integer>();
-
 		for (int i = 0; i < size; i++) {
-			genotype.add(list.get(i));
+			genotype.add(i);
 		}
+		genotype.init(random);
 
 		return genotype;
 	}

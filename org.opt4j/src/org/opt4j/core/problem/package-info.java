@@ -16,17 +16,17 @@
 /**
  * <p>
  * Provides the classes for the optimization problem. 
- * A problem consists is defined by the following classes: 
+ * A problem is defined by the following classes: 
  * </p>
  * <dl>
- * <dt>{@link org.opt4j.core.Genotype}</dt>
+ * <dt>{@link org.opt4j.core.problem.Genotype}</dt>
  * <dd>
  * The {@code Genotype} is the genetic representation of an {@code Individual}.
- * The package {@link org.opt4j.genotype} contains predefined {@code Genotype}s that allow a modular assembly.
+ * The package {@link org.opt4j.genotype} contains predefined {@code Genotype} classes that allow a modular assembly.
  * Thus, usually you dont have to write your custom {@code Genotype}.
  * </dd>
  * <dd>
- * <dt>{@link org.opt4j.core.Phenotype}</dt>
+ * <dt>{@link org.opt4j.core.problem.Phenotype}</dt>
  * <dd>The {@code Phenotype} represents a solution of the optimization problem.</dd>
  * <dt>{@link org.opt4j.core.problem.Creator}</dt>
  * <dd>The task of the {@code Creator} is the creation of random {@code Genotype}s.</dd>

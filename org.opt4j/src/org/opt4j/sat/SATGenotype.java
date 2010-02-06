@@ -15,7 +15,7 @@
 
 package org.opt4j.sat;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.BooleanGenotype;
 import org.opt4j.genotype.CompositeGenotype;
 import org.opt4j.genotype.DoubleGenotype;

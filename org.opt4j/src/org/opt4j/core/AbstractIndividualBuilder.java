@@ -19,7 +19,9 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import org.opt4j.core.problem.Creator;
+import org.opt4j.core.problem.Genotype;
 
+import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
@@ -54,6 +56,7 @@ public class AbstractIndividualBuilder<I extends Individual> implements
 		this.creator = creator;
 	}
 	
+	@Inject
 	protected void injectListeners(Set<IndividualStateListener> listeners){
 		individualStateListeners.addAll(listeners);
 	}

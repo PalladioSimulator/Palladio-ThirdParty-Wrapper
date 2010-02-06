@@ -18,8 +18,8 @@ package org.opt4j.operator.crossover;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
-import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 import org.opt4j.optimizer.ea.Pair;
 import org.opt4j.start.Constant;
@@ -82,7 +82,7 @@ public class CrossoverDoubleSBX extends CrossoverDoubleElementwise {
 	@Inject
 	public CrossoverDoubleSBX(
 			@Constant(value = "nu", namespace = CrossoverDoubleSBX.class) double nu,
-			NormalizeDouble normalize, Random random) {
+			NormalizeDouble normalize, Rand random) {
 		super(normalize, random);
 		this.nu = nu;
 	}

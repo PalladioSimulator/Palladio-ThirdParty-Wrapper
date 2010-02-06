@@ -16,18 +16,17 @@
 package org.opt4j.operator.neighbor;
 
 import org.opt4j.config.annotations.Info;
-import org.opt4j.start.Opt4JModule;
 
 /**
- * The basic {@code NeighborModule}
+ * The basic {@code NeighborModule}.
  * 
  * @author lukasiewycz
  * 
  */
-@Info("Setting for the basic neighbor operators for genotype manipulation.")
-public class BasicNeighborModule extends Opt4JModule implements NeighborModule {
+@Info("Setting for the basic neighbor operators for genotype variation.")
+public class BasicNeighborModule extends NeighborModule {
 
-	@Info("The type of the neighbor operator for the Permutation genotype")
+	@Info("The type of the neighbor operator for the Permutation genotype.")
 	protected PermutationType permutationType = PermutationType.MIXED;
 
 	/**
@@ -40,18 +39,22 @@ public class BasicNeighborModule extends Opt4JModule implements NeighborModule {
 		/**
 		 * Use the {@link NeighborPermutationMixed}.
 		 */
+		@Info("Use randomly SWAP,INSERT, or REVERT")
 		MIXED,
 		/**
 		 * Use the {@link NeighborPermutationSwap}.
 		 */
+		@Info("Swaps two elements")
 		SWAP,
 		/**
 		 * Use the {@link NeighborPermutationInsert}.
 		 */
+		@Info("Moves one element to another position")
 		INSERT,
 		/**
 		 * Use the {@link NeighborPermutationRevert}.
 		 */
+		@Info("Reverts a part for the genotype")
 		REVERT;
 	}
 

@@ -2,8 +2,9 @@ package org.opt4j.genotype;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code IntegerGenotype} is a {@code Genotype} that consists of integer
@@ -12,9 +13,23 @@ import org.opt4j.core.Genotype;
  * @author lukasiewycz
  * 
  */
-public class IntegerGenotype extends ArrayList<Integer> implements ListGenotype {
+public class IntegerGenotype extends ArrayList<Integer> implements
+		ListGenotype<Integer> {
 
 	protected final Bounds<Integer> bounds;
+
+	/**
+	 * Constructs a {@code IntegerGenotype} with a specified lower and upper
+	 * bound for all values.
+	 * 
+	 * @param lowerBound
+	 *            the lower bound
+	 * @param upperBound
+	 *            the upper bound
+	 */
+	public IntegerGenotype(int lowerBound, int upperBound) {
+		this(new FixedBounds<Integer>(lowerBound, upperBound));
+	}
 
 	/**
 	 * Constructs a {@code IntegerGenotype} with the given {@code Bounds}.
@@ -62,6 +77,27 @@ public class IntegerGenotype extends ArrayList<Integer> implements ListGenotype 
 			return (G) cstr.newInstance(bounds);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * Initialize this genotype with {@code n} random values.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 * @param n
+	 *            the number of elements in the resulting genotype
+	 */
+	public void init(Random random, int n) {
+		for (int i = 0; i < n; i++) {
+			int lo = getLowerBound(i);
+			int hi = getUpperBound(i);
+			int value = lo + random.nextInt(hi - lo + 1);
+			if (i >= size()) {
+				add(value);
+			} else {
+				set(i, value);
+			}
 		}
 	}
 

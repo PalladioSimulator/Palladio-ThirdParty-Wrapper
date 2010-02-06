@@ -53,22 +53,23 @@ public class DTLZModule extends ProblemModule {
 	protected double alpha = 100.0;
 
 	@Order(2)
-	@Info("The number of objectives")
+	@Info("The number of objectives.")
 	protected int m = 3;
 
 	@Order(3)
-	@Info("The size of the search space")
+	@Info("The size of the search space.")
 	protected int n = 7;
 
 	@Order(4)
+	@Info("The k value.")
 	protected int k = 5;
 
 	@Order(10)
-	@Info("The encoding of the optimization problem")
+	@Info("The encoding of the optimization problem.")
 	protected Encoding encoding = Encoding.DOUBLE;
 
 	@Required(property = "encoding", elements = { "BINARY" })
-	@Info("The number of bits per double value")
+	@Info("The number of bits per double value.")
 	protected int bits = 30;
 
 	/**

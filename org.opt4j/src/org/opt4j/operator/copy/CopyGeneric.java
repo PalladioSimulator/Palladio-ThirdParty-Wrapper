@@ -15,10 +15,10 @@
 
 package org.opt4j.operator.copy;
 
-import org.opt4j.operator.common.GenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.GenericOperator;
 
 import com.google.inject.ImplementedBy;
-
 
 /**
  * Interface for a generic {@code Copy} that handles different types of
@@ -28,6 +28,7 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(CopyGenericImplementation.class)
-public interface CopyGeneric extends Copy, GenericOperator<Copy> {
+public interface CopyGeneric extends Copy<Genotype>,
+		GenericOperator<Copy<Genotype>> {
 
 }

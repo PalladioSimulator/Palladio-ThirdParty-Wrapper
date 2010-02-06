@@ -17,6 +17,7 @@ package org.opt4j.config.visualization;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
@@ -89,6 +90,7 @@ public class ToolBar extends JToolBar implements FileOperationsListener,
 		execute = new JButton("Run ", Icons.getIcon(Icons.PLAY)) {
 			{
 				setFocusable(false);
+				setMnemonic(KeyEvent.VK_R);
 				addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Set<Module> modules = new HashSet<Module>();
@@ -102,6 +104,7 @@ public class ToolBar extends JToolBar implements FileOperationsListener,
 		load = new JButton("Load ... ", Icons.getIcon(Icons.FOLDER)) {
 			{
 				setFocusable(false);
+				setMnemonic(KeyEvent.VK_L);
 				addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						fileOperations.load();
@@ -112,6 +115,7 @@ public class ToolBar extends JToolBar implements FileOperationsListener,
 		save = new JButton("Save ", Icons.getIcon(Icons.DISK)) {
 			{
 				setFocusable(false);
+				setMnemonic(KeyEvent.VK_S);
 				setEnabled(false);
 				addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -123,6 +127,7 @@ public class ToolBar extends JToolBar implements FileOperationsListener,
 		saveAs = new JButton("Save As ... ", Icons.getIcon(Icons.DISK)) {
 			{
 				setFocusable(false);
+				setMnemonic(KeyEvent.VK_A);
 				addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						fileOperations.saveAs();
@@ -142,7 +147,9 @@ public class ToolBar extends JToolBar implements FileOperationsListener,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.opt4j.conf.gui.FileOperations.FileOperationsListener#setCurrentFile(java.io.File)
+	 * @see
+	 * org.opt4j.conf.gui.FileOperations.FileOperationsListener#setCurrentFile
+	 * (java.io.File)
 	 */
 	public void setCurrentFile(File file) {
 		save.setEnabled(file == null ? false : true);

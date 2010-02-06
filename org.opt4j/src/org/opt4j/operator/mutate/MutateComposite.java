@@ -15,12 +15,10 @@
 
 package org.opt4j.operator.mutate;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * Mutate for the {@link CompositeGenotype}.
@@ -28,15 +26,13 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(CompositeGenotype.class)
-public class MutateComposite implements Mutate {
+public class MutateComposite implements Mutate<CompositeGenotype<?, ?>> {
 
 	protected final MutateGeneric mutateGeneric;
 
 	/**
-	 * Constructs a new {@code MutateComposite} for the
-	 * {@code CompositeGenotype}.
+	 * Constructs a new {@code MutateComposite} for the {@code
+	 * CompositeGenotype}.
 	 * 
 	 * @param mutateGeneric
 	 *            a generic mutate which can handle different types of genotypes
@@ -51,12 +47,9 @@ public class MutateComposite implements Mutate {
 	 * 
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public void mutate(Genotype genotype) {
-		CompositeGenotype composite = (CompositeGenotype) genotype;
-
-		for (Object entry : composite.values()) {
-			mutateGeneric.mutate((Genotype) entry);
+	public void mutate(CompositeGenotype<?, ?> genotype) {
+		for (Genotype entry : genotype.values()) {
+			mutateGeneric.mutate(entry);
 		}
 
 	}

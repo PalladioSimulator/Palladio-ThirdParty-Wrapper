@@ -14,7 +14,7 @@
  */
 
 /**
- * Provides the classes for the annotation that are used for the modules.
+ * Provides the classes for the annotations for the modules.
  * 
  */
 package org.opt4j.config.annotations;

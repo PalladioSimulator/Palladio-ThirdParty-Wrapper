@@ -15,7 +15,8 @@
 
 package org.opt4j.operator.algebra;
 
-import org.opt4j.operator.common.GenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.GenericOperator;
 
 import com.google.inject.ImplementedBy;
 
@@ -27,6 +28,7 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(AlgebraGenericImplementation.class)
-public interface AlgebraGeneric extends Algebra, GenericOperator<Algebra> {
+public interface AlgebraGeneric extends Algebra<Genotype>,
+		GenericOperator<Algebra<Genotype>> {
 
 }

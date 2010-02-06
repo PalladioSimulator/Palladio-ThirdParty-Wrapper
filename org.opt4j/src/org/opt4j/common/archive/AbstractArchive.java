@@ -39,13 +39,6 @@ import org.opt4j.core.Objectives;
 public abstract class AbstractArchive extends IndividualCollection implements
 		Archive {
 
-	/**
-	 * Constructs an {@code AbstractArchive}.
-	 */
-	public AbstractArchive() {
-		super();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -63,28 +56,35 @@ public abstract class AbstractArchive extends IndividualCollection implements
 	public void update(Collection<Individual> individuals) {
 
 		List<Individual> candidates = new ArrayList<Individual>(individuals);
-		candidates.removeAll(this);
-		
-		Iterator<Individual> i1, i2;
+
 		Objectives o1, o2;
-		
-		for(int i=0; i<candidates.size()-1; i++){
+
+		/*
+		 * Remove all individuals that are already in the archive and those that
+		 * are dominated among the candidates
+		 */
+		candidates.removeAll(this);
+		for (int i = 0; i < candidates.size() - 1; i++) {
 			o1 = candidates.get(i).getObjectives();
-			for(int j=i+1; j<candidates.size(); j++){
+			for (int j = i + 1; j < candidates.size(); j++) {
 				o2 = candidates.get(j).getObjectives();
-				if(o2.weaklyDominates(o1)){
+				if (o2.weaklyDominates(o1)) {
 					candidates.remove(i);
 					i--;
 					break;
-				} else if(o1.weaklyDominates(o2)){
+				} else if (o1.weaklyDominates(o2)) {
 					candidates.remove(j);
 					j--;
 				}
 			}
 		}
 
-	
-
+		/*
+		 * Remove those individuals from the archive which are dominated by the
+		 * candidates. Remove those individuals from the candidates which are
+		 * dominated by the archive.
+		 */
+		Iterator<Individual> i1, i2;
 		for (i1 = candidates.iterator(); i1.hasNext();) {
 			o1 = i1.next().getObjectives();
 			for (i2 = this.iterator(); i2.hasNext();) {

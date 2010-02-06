@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Individual;
 import org.opt4j.core.Objectives;
 import org.opt4j.start.Constant;
@@ -35,6 +36,9 @@ import com.google.inject.Inject;
  * The {@code Nsga2} {@code Selector}.
  * 
  * @see Nsga2Module
+ * @see "A Fast Elitist Non-Dominated Sorting Genetic Algorithm for
+ *      Multi-Objective Optimization: NSGA-II, K. Deb, Samir Agrawal, Amrit
+ *      Pratap, and T. Meyarivan, Parallel Problem Solving from Nature, 2000"
  * @author lukasiewycz
  * 
  */
@@ -60,7 +64,7 @@ public class Nsga2 implements Selector {
 	 */
 	@Inject
 	public Nsga2(
-			Random random,
+			Rand random,
 			@Constant(value = "tournament", namespace = Nsga2.class) int tournament) {
 		this.random = random;
 		this.tournament = tournament;

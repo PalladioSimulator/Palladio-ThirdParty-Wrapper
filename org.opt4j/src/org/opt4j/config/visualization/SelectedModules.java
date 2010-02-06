@@ -39,6 +39,9 @@ public class SelectedModules extends TreeSet<PropertyModule> {
 
 	protected Set<SetListener> listeners = new CopyOnWriteArraySet<SetListener>();
 
+	/**
+	 * Constructs a new, empty {@code SelectedModules} set.
+	 */
 	public SelectedModules() {
 		super(new Comparator<PropertyModule>() {
 			@Override

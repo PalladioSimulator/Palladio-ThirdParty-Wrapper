@@ -15,8 +15,8 @@
 
 package org.opt4j.operator.normalize;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.Bounds;
 
 /**
@@ -25,8 +25,10 @@ import org.opt4j.genotype.Bounds;
  * 
  * @author lukasiewycz
  * 
+ * @param <G>
+ *            the type of genotype
  */
-public interface Normalize extends Operator {
+public interface Normalize<G extends Genotype> extends Operator<G> {
 
 	/**
 	 * Normalizes the {@code Genotype} .
@@ -34,6 +36,6 @@ public interface Normalize extends Operator {
 	 * @param genotype
 	 *            the genotype to be normalized
 	 */
-	public void normalize(Genotype genotype);
+	public void normalize(G genotype);
 
 }

@@ -15,7 +15,6 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.genotype.DoubleGenotype;
 
 /**
@@ -34,21 +33,16 @@ public class DiversityDoubleEuclidean implements DiversityDouble {
 	 * org.opt4j.operator.diversity.Diversity#diversity(org.opt4j.core.Genotype,
 	 * org.opt4j.core.Genotype)
 	 */
-	public double diversity(Genotype a, Genotype b) {
-		DoubleGenotype genotypeA = (DoubleGenotype) a;
-		DoubleGenotype genotypeB = (DoubleGenotype) b;
-
+	public double diversity(DoubleGenotype a, DoubleGenotype b) {
 		double diversity = 0;
-		int size = genotypeA.size();
+		int size = a.size();
 		for (int i = 0; i < size; i++) {
-			double diff = genotypeA.getUpperBound(i)
-					* genotypeA.getLowerBound(i);
-			double dist = (genotypeA.get(i) - genotypeB.get(i)) / diff;
+			double diff = a.getUpperBound(i) * a.getLowerBound(i);
+			double dist = (a.get(i) - b.get(i)) / diff;
 			diversity += dist * dist;
 		}
 
 		return Math.sqrt(diversity) / Math.sqrt(size);
-
 	}
 
 }

@@ -17,8 +17,8 @@ package org.opt4j.optimizer.sa;
 
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Archive;
-import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualBuilder;
 import org.opt4j.core.Objectives;
@@ -29,6 +29,7 @@ import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.Iterations;
 import org.opt4j.core.optimizer.StopException;
 import org.opt4j.core.optimizer.TerminationException;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.operator.copy.Copy;
 import org.opt4j.operator.neighbor.Neighbor;
 
@@ -46,9 +47,9 @@ public class SimulatedAnnealing extends AbstractOptimizer {
 
 	protected final Random random;
 
-	protected final Neighbor neighbor;
+	protected final Neighbor<Genotype> neighbor;
 
-	protected final Copy copy;
+	protected final Copy<Genotype> copy;
 
 	protected final int iterations;
 
@@ -81,8 +82,9 @@ public class SimulatedAnnealing extends AbstractOptimizer {
 	@Inject
 	public SimulatedAnnealing(Population population, Archive archive,
 			IndividualBuilder individualBuilder, Completer completer,
-			Control control, Random random, Neighbor neighbor, Copy copy,
-			@Iterations int iterations, CoolingSchedule coolingSchedule) {
+			Control control, Rand random, Neighbor<Genotype> neighbor,
+			Copy<Genotype> copy, @Iterations int iterations,
+			CoolingSchedule coolingSchedule) {
 		super(population, archive, individualBuilder, completer, control);
 		this.random = random;
 		this.neighbor = neighbor;

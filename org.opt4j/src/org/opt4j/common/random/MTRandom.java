@@ -27,7 +27,6 @@
 
 package org.opt4j.common.random;
 
-import java.util.Random;
 
 /**
  * @version 1.0
@@ -82,7 +81,7 @@ import java.util.Random;
  *         </rdf:RDF> -->
  * 
  */
-class MTRandom extends Random {
+class MTRandom extends Rand {
 
 	/**
 	 * Auto-generated serial version UID. Note that MTRandom does NOT support

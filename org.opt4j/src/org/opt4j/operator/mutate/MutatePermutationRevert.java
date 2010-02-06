@@ -18,11 +18,10 @@ package org.opt4j.operator.mutate;
 import java.util.Collections;
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -31,14 +30,13 @@ import com.google.inject.Singleton;
  * </p>
  * 
  * <p>
- * Given a permutation {@code 1 2 3 4 5 6 7 8}, this might result in
- * {@code 1 2 7 6 5 3 4}.
+ * Given a permutation {@code 1 2 3 4 5 6 7 8}, this might result in {@code 1 2
+ * 7 6 5 3 4}.
  * </p>
  * 
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class MutatePermutationRevert implements MutatePermutation {
 
 	protected final Random random;
@@ -54,7 +52,7 @@ public class MutatePermutationRevert implements MutatePermutation {
 	 *            the random number generator
 	 */
 	@Inject
-	public MutatePermutationRevert(final MutationRate mutationRate, Random random) {
+	public MutatePermutationRevert(final MutationRate mutationRate, Rand random) {
 		this.mutationRate = mutationRate;
 		this.random = random;
 	}
@@ -64,10 +62,8 @@ public class MutatePermutationRevert implements MutatePermutation {
 	 * 
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
-	public void mutate(Genotype genotype) {
-		PermutationGenotype<?> permutation = (PermutationGenotype<?>) genotype;
-
-		int size = permutation.size();
+	public void mutate(PermutationGenotype<?> genotype) {
+		int size = genotype.size();
 
 		if (size > 1) {
 			for (int a = 0; a < size - 1; a++) {
@@ -78,7 +74,7 @@ public class MutatePermutationRevert implements MutatePermutation {
 					} while (b == a);
 
 					while (a < b) {
-						Collections.swap(permutation, a, b);
+						Collections.swap(genotype, a, b);
 						a++;
 						b--;
 					}

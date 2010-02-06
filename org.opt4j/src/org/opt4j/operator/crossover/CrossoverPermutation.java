@@ -16,7 +16,6 @@
 package org.opt4j.operator.crossover;
 
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -27,7 +26,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(CrossoverPermutationDefault.class)
-@Apply(PermutationGenotype.class)
-public interface CrossoverPermutation extends Crossover {
+public interface CrossoverPermutation extends Crossover<PermutationGenotype<?>> {
 
 }

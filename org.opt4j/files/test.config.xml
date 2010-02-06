@@ -12,7 +12,7 @@
     <property name="encoding">BINARY</property>
     <property name="bits">30</property>
   </module>
-  <module class="org.opt4j.gui.ViewerModule">
+  <module class="org.opt4j.viewer.ViewerModule">
     <property name="closeEvent">STOP</property>
     <property name="closeOnStop">false</property>
     <property name="title">Viewer</property>

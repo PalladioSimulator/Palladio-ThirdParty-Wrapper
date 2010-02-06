@@ -17,7 +17,7 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.IntegerGenotype;
 
 import com.google.inject.Inject;
@@ -41,7 +41,7 @@ public class NeighborIntegerRandom implements NeighborInteger {
 	 *            the random number generator
 	 */
 	@Inject
-	public NeighborIntegerRandom(Random random) {
+	public NeighborIntegerRandom(Rand random) {
 		this.random = random;
 	}
 
@@ -52,16 +52,14 @@ public class NeighborIntegerRandom implements NeighborInteger {
 	 * org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
 	@Override
-	public void neighbor(Genotype genotype) {
-		IntegerGenotype list = (IntegerGenotype) genotype;
-
-		int size = list.size();
+	public void neighbor(IntegerGenotype genotype) {
+		int size = genotype.size();
 
 		final int i = random.nextInt(size);
 
-		int value = list.get(i);
-		int ub = list.getUpperBound(i);
-		int lb = list.getLowerBound(i);
+		int value = genotype.get(i);
+		int ub = genotype.getUpperBound(i);
+		int lb = genotype.getLowerBound(i);
 		int diff = ub - lb;
 		
 		if (diff > 0) {
@@ -71,7 +69,7 @@ public class NeighborIntegerRandom implements NeighborInteger {
 			if (n >= value) {
 				n++;
 			}
-			list.set(i, n);
+			genotype.set(i, n);
 		}
 
 	}

@@ -16,8 +16,8 @@
 package org.opt4j.operator.mutate;
 
 import java.util.List;
-import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 
 /**
@@ -39,7 +39,7 @@ public abstract class MutateDoubleElementwise extends MutateDouble {
 	 *            the normalizer
 	 */
 	public MutateDoubleElementwise(MutationRate mutationRate,
-			Random random, NormalizeDouble normalize) {
+			Rand random, NormalizeDouble normalize) {
 		super(mutationRate, random, normalize);
 	}
 

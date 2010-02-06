@@ -30,13 +30,13 @@ import javax.swing.table.TableCellRenderer;
 import org.opt4j.config.ExecutionEnvironment;
 import org.opt4j.config.Task;
 import org.opt4j.config.TaskListener;
-import org.opt4j.gui.DelayTask;
+import org.opt4j.viewer.DelayTask;
 
 import com.google.inject.Inject;
 
 /**
- * The {@code DefaultTasksPanel} thas extends the {@code TasksPanel} and shows
- * all {@code Task} in a table.
+ * The {@code DefaultTasksPanel} extends the {@code TasksPanel} and shows all
+ * {@code Task}s in a table.
  * 
  * @author lukasiewycz
  * 
@@ -204,6 +204,11 @@ public class DefaultTasksPanel extends TasksPanel implements TaskListener {
 		table.revalidate();
 		table.repaint();
 		SwingUtilities.invokeLater(new Runnable() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.lang.Runnable#run()
+			 */
 			public void run() {
 				scroll.getVerticalScrollBar().setValue(
 						table.getRowCount() * 120);
@@ -218,13 +223,17 @@ public class DefaultTasksPanel extends TasksPanel implements TaskListener {
 	 * org.opt4j.config.TaskStateListener#stateChanged(org.opt4j.config.Task)
 	 */
 	public void stateChanged(Task task) {
-		delay.execute(new Thread() {
+		delay.execute(new Runnable() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.lang.Runnable#run()
+			 */
+			@Override
 			public void run() {
 				table.revalidate();
 				table.repaint();
 			}
 		});
-
 	}
-
 }

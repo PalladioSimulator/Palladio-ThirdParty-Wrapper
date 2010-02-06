@@ -15,21 +15,23 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
 
 import com.google.inject.ImplementedBy;
 
 /**
- * The {@code Diversity} determines the genetic diversity of two
- * {@code Individuals}. The genetic diversity is 0 if both {@code Genotypes}
- * are equal and 1 of they are of maximum diversity.
+ * The {@code Diversity} determines the genetic diversity of two {@code
+ * Individuals}. The genetic diversity is 0 if both {@code Genotypes} are equal
+ * and 1 of they are of maximum diversity.
  * 
- * @author glass
+ * @author glass, lukasiewycz
  * 
+ * @param <G>
+ *            the type of genotype
  */
 @ImplementedBy(DiversityGeneric.class)
-public interface Diversity extends Operator {
+public interface Diversity<G extends Genotype> extends Operator<G> {
 
 	/**
 	 * Returns the genetic diversity of two {@code Genotypes}.
@@ -40,6 +42,6 @@ public interface Diversity extends Operator {
 	 *            the second genotype
 	 * @return the diversity of two genotypes
 	 */
-	public double diversity(Genotype a, Genotype b);
+	public double diversity(G a, G b);
 
 }

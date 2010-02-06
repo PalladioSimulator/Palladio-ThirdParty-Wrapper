@@ -15,12 +15,16 @@
 
 package org.opt4j.core.optimizer;
 
+import org.opt4j.core.problem.Genotype;
+
 /**
- * Marker interface for operators.
+ * The {@code Operator} is the basic interface for all operators.
  * 
  * @author lukasiewycz
  * 
+ * @param <G>
+ *            the type of genotype
  */
-public interface Operator {
+public interface Operator<G extends Genotype> {
 
 }

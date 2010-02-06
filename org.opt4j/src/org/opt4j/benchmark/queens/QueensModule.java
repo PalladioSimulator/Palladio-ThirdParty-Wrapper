@@ -35,17 +35,17 @@ import org.opt4j.start.Constant;
 @Info("The n-Queens problem as optimization problem with linear objective functions.")
 public class QueensModule extends ProblemModule {
 
-	@Info("the size of the board")
+	@Info("The size of the board (size*size).")
 	@Order(0)
 	@Constant(value = "size", namespace = QueensProblem.class)
 	protected int size = 40;
 
-	@Info("the number of objective functions")
+	@Info("The number of objective functions.")
 	@Order(1)
 	@Constant(value = "dim", namespace = QueensProblem.class)
 	protected int dimensions = 2;
 
-	@Info("the seed of the problem generator")
+	@Info("The seed of the problem generator (for the objective function).")
 	@Order(2)
 	@Constant(value = "seed", namespace = QueensProblem.class)
 	protected int seed = 0;

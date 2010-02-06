@@ -263,10 +263,12 @@ public class Constraint extends ArrayList<Term> {
 		return s;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Checks, if this contraint is satified for a given model.
 	 * 
-	 * @see org.opt4j.sat.Constraint#isSatisfied(org.opt4j.sat.Model)
+	 * @param model
+	 *            the model
+	 * @return true, iff this constraint is satisfied
 	 */
 	public boolean isSatisfied(Model model) {
 		int count = getCount(model);

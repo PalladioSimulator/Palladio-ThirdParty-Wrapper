@@ -16,7 +16,6 @@
 package org.opt4j.operator.diversity;
 
 import org.opt4j.genotype.BooleanGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -28,7 +27,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(DiversityBooleanFraction.class)
-@Apply(BooleanGenotype.class)
-public interface DiversityBoolean extends Diversity {
+public interface DiversityBoolean extends Diversity<BooleanGenotype> {
 
 }

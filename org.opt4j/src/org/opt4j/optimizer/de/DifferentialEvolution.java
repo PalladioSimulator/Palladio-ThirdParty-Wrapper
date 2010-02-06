@@ -23,8 +23,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Archive;
-import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualBuilder;
 import org.opt4j.core.Population;
@@ -34,6 +34,7 @@ import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.Iterations;
 import org.opt4j.core.optimizer.StopException;
 import org.opt4j.core.optimizer.TerminationException;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.operator.algebra.Add;
 import org.opt4j.operator.algebra.Algebra;
 import org.opt4j.operator.algebra.Index;
@@ -62,9 +63,9 @@ public class DifferentialEvolution extends AbstractOptimizer {
 
 	protected final int alpha;
 
-	protected final Algebra algebra;
+	protected final Algebra<Genotype> algebra;
 
-	protected final Crossover crossover;
+	protected final Crossover<Genotype> crossover;
 
 	protected final Selector selector;
 
@@ -105,10 +106,10 @@ public class DifferentialEvolution extends AbstractOptimizer {
 			IndividualBuilder individualBuilder,
 			Completer completer,
 			Control control,
-			Algebra algebra,
+			Algebra<Genotype> algebra,
 			Selector selector,
-			Random random,
-			Crossover crossover,
+			Rand random,
+			Crossover<Genotype> crossover,
 			@Iterations int generations,
 			@Constant(value = "alpha", namespace = DifferentialEvolution.class) int alpha,
 			@Constant(value = "scalingFactor", namespace = DifferentialEvolution.class) double scalingFactor) {
@@ -214,7 +215,7 @@ public class DifferentialEvolution extends AbstractOptimizer {
 	 * @author lukasiewycz
 	 * 
 	 */
-	protected class Triple {
+	protected static class Triple {
 		protected final Individual first;
 
 		protected final Individual second;

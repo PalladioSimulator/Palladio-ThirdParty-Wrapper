@@ -23,8 +23,8 @@ import java.util.List;
 
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
-import org.opt4j.core.Phenotype;
 import org.opt4j.core.problem.Evaluator;
+import org.opt4j.core.problem.Phenotype;
 
 /**
  * Base class for the ZDT evaluators. ZDT problems have two objectives: f1 and
@@ -65,7 +65,7 @@ abstract class ZDTEvaluator<A extends Phenotype> implements Evaluator<A> {
 	protected abstract double f1(A x);
 
 	/**
-	 * Result of the g function times the result of the h function.
+	 * MinOnesResult of the g function times the result of the h function.
 	 * 
 	 * @param g
 	 *            the result of the g function

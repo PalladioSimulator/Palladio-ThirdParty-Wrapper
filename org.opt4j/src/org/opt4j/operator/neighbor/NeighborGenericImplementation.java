@@ -17,13 +17,13 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Collection;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.BooleanGenotype;
 import org.opt4j.genotype.CompositeGenotype;
 import org.opt4j.genotype.DoubleGenotype;
 import org.opt4j.genotype.IntegerGenotype;
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.AbstractGenericOperator;
+import org.opt4j.operator.AbstractGenericOperator;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -36,7 +36,7 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class NeighborGenericImplementation extends
-		AbstractGenericOperator<Neighbor> implements NeighborGeneric {
+		AbstractGenericOperator<Neighbor<Genotype>> implements NeighborGeneric {
 
 	/**
 	 * Constructs the {@link NeighborGenericImplementation}.
@@ -55,7 +55,7 @@ public class NeighborGenericImplementation extends
 	 * @author lukasiewycz
 	 * 
 	 */
-	static class NeighborHolder extends OperatorHolder<Neighbor> {
+	static class NeighborHolder extends OperatorHolder<Neighbor<?>> {
 
 		/**
 		 * Constructs a {@code NeighborHolder}.
@@ -91,9 +91,10 @@ public class NeighborGenericImplementation extends
 	 * @param neighbors
 	 *            the neighbor operators
 	 */
-	public NeighborGenericImplementation(Collection<Neighbor> neighbors) {
-		for (Neighbor neighbor : neighbors) {
-			addHandler(neighbor);
+	@SuppressWarnings("unchecked")
+	public NeighborGenericImplementation(Collection<Neighbor<?>> neighbors) {
+		for (Neighbor<?> neighbor : neighbors) {
+			addOperator((Neighbor<Genotype>)neighbor);
 		}
 	}
 
@@ -104,7 +105,7 @@ public class NeighborGenericImplementation extends
 	 * org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
 	public void neighbor(Genotype genotype) {
-		Neighbor neighbor = getHandler(genotype.getClass());
+		Neighbor<Genotype> neighbor = getOperator(genotype.getClass());
 		neighbor.neighbor(genotype);
 	}
 

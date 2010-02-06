@@ -22,8 +22,8 @@ import java.util.Random;
 import java.util.Map.Entry;
 
 import org.opt4j.common.archive.CrowdingArchive;
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Archive;
-import org.opt4j.core.Genotype;
 import org.opt4j.core.IncompatibilityException;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualBuilder;
@@ -35,6 +35,7 @@ import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.Iterations;
 import org.opt4j.core.optimizer.StopException;
 import org.opt4j.core.optimizer.TerminationException;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.DoubleGenotype;
 import org.opt4j.operator.algebra.Add;
 import org.opt4j.operator.algebra.AlgebraDouble;
@@ -108,7 +109,7 @@ public class MOPSO extends AbstractOptimizer {
 			IndividualBuilder individualBuilder,
 			Completer completer,
 			Control control,
-			Random random,
+			Rand random,
 			MutateDoubleUniform uniform,
 			MutateDoubleNonUniform nonUniform,
 			@Iterations int iterations,
@@ -126,7 +127,7 @@ public class MOPSO extends AbstractOptimizer {
 
 		this.algebra = new AlgebraDouble(new NormalizeDouble() {
 			@Override
-			public void normalize(Genotype genotype) {
+			public void normalize(DoubleGenotype genotype) {
 				// do nothing
 			}
 		});
@@ -190,20 +191,21 @@ public class MOPSO extends AbstractOptimizer {
 
 			Particle particle = (Particle) individual;
 
-			Genotype position = particle.getGenotype();
-			Genotype velocity = particle.getVelocity();
-			Genotype best = particle.getBest();
+			DoubleGenotype position = (DoubleGenotype) particle.getGenotype();
+			DoubleGenotype velocity = (DoubleGenotype) particle.getVelocity();
+			DoubleGenotype best = (DoubleGenotype) particle.getBest();
 			int id = particle.getId();
 
-			Genotype leader = leaders.get(particle).getGenotype();
+			DoubleGenotype leader = (DoubleGenotype) leaders.get(particle)
+					.getGenotype();
 
 			velocityTerm.randomize();
 
-			DoubleGenotype nextVelocity = (DoubleGenotype) algebra.algebra(
-					velocityTerm, position, velocity, best, leader);
+			DoubleGenotype nextVelocity = algebra.algebra(velocityTerm,
+					position, velocity, best, leader);
 
-			DoubleGenotype nextPosition = (DoubleGenotype) algebra.algebra(
-					positionTerm, position, nextVelocity);
+			DoubleGenotype nextPosition = algebra.algebra(positionTerm,
+					position, nextVelocity);
 
 			for (int k = 0; k < nextPosition.size(); k++) {
 				double value = nextPosition.get(k);

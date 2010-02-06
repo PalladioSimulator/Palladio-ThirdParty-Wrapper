@@ -23,15 +23,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * This Annotation is used to indicate dependencies within a {@code Module}.
+ * The {@code Required} annotation defines dependencies between the properties.
  * 
  * @author lukasiewycz
  * 
  */
 @Retention(RUNTIME)
-@Target({METHOD,FIELD})
+@Target( { METHOD, FIELD })
 public @interface Required {
-	
+
 	/**
 	 * The addressed property. This property has to be an {@code enum} type.
 	 * 
@@ -45,7 +45,7 @@ public @interface Required {
 	 * @return allowed elements
 	 */
 	String[] elements() default {};
-	
+
 	/**
 	 * The boolean value that is necessary to activate the current property.
 	 * 

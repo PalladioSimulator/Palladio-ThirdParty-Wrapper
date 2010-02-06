@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * <p>
@@ -111,7 +111,7 @@ public class CompositeGenotype<K, V extends Genotype> implements Genotype,
 	 * @return the {@code Genotype}
 	 */
 	@SuppressWarnings("unchecked")
-	public <G extends V> G get(Object key) {
+	public <G> G get(Object key) {
 		V value = map.get(key);
 		return (G) value;
 	}

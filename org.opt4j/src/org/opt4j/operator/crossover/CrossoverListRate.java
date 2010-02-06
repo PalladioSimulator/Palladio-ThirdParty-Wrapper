@@ -15,10 +15,11 @@
 
 package org.opt4j.operator.crossover;
 
-import java.util.List;
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.genotype.ListGenotype;
 import org.opt4j.optimizer.ea.Pair;
 
 import com.google.inject.Inject;
@@ -35,7 +36,8 @@ import com.google.inject.Inject;
  * @author lukasiewycz
  * 
  */
-public abstract class CrossoverListRate implements Crossover {
+public abstract class CrossoverListRate<G extends ListGenotype<?>> implements
+		Crossover<G> {
 
 	protected final Random random;
 
@@ -50,7 +52,7 @@ public abstract class CrossoverListRate implements Crossover {
 	 *            the random number generator
 	 */
 	@Inject
-	public CrossoverListRate(double rate, Random random) {
+	public CrossoverListRate(double rate, Rand random) {
 		this.rate = rate;
 		this.random = random;
 	}
@@ -63,13 +65,10 @@ public abstract class CrossoverListRate implements Crossover {
 	 * org.opt4j.core.Genotype)
 	 */
 	@SuppressWarnings("unchecked")
-	public Pair<Genotype> crossover(Genotype parent1, Genotype parent2) {
+	public Pair<G> crossover(G p1, G p2) {
 
-		List<Object> p1 = (List<Object>) parent1;
-		List<Object> p2 = (List<Object>) parent2;
-
-		List<Object> o1 = (List<Object>) parent1.newInstance();
-		List<Object> o2 = (List<Object>) parent2.newInstance();
+		ListGenotype<Object> o1 = p1.newInstance();
+		ListGenotype<Object> o2 = p2.newInstance();
 
 		int size = p1.size();
 
@@ -89,8 +88,7 @@ public abstract class CrossoverListRate implements Crossover {
 			}
 		}
 
-		Pair<Genotype> offspring = new Pair<Genotype>((Genotype) o1,
-				(Genotype) o2);
+		Pair<G> offspring = new Pair<G>((G)o1, (G)o2);
 		return offspring;
 	}
 

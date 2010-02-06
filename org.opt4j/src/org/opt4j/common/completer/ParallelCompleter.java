@@ -25,6 +25,8 @@ import java.util.concurrent.Future;
 
 import org.opt4j.core.Individual;
 import org.opt4j.core.optimizer.Control;
+import org.opt4j.core.optimizer.Optimizer;
+import org.opt4j.core.optimizer.OptimizerStateListener;
 import org.opt4j.core.optimizer.TerminationException;
 import org.opt4j.core.problem.Decoder;
 import org.opt4j.core.problem.Evaluator;
@@ -39,9 +41,12 @@ import com.google.inject.Inject;
  * @author lukasiewycz
  * 
  */
-public class ParallelCompleter extends SequentialCompleter {
+public class ParallelCompleter extends SequentialCompleter implements
+		OptimizerStateListener {
 
 	protected final int maxThreads;
+
+	protected final ExecutorService executor;
 
 	/**
 	 * The {@code Complete} class completes a single {@code Individual}.
@@ -49,13 +54,11 @@ public class ParallelCompleter extends SequentialCompleter {
 	 * @author lukasiewycz
 	 * 
 	 */
-	protected static class Complete implements Callable<Void> {
+	protected class Complete implements Callable<Void> {
 
 		protected final Individual individual;
 
 		protected final Control control;
-
-		protected final ParallelCompleter completer;
 
 		/**
 		 * Constructs {@code Complete} with an {@code Individual}.
@@ -64,14 +67,10 @@ public class ParallelCompleter extends SequentialCompleter {
 		 *            the individual to complete
 		 * @param control
 		 *            the control
-		 * @param completer
-		 *            the completer
 		 */
-		public Complete(final Individual individual, final Control control,
-				final ParallelCompleter completer) {
+		public Complete(final Individual individual, final Control control) {
 			this.individual = individual;
 			this.control = control;
-			this.completer = completer;
 		}
 
 		/*
@@ -82,9 +81,9 @@ public class ParallelCompleter extends SequentialCompleter {
 		public Void call() throws TerminationException {
 			if (!individual.isEvaluated()) {
 				control.checkpoint();
-				completer.decode(individual);
+				ParallelCompleter.this.decode(individual);
 				control.checkpoint();
-				completer.evaluate(individual);
+				ParallelCompleter.this.evaluate(individual);
 				control.checkpoint();
 			}
 			return null;
@@ -115,6 +114,7 @@ public class ParallelCompleter extends SequentialCompleter {
 			@Constant(value = "maxThreads", namespace = ParallelCompleter.class) int maxThreads) {
 		super(control, decoder, evaluator);
 		this.maxThreads = maxThreads;
+		this.executor = Executors.newFixedThreadPool(maxThreads);
 
 		if (maxThreads < 1) {
 			throw new IllegalArgumentException("Invalid number of threads: "
@@ -132,16 +132,15 @@ public class ParallelCompleter extends SequentialCompleter {
 	@Override
 	public void complete(Iterable<? extends Individual> iterable)
 			throws TerminationException {
-		ExecutorService executor = null;
+
 		try {
-			executor = Executors.newFixedThreadPool(maxThreads);
 
 			List<Future<Void>> returns = new ArrayList<Future<Void>>();
 
 			for (Individual individual : iterable) {
 				if (individual.getState() != Individual.State.EVALUATED) {
 					returns.add(executor.submit(new Complete(individual,
-							control, this)));
+							control)));
 				}
 			}
 
@@ -152,13 +151,58 @@ public class ParallelCompleter extends SequentialCompleter {
 					e.printStackTrace();
 				}
 			}
+			
 		} catch (ExecutionException ex) {
 			if (ex.getCause() instanceof TerminationException) {
 				throw (TerminationException) ex.getCause();
 			}
-			ex.printStackTrace();
-		} finally {
+			throw new RuntimeException(ex);
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#finalize()
+	 */
+	@Override
+	protected void finalize() throws Throwable {
+		shutdownExecutorService();
+		super.finalize();
+	}
+
+	/**
+	 * Shutdown the ExecutorService
+	 */
+	protected synchronized void shutdownExecutorService() {
+		if (!executor.isShutdown()) {
 			executor.shutdown();
 		}
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.opt4j.core.optimizer.OptimizerStateListener#optimizationStarted(org
+	 * .opt4j.core.optimizer.Optimizer)
+	 */
+	@Override
+	public void optimizationStarted(Optimizer optimizer) {
+		// do nothing
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.opt4j.core.optimizer.OptimizerStateListener#optimizationStopped(org
+	 * .opt4j.core.optimizer.Optimizer)
+	 */
+	@Override
+	public void optimizationStopped(Optimizer optimizer) {
+		shutdownExecutorService();
+	}
+
 }

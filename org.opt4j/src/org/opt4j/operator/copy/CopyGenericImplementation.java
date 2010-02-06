@@ -17,8 +17,8 @@ package org.opt4j.operator.copy;
 
 import java.util.Collection;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.operator.common.AbstractGenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.AbstractGenericOperator;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -30,8 +30,8 @@ import com.google.inject.Singleton;
  * 
  */
 @Singleton
-public class CopyGenericImplementation extends AbstractGenericOperator<Copy>
-		implements CopyGeneric {
+public class CopyGenericImplementation extends
+		AbstractGenericOperator<Copy<Genotype>> implements CopyGeneric {
 
 	/**
 	 * Constructs the {@link CopyGenericImplementation}.
@@ -50,7 +50,7 @@ public class CopyGenericImplementation extends AbstractGenericOperator<Copy>
 	 * @author lukasiewycz
 	 * 
 	 */
-	static class CopyHolder extends OperatorHolder<Copy> {
+	static class CopyHolder extends OperatorHolder<Copy<?>> {
 
 		/**
 		 * Constructs a {@code CopyHolder}.
@@ -74,9 +74,10 @@ public class CopyGenericImplementation extends AbstractGenericOperator<Copy>
 	 * @param copies
 	 *            the copy operators
 	 */
-	public CopyGenericImplementation(Collection<Copy> copies) {
-		for (Copy copy : copies) {
-			addHandler(copy);
+	@SuppressWarnings("unchecked")
+	public CopyGenericImplementation(Collection<Copy<?>> copies) {
+		for (Copy<?> copy : copies) {
+			addOperator((Copy<Genotype>)copy);
 		}
 	}
 
@@ -86,7 +87,7 @@ public class CopyGenericImplementation extends AbstractGenericOperator<Copy>
 	 * @see org.opt4j.operator.copy.Copy#copy(org.opt4j.core.Genotype)
 	 */
 	public Genotype copy(Genotype genotype) {
-		Copy copy = getHandler(genotype.getClass());
+		Copy<Genotype> copy = getOperator(genotype.getClass());
 
 		return copy.copy(genotype);
 

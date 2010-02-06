@@ -19,24 +19,17 @@ import org.opt4j.config.annotations.Info;
 import org.opt4j.start.Constant;
 
 /**
- * Module for the {@link Spea2} selector.
+ * The {@code Spea2Module} configures the {@link Spea2} selector.
  * 
  * @author lukasiewycz
  * 
  */
-@Info("The Strength Pareto Evolutionary Algorithm.")
+@Info("The Strength Pareto Evolutionary Algorithm (SPEA II).")
 public class Spea2Module extends SelectorModule {
 
-	@Info("The tournament value")
+	@Info("The tournament value (number of opponents for the mating selection).")
 	@Constant(value = "tournament", namespace = Spea2.class)
 	protected int tournament = 0;
-
-	/**
-	 * Constructs a {@code Spea2Module}.
-	 */
-	public Spea2Module() {
-		super();
-	}
 
 	/**
 	 * Returns the number of tournaments.

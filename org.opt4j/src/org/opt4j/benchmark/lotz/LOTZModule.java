@@ -35,10 +35,10 @@ import org.opt4j.start.Constant;
  * @author lukasiewycz
  * 
  */
-@Info("The 2-dimensional \"Leading Ones Trailing Zeros\" optimization problem")
+@Info("The 2-dimensional \"Leading Ones Trailing Zeros\" optimization problem.")
 public class LOTZModule extends ProblemModule {
 
-	@Info("The length of the binary string")
+	@Info("The length of the binary string.")
 	@Constant(value = "size", namespace = LOTZCreator.class)
 	protected int size = 30;
 

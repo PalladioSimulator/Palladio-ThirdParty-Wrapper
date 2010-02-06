@@ -17,6 +17,7 @@ package org.opt4j.benchmark.queens;
 
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 import org.opt4j.core.problem.Decoder;
 import org.opt4j.genotype.BooleanGenotype;
@@ -47,7 +48,7 @@ public class QueensCopyDecoder implements
 	 *            the random value generator
 	 */
 	@Inject
-	public QueensCopyDecoder(QueensProblem problem, Random random) {
+	public QueensCopyDecoder(QueensProblem problem, Rand random) {
 		this.problem = problem;
 		this.random = random;
 	}
@@ -58,14 +59,10 @@ public class QueensCopyDecoder implements
 	 * @see org.opt4j.core.problem.Creator#create()
 	 */
 	public BooleanGenotype create() {
-
 		int size = problem.size();
 
 		BooleanGenotype vector = new BooleanGenotype();
-
-		for (int i = 0; i < size * size; i++) {
-			vector.add(random.nextBoolean());
-		}
+		vector.init(random, size*size);
 
 		return vector;
 	}

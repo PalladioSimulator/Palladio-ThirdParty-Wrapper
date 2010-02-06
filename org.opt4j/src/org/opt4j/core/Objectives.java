@@ -24,12 +24,15 @@ import java.util.Map.Entry;
 import static org.opt4j.core.Objective.Sign.MAX;
 
 /**
- * The {@code Objectives} contain the {@code Objective} {@code Values} of an
- * {@code Individual}. Additionally, the feasibility of the {@code Objectives}
- * can be set. The feasibility {@code #isFeasible()} is {@code true} by default,
- * set this value to {@code false} to indicate that the corresponding
- * {@code Individual} is infeasible (e.g. it violates constraints).
+ * The {@code Objectives} contains the {@code Objective}-{@code Values} pairs of
+ * an {@code Individual}. Additionally, the feasibility of the {@code
+ * Objectives} can be set. The feasibility {@code #isFeasible()} is {@code true} by
+ * by default. Set this value to {@code false} to indicate that the
+ * corresponding {@code Individual} is infeasible (e.g., it violates
+ * constraints).
  * 
+ * @see Value
+ * @see Objective
  * @author lukasiewycz
  * 
  */
@@ -77,13 +80,17 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 	 * @return an array containing values which have to be minimized
 	 */
 	public double[] array() {
+		if (array == null) {
+			submit();
+		}
+
 		return array;
 	}
 
 	/**
 	 * Calculates the array.
 	 */
-	public void submit() {
+	protected synchronized void submit() {
 		if (array == null) {
 			array = new double[size()];
 			int i = 0;
@@ -104,7 +111,6 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 				i++;
 			}
 		}
-
 	}
 
 	/**
@@ -181,6 +187,7 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 		} else {
 			map.put(objective, value);
 		}
+		array = null;
 	}
 
 	/**
@@ -208,14 +215,15 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 	}
 
 	/**
-	 * Adds all objective with the specified value specified in
-	 * {@code objectives}.
+	 * Adds all objective with the specified value specified in {@code
+	 * objectives}.
 	 * 
 	 * @param objectives
 	 *            the objectives
 	 */
 	public void add(Objectives objectives) {
 		map.putAll(objectives.map);
+		array = null;
 	}
 
 	/**
@@ -224,8 +232,8 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 	 * 
 	 * @param opponent
 	 *            other objectives
-	 * @return {@code true} if this objectives weakly dominate the
-	 *         {@code opponent}
+	 * @return {@code true} if this objectives weakly dominate the {@code
+	 *         opponent}
 	 */
 	public boolean weaklyDominates(Objectives opponent) {
 		double[] va = this.array();
@@ -301,20 +309,20 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 		return Math.sqrt(s);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		String s = "";
-		for(Entry<Objective, Value<?>> entry: map.entrySet()){
+		for (Entry<Objective, Value<?>> entry : map.entrySet()) {
 			Objective o = entry.getKey();
 			Value<?> v = entry.getValue();
-			s += o+"="+v+" ";
+			s += o + "=" + v + " ";
 		}
 		return s;
 	}
-	
-	
 
 }

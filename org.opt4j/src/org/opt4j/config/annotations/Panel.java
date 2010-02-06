@@ -24,8 +24,8 @@ import java.lang.annotation.Target;
 import org.opt4j.config.visualization.PropertyPanel;
 
 /**
- * The {@code Panel} annotation allows the definition of a custom panel for
- * modules.
+ * The {@code Panel} annotation allows the definition of a custom panel for a
+ * module.
  * 
  * @author lukasiewycz
  * 

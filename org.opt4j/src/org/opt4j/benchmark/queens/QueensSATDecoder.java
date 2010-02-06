@@ -15,10 +15,10 @@
 
 package org.opt4j.benchmark.queens;
 
-import java.util.Random;
 import java.util.Set;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.sat.AbstractSATDecoder;
 import org.opt4j.sat.Constraint;
 import org.opt4j.sat.Literal;
@@ -50,7 +50,7 @@ public class QueensSATDecoder extends AbstractSATDecoder<Genotype, QueensBoard> 
 	 */
 	@Inject
 	public QueensSATDecoder(SATManager manager, QueensProblem problem,
-			Random random) {
+			Rand random) {
 		super(manager, random);
 		this.problem = problem;
 	}

@@ -15,6 +15,8 @@
 
 package org.opt4j.core;
 
+import org.opt4j.core.problem.Genotype;
+
 import com.google.inject.ImplementedBy;
 
 /**

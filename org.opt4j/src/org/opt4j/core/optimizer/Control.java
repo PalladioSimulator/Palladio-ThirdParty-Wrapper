@@ -21,8 +21,24 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import com.google.inject.Singleton;
 
 /**
+ * <p>
  * The {@code Control} allows to pause, stop, and terminate, the optimization
  * process.
+ * </p>
+ * <p>
+ * The {@code Optimizer} calls the methods
+ * <ul>
+ * <li>{@link Control#checkpoint()} and</li>
+ * <li>{@link Control#checkpointStop()}</li>
+ * </ul>
+ * in which the process might get paused, terminated (by the {@link
+ * TerminationException}) or stopped (by the {@link StopException}). By
+ * definition, a {@code StopException} might get thrown only between iterations,
+ * a {@code TerminationException} also within an iteration of the optimization
+ * algorithm. In this context, the optimization algorithm calls {@code
+ * checkpointStop()} between the iterations and {@code checkpoint()} within the
+ * iteration.
+ * </p>
  * 
  * @author lukasiewycz
  * 
@@ -94,7 +110,6 @@ public class Control {
 	 */
 	public synchronized void doStart() {
 		if (state.isStartable()) {
-			notifyAll();
 			setState(State.RUNNING);
 		}
 	}
@@ -104,7 +119,6 @@ public class Control {
 	 */
 	public synchronized void doPause() {
 		if (state.isPausable()) {
-			notifyAll();
 			setState(State.PAUSED);
 		}
 	}
@@ -114,7 +128,6 @@ public class Control {
 	 */
 	public synchronized void doStop() {
 		if (state.isStoppable()) {
-			notifyAll();
 			setState(State.STOPPED);
 		}
 	}
@@ -123,7 +136,6 @@ public class Control {
 	 * Terminates the optimization.
 	 */
 	public synchronized void doTerminate() {
-		notifyAll();
 		setState(State.TERMINATED);
 	}
 
@@ -215,30 +227,35 @@ public class Control {
 	 */
 	protected synchronized void setState(State state) {
 		boolean changed = (this.state != state);
-		this.state = state;
 
 		if (changed) {
+			this.state = state;
+			// wake up all potentially waiting (paused) processes
+			notifyAll();
+
 			for (ControlListener listener : listeners) {
 				listener.stateChanged(state);
 			}
 		}
 	}
-	
+
 	/**
 	 * Adds a {@code ControlListener}.
 	 * 
-	 * @param listener the listener to add
+	 * @param listener
+	 *            the listener to add
 	 */
-	public void addListener(ControlListener listener){
+	public void addListener(ControlListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	/**
 	 * Removes a {@code ControlListener}.
 	 * 
-	 * @param listener the listener to remove
+	 * @param listener
+	 *            the listener to remove
 	 */
-	public void removeListener(ControlListener listener){
+	public void removeListener(ControlListener listener) {
 		listeners.remove(listener);
 	}
 }

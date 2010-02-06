@@ -41,7 +41,7 @@ public class ModuleRegister implements Iterable<Class<? extends Module>> {
 	protected final Set<Class<? extends Module>> set = Collections
 			.synchronizedSet(new HashSet<Class<? extends Module>>());
 
-	protected final ModuleFinder finder;
+	protected final ModuleList finder;
 
 	protected boolean isInit = false;
 
@@ -52,7 +52,7 @@ public class ModuleRegister implements Iterable<Class<? extends Module>> {
 	 *            the module finder to be used
 	 */
 	@Inject
-	public ModuleRegister(final ModuleFinder finder) {
+	public ModuleRegister(final ModuleList finder) {
 		super();
 		this.finder = finder;
 	}
@@ -60,7 +60,7 @@ public class ModuleRegister implements Iterable<Class<? extends Module>> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.util.HashSet#iterator()
+	 * @see java.lang.Iterable#iterator()
 	 */
 	public synchronized Iterator<Class<? extends Module>> iterator() {
 		checkInit();
@@ -68,10 +68,11 @@ public class ModuleRegister implements Iterable<Class<? extends Module>> {
 		return set.iterator();
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Returns the number of found modules.
 	 * 
 	 * @see java.util.HashSet#size()
+	 * @return the number of found modules
 	 */
 	public synchronized int size() {
 		checkInit();

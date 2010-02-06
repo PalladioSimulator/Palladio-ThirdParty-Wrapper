@@ -16,7 +16,6 @@
 package org.opt4j.operator.mutate;
 
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -30,7 +29,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(MutatePermutationMixed.class)
-@Apply(PermutationGenotype.class)
-public interface MutatePermutation extends Mutate {
+public interface MutatePermutation extends Mutate<PermutationGenotype<?>> {
 
 }

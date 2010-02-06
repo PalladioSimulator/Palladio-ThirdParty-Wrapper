@@ -23,9 +23,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Defines the order of properties in a property module. The order of the
- * properties is also preserved on module loading. That means, the setters are
- * called based on the property order.
+ * The {@code Order} annotation assigns a user defined order to properties of a
+ * module.
  * 
  * @author lukasiewycz
  * 

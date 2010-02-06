@@ -27,12 +27,16 @@ import org.opt4j.start.Opt4JModule;
  * The {@code ArchiveModule} determines an implementation for the {@code
  * Archive} interface.
  * 
- * @author helwig, lukasiewycz
+ * @see UnboundedArchive
+ * @see PopulationArchive
+ * @see CrowdingArchive
+ * @see AdaptiveGridArchive
  * @see Archive
+ * @author helwig, lukasiewycz
  * 
  */
 @Icon(Icons.PUZZLE_BLUE)
-@Info("The archive of non-dominated solutions found throughout optimization.")
+@Info("The archive of non-dominated solutions found while the optimization process.")
 public class ArchiveModule extends Opt4JModule {
 
 	@Info("Archive type")
@@ -40,17 +44,66 @@ public class ArchiveModule extends Opt4JModule {
 
 	@Info("Maximal archive capacity if a bounded archive is selected")
 	@Required(property = "type", elements = { "ADAPTIVE_GRID", "CROWDING" })
-	@Constant(value = "capapcity", namespace = BoundedArchive.class)
+	@Constant(value = "capacity", namespace = BoundedArchive.class)
 	protected int capacity = 100;
+
+	@Info("Divisions for the adaptive grid archive. A convergence is guaranteed if 'capacity>1+div^m+(div-1)^m+2*m' with m being the number of objectives holds")
+	@Required(property = "type", elements = { "ADAPTIVE_GRID" })
+	@Constant(value = "div", namespace = AdaptiveGridArchive.class)
+	protected int divisions = 7;
 
 	/** Archive type */
 	public enum Type {
+		/**
+		 * Archive of unlimited size.
+		 * 
+		 * @see UnboundedArchive
+		 */
 		@Info("Archive of unlimited size")
-		UNBOUNDED, @Info("Archive that keeps the non-dominated individual of the population")
-		POPULATION, @Info("Adaptive grid archive")
-		ADAPTIVE_GRID, @Info("Bounded archive based on the NSGA2 crowding distance")
-		CROWDING,
-		BASIC;
+		UNBOUNDED,
+
+		/**
+		 * Archive that keeps the non-dominated individual of the population.
+		 * 
+		 * @see PopulationArchive
+		 */
+		@Info("Archive that keeps the non-dominated individual of the population")
+		POPULATION,
+
+		/**
+		 * Adaptive grid archive.
+		 * 
+		 * @see AdaptiveGridArchive
+		 */
+		@Info("Adaptive grid archive")
+		ADAPTIVE_GRID,
+
+		/**
+		 * Bounded archive based on the NSGA2 crowding distance.
+		 * 
+		 * @see CrowdingArchive
+		 */
+		@Info("Bounded archive based on the crowding distance (NSGA2)")
+		CROWDING;
+	}
+
+	/**
+	 * Returns the number of divisions for the {@link AdaptiveGridArchive}.
+	 * 
+	 * @return the number of divisions
+	 */
+	public int getDivisions() {
+		return divisions;
+	}
+
+	/**
+	 * Set the number of divisions for the {@link AdaptiveGridArchive}.
+	 * 
+	 * @param divisions
+	 *            the number of divisions
+	 */
+	public void setDivisions(int divisions) {
+		this.divisions = divisions;
 	}
 
 	/**
@@ -109,9 +162,6 @@ public class ArchiveModule extends Opt4JModule {
 			break;
 		case CROWDING:
 			archiveClass = CrowdingArchive.class;
-			break;
-		case BASIC:
-			archiveClass = BasicArchive.class;
 			break;
 		default: // UNBOUNDED
 			archiveClass = UnboundedArchive.class;

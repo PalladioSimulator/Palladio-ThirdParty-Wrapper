@@ -15,7 +15,6 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.genotype.DoubleGenotype;
 
 /**
@@ -30,19 +29,17 @@ public class DiversityDoubleAbsolute implements DiversityDouble {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.opt4j.operator.diversity.Diversity#diversity(org.opt4j.core.Genotype,
-	 *      org.opt4j.core.Genotype)
+	 * @see
+	 * org.opt4j.operator.diversity.Diversity#diversity(org.opt4j.core.problem
+	 * .Genotype, org.opt4j.core.problem.Genotype)
 	 */
-	public double diversity(Genotype a, Genotype b) {
-		DoubleGenotype genotypeA = (DoubleGenotype) a;
-		DoubleGenotype genotypeB = (DoubleGenotype) b;
-
-		int size = genotypeA.size();
+	public double diversity(DoubleGenotype a, DoubleGenotype b) {
+		int size = a.size();
 
 		double diversity = 0;
 		for (int i = 0; i < size; i++) {
-			double diff = genotypeA.getUpperBound(i)*genotypeA.getLowerBound(i);
-			diversity += Math.abs(genotypeA.get(i) - genotypeB.get(i))/diff;
+			double diff = a.getUpperBound(i) * a.getLowerBound(i);
+			diversity += Math.abs(a.get(i) - b.get(i)) / diff;
 		}
 
 		return diversity / size;

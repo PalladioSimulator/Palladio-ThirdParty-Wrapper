@@ -15,8 +15,8 @@
 
 package org.opt4j.operator.crossover;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.optimizer.ea.Pair;
 
 import com.google.inject.ImplementedBy;
@@ -26,9 +26,11 @@ import com.google.inject.ImplementedBy;
  * 
  * @author lukasiewycz
  * 
+ * @param <G>
+ *            the type of genotype
  */
 @ImplementedBy(CrossoverGeneric.class)
-public interface Crossover extends Operator {
+public interface Crossover<G extends Genotype> extends Operator<G> {
 
 	/**
 	 * Performs a crossover for two {@code Genotype} parents. The resulting pair
@@ -40,5 +42,5 @@ public interface Crossover extends Operator {
 	 *            The second parents genotype for the crossover
 	 * @return The resulting pair of offspring genotypes
 	 */
-	public Pair<Genotype> crossover(Genotype parent1, Genotype parent2);
+	public Pair<G> crossover(G parent1, G parent2);
 }

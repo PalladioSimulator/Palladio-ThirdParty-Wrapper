@@ -29,7 +29,7 @@ import com.google.inject.Singleton;
  */
 @SuppressWarnings("serial")
 @Singleton
-public class RandomJava extends Random {
+public class RandomJava extends Rand {
 
 	/**
 	 * Constructs a {@code RandomJava} with the specified seed.

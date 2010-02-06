@@ -17,12 +17,10 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.BooleanGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * The {@code DiversityBoolean} operator for the {@link BooleanGenotype}.
@@ -30,9 +28,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(BooleanGenotype.class)
-public class NeighborBoolean implements Neighbor {
+public class NeighborBoolean implements Neighbor<BooleanGenotype> {
 
 	protected final Random random;
 
@@ -43,7 +39,7 @@ public class NeighborBoolean implements Neighbor {
 	 *            the random number generator
 	 */
 	@Inject
-	public NeighborBoolean(Random random) {
+	public NeighborBoolean(Rand random) {
 		this.random = random;
 	}
 
@@ -53,14 +49,12 @@ public class NeighborBoolean implements Neighbor {
 	 * @see
 	 * org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
-	public void neighbor(Genotype genotype) {
-		BooleanGenotype vector = (BooleanGenotype) genotype;
-
-		int size = vector.size();
+	public void neighbor(BooleanGenotype genotype) {
+		int size = genotype.size();
 
 		int i = random.nextInt(size);
 
-		vector.set(i, !vector.get(i));
+		genotype.set(i, !genotype.get(i));
 	}
 
 }

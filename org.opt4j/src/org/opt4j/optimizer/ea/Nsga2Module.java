@@ -22,9 +22,7 @@ import org.opt4j.start.Constant;
  * Module for the {@link Nsga2} {@code Selector}.
  * 
  * 
- * @see "A Fast Elitist Non-Dominated Sorting Genetic Algorithm for
- *      Multi-Objective Optimization: NSGA-II, K. Deb, Samir Agrawal, Amrit
- *      Pratap, and T. Meyarivan, Parallel Problem Solving from Nature, 2000"
+ * @see Nsga2
  * @author lukasiewycz
  * 
  */

@@ -17,8 +17,8 @@ package org.opt4j.operator.mutate;
 
 import java.util.Collection;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.operator.common.AbstractGenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.AbstractGenericOperator;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -31,7 +31,7 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class MutateGenericImplementation extends
-		AbstractGenericOperator<Mutate> implements MutateGeneric {
+		AbstractGenericOperator<Mutate<Genotype>> implements MutateGeneric {
 
 	/**
 	 * Constructs the {@link MutateGenericImplementation}.
@@ -50,7 +50,7 @@ public class MutateGenericImplementation extends
 	 * @author lukasiewycz
 	 * 
 	 */
-	static class MutateHolder extends OperatorHolder<Mutate> {
+	static class MutateHolder extends OperatorHolder<Mutate<?>> {
 
 		/**
 		 * Constructs a {@code MutateHolder}.
@@ -86,9 +86,10 @@ public class MutateGenericImplementation extends
 	 * @param mutates
 	 *            the mutate operators
 	 */
-	public MutateGenericImplementation(Collection<Mutate> mutates) {
-		for (Mutate mutate : mutates) {
-			addHandler(mutate);
+	@SuppressWarnings("unchecked")
+	public MutateGenericImplementation(Collection<Mutate<?>> mutates) {
+		for (Mutate<?> mutate : mutates) {
+			addOperator((Mutate<Genotype>) mutate);
 		}
 	}
 
@@ -98,9 +99,7 @@ public class MutateGenericImplementation extends
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
 	public void mutate(Genotype genotype) {
-
-		Mutate mutate = getHandler(genotype.getClass());
+		Mutate<Genotype> mutate = getOperator(genotype.getClass());
 		mutate.mutate(genotype);
-
 	}
 }

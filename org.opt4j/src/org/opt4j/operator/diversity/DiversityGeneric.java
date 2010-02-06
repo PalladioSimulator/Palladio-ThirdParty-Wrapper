@@ -15,7 +15,8 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.operator.common.GenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.GenericOperator;
 
 import com.google.inject.ImplementedBy;
 
@@ -27,6 +28,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(DiversityGenericImplementation.class)
-public interface DiversityGeneric extends Diversity, GenericOperator<Diversity> {
+public interface DiversityGeneric extends Diversity<Genotype>, GenericOperator<Diversity<Genotype>> {
 
 }

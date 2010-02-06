@@ -24,8 +24,12 @@ import org.opt4j.config.annotations.Icon;
 import org.opt4j.start.Opt4JModule;
 
 /**
- * Abstract module class for the Problem modules.
+ * The {@code ProblemModule} is an abstract module class for the binding of the
+ * {@code Creator}, {@code Decoder}, and {@code Evaluator}.
  * 
+ * @see Creator
+ * @see Decoder
+ * @see Evaluator
  * @author lukasiewycz
  * @see org.opt4j.core.problem
  * 
@@ -35,7 +39,9 @@ import org.opt4j.start.Opt4JModule;
 public abstract class ProblemModule extends Opt4JModule {
 
 	/**
-	 * Binds a problem.
+	 * Binds a problem. A value {@code null} is allowed. In this case, the
+	 * corresponding interface is not bound. Therefore, the binding for the
+	 * omitted interfaces has to be done in other modules.
 	 * 
 	 * @param creator
 	 *            the creator
@@ -44,27 +50,36 @@ public abstract class ProblemModule extends Opt4JModule {
 	 * @param evaluator
 	 *            the evaluator
 	 */
-	@SuppressWarnings( { "unchecked", "serial" })
+	@SuppressWarnings( { "unchecked" })
 	public void bindProblem(final Class<? extends Creator> creator,
 			final Class<? extends Decoder> decoder,
 			final Class<? extends Evaluator> evaluator) {
 
-		Set<Class<?>> classes = new HashSet<Class<?>>() {
-			{
-				add(creator);
-				add(decoder);
-				add(evaluator);
-			}
-		};
+		Set<Class<?>> classes = new HashSet<Class<?>>();
+		if (creator != null) {
+			classes.add(creator);
+		}
+		if (decoder != null) {
+			classes.add(decoder);
+		}
+		if (evaluator != null) {
+			classes.add(evaluator);
+		}
 
 		for (Class<?> clazz : classes) {
 			bind(clazz).in(SINGLETON);
 		}
 
-		bind(Creator.class).to(creator);
-		bind(Decoder.class).to(decoder);
-		bind(Evaluator.class).to(evaluator);
-		
+		if (creator != null) {
+			bind(Creator.class).to(creator);
+		}
+		if (decoder != null) {
+			bind(Decoder.class).to(decoder);
+		}
+		if (evaluator != null) {
+			bind(Evaluator.class).to(evaluator);
+		}
+
 	}
 
 }

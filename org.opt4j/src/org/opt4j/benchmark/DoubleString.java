@@ -15,7 +15,7 @@
 
 package org.opt4j.benchmark;
 
-import org.opt4j.core.Phenotype;
+import org.opt4j.core.problem.Phenotype;
 import org.opt4j.genotype.Bounds;
 import org.opt4j.genotype.DoubleGenotype;
 
@@ -57,6 +57,16 @@ public class DoubleString extends DoubleGenotype implements Phenotype {
 	 */
 	public DoubleString(Bounds<Double> bounds) {
 		super(bounds);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.AbstractCollection#toString()
+	 */
+	@Override
+	public String toString() {
+		return DoubleString.class.getSimpleName() + " size=" + this.size();
 	}
 
 }

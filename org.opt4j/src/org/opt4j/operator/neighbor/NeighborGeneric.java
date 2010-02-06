@@ -15,7 +15,8 @@
 
 package org.opt4j.operator.neighbor;
 
-import org.opt4j.operator.common.GenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.GenericOperator;
 
 import com.google.inject.ImplementedBy;
 
@@ -28,6 +29,7 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(NeighborGenericImplementation.class)
-public interface NeighborGeneric extends Neighbor, GenericOperator<Neighbor> {
+public interface NeighborGeneric extends Neighbor<Genotype>,
+		GenericOperator<Neighbor<Genotype>> {
 
 }

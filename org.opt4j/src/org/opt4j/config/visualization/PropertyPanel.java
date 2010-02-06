@@ -116,6 +116,7 @@ public class PropertyPanel extends JPanel {
 						property.setValue(selected);
 						update();
 					} catch (InvocationTargetException ex) {
+						System.err.println(ex.getMessage());
 					}
 				}
 			});
@@ -134,6 +135,7 @@ public class PropertyPanel extends JPanel {
 						property.setValue(b);
 						update();
 					} catch (InvocationTargetException ex) {
+						System.err.println(ex.getMessage());
 					}
 
 				}
@@ -156,6 +158,7 @@ public class PropertyPanel extends JPanel {
 					try {
 						property.setValue(value);
 					} catch (InvocationTargetException ex) {
+						System.err.println(ex.getMessage());
 					} finally {
 						field.setText(property.getValue().toString());
 						update();
@@ -172,6 +175,7 @@ public class PropertyPanel extends JPanel {
 					try {
 						property.setValue(value);
 					} catch (InvocationTargetException ex) {
+						System.err.println(ex.getMessage());
 						field.setText(property.getValue().toString());
 					}
 				}
@@ -184,8 +188,11 @@ public class PropertyPanel extends JPanel {
 
 	protected String format(Property property, String value) {
 		if (property.isNumber()) {
+			value = value.trim();
 			if (value.equals("")) {
 				value = "0";
+			} else if (value.equals("-")) {
+					value = "0";
 			} else {
 				if (value.startsWith(".")) {
 					value = "0" + value;
@@ -195,9 +202,8 @@ public class PropertyPanel extends JPanel {
 				}
 			}
 			return value;
-		} else {
-			return value;
 		}
+		return value;
 	}
 
 	protected void fillComponentsMap() {
@@ -338,6 +344,7 @@ public class PropertyPanel extends JPanel {
 				field.setText("" + property.getValue());
 				update();
 			} catch (InvocationTargetException ex) {
+				System.err.println(ex.getMessage());
 			}
 		}
 	}

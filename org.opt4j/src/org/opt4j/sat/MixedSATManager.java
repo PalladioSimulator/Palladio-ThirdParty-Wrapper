@@ -18,7 +18,7 @@ package org.opt4j.sat;
 import java.util.List;
 import java.util.Map;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.BooleanGenotype;
 import org.opt4j.genotype.BooleanMapGenotype;
 import org.opt4j.genotype.DoubleBounds;

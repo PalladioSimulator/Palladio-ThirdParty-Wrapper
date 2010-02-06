@@ -16,21 +16,25 @@ package org.opt4j.start;
 
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
+import java.util.Arrays;
 
 import org.opt4j.config.Property;
 import org.opt4j.config.PropertyModule;
 import org.opt4j.core.IndividualStateListener;
+import org.opt4j.core.optimizer.ControlListener;
 import org.opt4j.core.optimizer.OptimizerIterationListener;
 import org.opt4j.core.optimizer.OptimizerStateListener;
-import org.opt4j.gui.IndividualMouseListener;
-import org.opt4j.gui.ToolBarService;
+import org.opt4j.viewer.IndividualMouseListener;
+import org.opt4j.viewer.ToolBarService;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.BindingAnnotation;
+import com.google.inject.ConfigurationException;
 import com.google.inject.Scope;
 import com.google.inject.Scopes;
 import com.google.inject.binder.ConstantBindingBuilder;
 import com.google.inject.multibindings.Multibinder;
+import com.google.inject.spi.Message;
 
 /**
  * The {@code Opt4JModule} is the superclass for all modules.
@@ -76,7 +80,6 @@ public abstract class Opt4JModule extends AbstractModule {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void configure() {
-		config();
 
 		/**
 		 * Configure injected constants.
@@ -112,6 +115,12 @@ public abstract class Opt4JModule extends AbstractModule {
 						builder.to((Class<?>) value);
 					} else if (value instanceof Enum<?>) {
 						builder.to((Enum) value);
+					} else {
+						String message = "Constant type not bindable: " + type
+								+ " of field " + property.getName()
+								+ " in module " + this.getClass().getName();
+						throw new ConfigurationException(Arrays
+								.asList(new Message(message)));
 					}
 				}
 			}
@@ -122,6 +131,8 @@ public abstract class Opt4JModule extends AbstractModule {
 		multi(IndividualStateListener.class);
 		multi(ToolBarService.class);
 		multi(IndividualMouseListener.class);
+
+		config();
 	}
 
 	protected void multi(Class<?> clazz) {
@@ -219,9 +230,10 @@ public abstract class Opt4JModule extends AbstractModule {
 		 * 
 		 * @see java.lang.Object#toString()
 		 */
+		@Override
 		public String toString() {
 			return "@" + Constant.class.getName() + "(value=" + value
-					+ ", namespace" + namespace.getName() + ")";
+					+ ", namespace=" + namespace.getName() + ")";
 		}
 
 		private static final long serialVersionUID = 0;
@@ -255,48 +267,57 @@ public abstract class Opt4JModule extends AbstractModule {
 	}
 
 	/**
-	 * Bind an {@code OptimizerStateListener}.
+	 * Adds an {@code OptimizerStateListener}.
 	 * 
-	 * @param optimizerStateListener
-	 *            the listener to be bound
+	 * @param listener
+	 *            the listener to be added
 	 */
-	public void bindOptimizerStateListener(
-			Class<? extends OptimizerStateListener> optimizerStateListener) {
-
+	public void addOptimizerStateListener(
+			Class<? extends OptimizerStateListener> listener) {
 		Multibinder<OptimizerStateListener> multibinder = Multibinder
 				.newSetBinder(binder(), OptimizerStateListener.class);
-		multibinder.addBinding().to(optimizerStateListener);
+		multibinder.addBinding().to(listener);
 
 	}
 
 	/**
-	 * Bind an {@code OptimizerIterationListener}.
+	 * Adds an {@code OptimizerIterationListener}.
 	 * 
-	 * @param optimizerIterationListener
-	 *            the listener to be bound
+	 * @param listener
+	 *            the listener to be added
 	 */
-	public void bindOptimizerIterationListener(
-			Class<? extends OptimizerIterationListener> optimizerIterationListener) {
-
+	public void addOptimizerIterationListener(
+			Class<? extends OptimizerIterationListener> listener) {
 		Multibinder<OptimizerIterationListener> multibinder = Multibinder
 				.newSetBinder(binder(), OptimizerIterationListener.class);
-		multibinder.addBinding().to(optimizerIterationListener);
+		multibinder.addBinding().to(listener);
 
 	}
 
 	/**
-	 * Bind an {@code IndividualStateListener}.
+	 * Adds an {@code IndividualStateListener}.
 	 * 
-	 * @param individualStateListener
-	 *            the listener to be bound
+	 * @param listener
+	 *            the listener to be added
 	 */
-	public void bindIndividualStateListener(
-			Class<? extends IndividualStateListener> individualStateListener) {
-
+	public void addIndividualStateListener(
+			Class<? extends IndividualStateListener> listener) {
 		Multibinder<IndividualStateListener> multibinder = Multibinder
 				.newSetBinder(binder(), IndividualStateListener.class);
-		multibinder.addBinding().to(individualStateListener);
+		multibinder.addBinding().to(listener);
 
+	}
+
+	/**
+	 * Adds an {@code ControlListener}.
+	 * 
+	 * @param listener
+	 *            the listener to be added
+	 */
+	public void addControlListener(Class<? extends ControlListener> listener) {
+		Multibinder<ControlListener> multibinder = Multibinder.newSetBinder(
+				binder(), ControlListener.class);
+		multibinder.addBinding().to(listener);
 	}
 
 }

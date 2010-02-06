@@ -15,6 +15,8 @@
 
 package org.opt4j.common.logger;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualBuilder;
 import org.opt4j.core.IndividualStateListener;
@@ -40,7 +42,7 @@ public abstract class AbstractLogger implements OptimizerStateListener,
 
 	protected int evaluationCountLast = 0;
 
-	protected int evaluationCount = 0;
+	protected AtomicInteger evaluationCount = new AtomicInteger(0);
 
 	protected final IndividualBuilder individualBuilder;
 
@@ -113,17 +115,17 @@ public abstract class AbstractLogger implements OptimizerStateListener,
 
 		boolean logEvaluation = false;
 		if (evaluationStep > 0) {
-			logEvaluation = ((evaluationCount - evaluationCountLast) >= evaluationStep);
+			logEvaluation = ((evaluationCount.intValue() - evaluationCountLast) >= evaluationStep);
 		}
 
 		if (logEvaluation) {
 			do {
 				evaluationCountLast += evaluationStep;
-			} while ((evaluationCount - evaluationCountLast) >= evaluationStep);
+			} while ((evaluationCount.intValue() - evaluationCountLast) >= evaluationStep);
 		}
 
 		if (logIteration || logEvaluation) {
-			logEvent(iteration, evaluationCount);
+			logEvent(iteration, evaluationCount.intValue());
 		}
 	}
 
@@ -158,7 +160,7 @@ public abstract class AbstractLogger implements OptimizerStateListener,
 	 */
 	public void inidividualStateChanged(Individual individual) {
 		if (individual.getState() == State.EVALUATED) {
-			evaluationCount++;
+			evaluationCount.incrementAndGet();
 		}
 	}
 

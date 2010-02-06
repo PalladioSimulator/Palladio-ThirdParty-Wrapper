@@ -26,16 +26,18 @@ import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.Iterations;
 import org.opt4j.core.optimizer.StopException;
 import org.opt4j.core.optimizer.TerminationException;
+import org.opt4j.operator.crossover.Crossover;
+import org.opt4j.operator.mutate.Mutate;
 import org.opt4j.start.Constant;
 
 import com.google.inject.Inject;
 
 /**
  * The {@code EvolutionaryAlgorithm} is an implementation of an Evolutionary
- * Algorithm. It uses a {@code Selector} to determine the fitness of the {@code
- * Individuals}.
+ * Algorithm based on the operators {@link Crossover} and {@link Mutate}. It
+ * uses a {@code Selector} for the mating and environmental selection.
  * 
- * @author glass
+ * @author lukasiewycz, glass
  * 
  */
 public class EvolutionaryAlgorithm extends AbstractOptimizer {
@@ -141,14 +143,11 @@ public class EvolutionaryAlgorithm extends AbstractOptimizer {
 
 			// evaluate offspring before selecting lames
 			completer.complete(offspring);
-			
-			/* Get lame candidates based on Nsga2 */
+
 			Collection<Individual> lames = selector
 					.getLames(lambda, population);
-			/* Remove these lames */
 			population.removeAll(lames);
 
-			/* removes Pareto-dominated solutions */
 			nextIteration();
 		}
 	}

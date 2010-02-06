@@ -280,15 +280,22 @@ public class Property {
 				// and all objects that have a constructor that accepts one
 				// string
 				Constructor<?> constructor = type.getConstructor(String.class);
-				object = constructor.newInstance(value);
+				object = constructor.newInstance(value.trim());
 
 			}
 
 			setValueObject(object);
 		} catch (Exception e) {
-			throw new InvocationTargetException(e,
-					"Failed assign value to property: " + getName() + " "
-							+ value);
+			Throwable t = e;
+			while (t.getCause() != null) {
+				t = t.getCause();
+			}
+			String message = t.getLocalizedMessage();
+
+			throw new InvocationTargetException(e, "Failed assignment: module="
+					+ module.getClass().getName() + " property=\"" + getName()
+					+ "\" value=\"" + value + "\" (" + t.getClass().getName()
+					+ (message != null ? ": " + message : "") + ")");
 		}
 	}
 
@@ -347,7 +354,7 @@ public class Property {
 		if (type instanceof WildcardType) {
 			WildcardType wildcard = (WildcardType) type;
 			for (Type lower : wildcard.getLowerBounds()) {
-				if (lower instanceof Class) {
+				if (lower instanceof Class<?>) {
 					Class<?> lowerClass = (Class<?>) lower;
 					if (!clazz.isAssignableFrom(lowerClass)) {
 						return false;
@@ -355,7 +362,7 @@ public class Property {
 				}
 			}
 			for (Type upper : wildcard.getUpperBounds()) {
-				if (upper instanceof Class) {
+				if (upper instanceof Class<?>) {
 					Class<?> upperClass = (Class<?>) upper;
 					if (!upperClass.isAssignableFrom(clazz)) {
 						return false;

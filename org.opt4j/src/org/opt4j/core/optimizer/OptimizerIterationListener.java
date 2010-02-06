@@ -14,9 +14,12 @@
  */
 package org.opt4j.core.optimizer;
 
+import org.opt4j.start.Opt4JModule;
+
 /**
- * The {@code OptimizerStateListener} is used to monitor the iteration of the
- * {@link Optimizer}.
+ * The {@code OptimizerIterationListener} is used to monitor the iteration of
+ * the {@link Optimizer}. To add an {@code OptimizerIterationListener} use the
+ * method {@link Opt4JModule#addOptimizerIterationListener(Class)}.
  * 
  * @author lukasiewycz
  * 

@@ -16,6 +16,7 @@
 package org.opt4j.config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -49,27 +50,50 @@ public abstract class Task implements Callable<Void> {
 	 * 
 	 */
 	public enum State {
-		WAITING, EXECUTING, DONE;
+		/**
+		 * The task is waiting for its execution.
+		 */
+		WAITING,
+		/**
+		 * The task is currently executed.
+		 */
+		EXECUTING,
+		/**
+		 * The task is done.
+		 */
+		DONE;
 	}
 
 	/**
 	 * Initializes the {@code Task} with modules.
+	 * 
+	 * @see Task#init(Collection)
+	 * @param modules
+	 *            the modules for the task
+	 */
+	public void init(Module... modules) {
+		init(Arrays.asList(modules));
+	}
+
+	/**
+	 * Initializes the {@code Task} with modules. Note that if a module is a
+	 * {@link PropertyModule}, a copy is made with the
+	 * {@link PropertyModule#clone()} method. If the {@code Module} is not a
+	 * {@link PropertyModule}, the module is copied as a reference, i.e., it can
+	 * be changed until the {@code Task#execute()} is called.
 	 * 
 	 * @param modules
 	 *            the modules for the task
 	 */
 	public void init(Collection<Module> modules) {
 		for (Module module : modules) {
-			PropertyModule pModule;
 			if (module instanceof PropertyModule) {
-				pModule = (PropertyModule) module;
+				PropertyModule pModule = (PropertyModule) module;
+				this.modules.add(pModule.clone());
 			} else {
-				pModule = new PropertyModule(module);
+				this.modules.add(module);
 			}
-
-			this.modules.add(pModule.clone());
 		}
-
 		isInit = true;
 	}
 

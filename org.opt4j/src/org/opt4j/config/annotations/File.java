@@ -15,16 +15,16 @@
 
 package org.opt4j.config.annotations;
 
-import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The {@code File} annotation. Use this annotation for a property that
- * represent a file.
+ * The {@code File} annotation marks a {@code String} property as a file such
+ * that the {@code String} can be changed by a browser.
  * 
  * @author lukasiewycz
  * 

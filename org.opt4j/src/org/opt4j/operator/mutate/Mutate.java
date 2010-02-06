@@ -15,25 +15,27 @@
 
 package org.opt4j.operator.mutate;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
 
 import com.google.inject.ImplementedBy;
-
 
 /**
  * Mutate operator that performs a mutation for a {@link Genotype}.
  * 
  * @author lukasiewycz
- *
+ * 
+ * @param <G>
+ *            the type of genotype
  */
 @ImplementedBy(MutateGeneric.class)
-public interface Mutate extends Operator {
-	
+public interface Mutate<G extends Genotype> extends Operator<G> {
+
 	/**
 	 * Performs a mutation for a {@code Genotype}
 	 * 
-	 * @param genotype the genotype to be mutated
+	 * @param genotype
+	 *            the genotype to be mutated
 	 */
-	public void mutate(Genotype genotype);
+	public void mutate(G genotype);
 }

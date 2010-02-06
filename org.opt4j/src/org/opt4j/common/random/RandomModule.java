@@ -33,14 +33,14 @@ import org.opt4j.start.Opt4JModule;
 @Info("Global random number generator for the optimization process.")
 public class RandomModule extends Opt4JModule {
 
-	@Info("Seed of the random number generator")
+	@Info("Seed of the random number generator.")
 	@Required(property = "useSeed", elements = { "true" })
 	protected long seed = 0;
 
-	@Info("Use a specific seed")
+	@Info("Use a specific seed.")
 	protected boolean useSeed = true;
 
-	@Info("Type of the random number generator")
+	@Info("Type of the random number generator.")
 	protected RandType type = RandType.MERSENNE_TWISTER;
 
 	/**
@@ -50,8 +50,20 @@ public class RandomModule extends Opt4JModule {
 	 * 
 	 */
 	public enum RandType {
+		/**
+		 * Use the standard Java random number generator.
+		 * 
+		 * @see RandomJava
+		 */
 		@Info("Use the standard java Random")
-		JAVA, @Info("Use the mersenne twister random number generator")
+		JAVA,
+
+		/**
+		 * Use the mersenne twister random number generator.
+		 * 
+		 * @see RandomMersenneTwister
+		 */
+		@Info("Use the mersenne twister random number generator")
 		MERSENNE_TWISTER;
 	}
 
@@ -69,7 +81,7 @@ public class RandomModule extends Opt4JModule {
 	 */
 	@Override
 	public void config() {
-		Class<? extends Random> randomClass;
+		Class<? extends Rand> randomClass;
 		switch (type) {
 		case JAVA:
 			randomClass = RandomJava.class;
@@ -83,9 +95,9 @@ public class RandomModule extends Opt4JModule {
 		if (!useSeed) {
 			seed = System.currentTimeMillis();
 		}
-
 		bindConstant("seed", Random.class).to(seed);
-		bind(Random.class).to(randomClass).in(SINGLETON);
+		
+		bind(Rand.class).to(randomClass).in(SINGLETON);
 	}
 
 	/**

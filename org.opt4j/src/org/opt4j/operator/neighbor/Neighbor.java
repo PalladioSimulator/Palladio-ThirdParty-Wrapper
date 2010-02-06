@@ -15,26 +15,30 @@
 
 package org.opt4j.operator.neighbor;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.optimizer.sa.SimulatedAnnealing;
 
 import com.google.inject.ImplementedBy;
-
 
 /**
  * The {@code Neighbor} operator as it is used for Simulated Annealing.
  * 
  * @author lukasiewycz
+ * @see SimulatedAnnealing
  * 
+ * @param <G>
+ *            the type of genotype
  */
 @ImplementedBy(NeighborGeneric.class)
-public interface Neighbor extends Operator {
+public interface Neighbor<G extends Genotype> extends Operator<G> {
 
 	/**
 	 * Moves the {@code Genotype} to a neighbor.
 	 * 
-	 * @param genotype the {@code Genotype} to be changed
+	 * @param genotype
+	 *            the {@code Genotype} to be changed
 	 */
-	public void neighbor(Genotype genotype);
+	public void neighbor(G genotype);
 
 }

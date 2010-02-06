@@ -22,7 +22,6 @@ import javax.swing.ImageIcon;
 import org.opt4j.config.Icons;
 import org.opt4j.config.Property;
 import org.opt4j.config.PropertyModule;
-import org.opt4j.config.annotations.Annotations;
 import org.opt4j.config.annotations.Category;
 import org.opt4j.config.annotations.Icon;
 import org.opt4j.config.annotations.Info;
@@ -36,6 +35,7 @@ import org.opt4j.config.annotations.Name;
  */
 public class Format {
 	protected static final String xmlBreak = "<br/>";
+
 	/**
 	 * Returns the name of a class.
 	 * 
@@ -110,13 +110,12 @@ public class Format {
 	 * @return the icon
 	 */
 	public ImageIcon getIcon(Class<?> clazz) {
-		Annotations.Info info = Annotations.getUniques(clazz).get(Icon.class);
+		Icon icon = clazz.getAnnotation(Icon.class);
 
-		if (info == null) {
+		if (icon == null) {
 			return null;
 		}
 
-		Icon icon = (Icon) info.getAnnotation();
 		return Icons.getIcon(icon.value());
 	}
 
@@ -215,10 +214,21 @@ public class Format {
 			for (Field field : fields) {
 				if (field.isEnumConstant()) {
 					String name = field.getName();
+					Icon icon = field.getAnnotation(Icon.class);
 					Info i = field.getAnnotation(Info.class);
 					text += "&nbsp;" + name;
+					if (icon != null || i != null){
+						text += " - ";
+					}
+					if (icon != null) {
+						text += "<img src=\""
+								+ Icons.getURL(icon.value())
+								+ "\">";
+						
+						System.out.println(text+" "+icon.value());
+					}
 					if (i != null) {
-						text += " - " + i.value();
+						text += i.value();
 					}
 					text += xmlBreak;
 				}

@@ -15,7 +15,7 @@
 
 package org.opt4j.optimizer.ea;
 
-import java.util.Random;
+import org.opt4j.common.random.Rand;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -38,7 +38,7 @@ public class SelectorDefault extends Nsga2 {
 	 *            the random number generator
 	 */
 	@Inject
-	public SelectorDefault(Random random) {
+	public SelectorDefault(Rand random) {
 		super(random, 0);
 	}
 

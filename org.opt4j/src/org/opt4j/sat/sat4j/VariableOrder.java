@@ -30,7 +30,7 @@ import org.sat4j.minisat.orders.VarOrderHeap;
  * @author lukasiewycz
  * 
  */
-public class VariableOrder extends VarOrderHeap<ILits> {
+public class VariableOrder extends VarOrderHeap {
 
 	protected static final double VAR_RESCALE_FACTOR = 1e-100;
 

@@ -16,8 +16,8 @@
 package org.opt4j.operator.crossover;
 
 import java.util.List;
-import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 import org.opt4j.optimizer.ea.Pair;
 
@@ -38,7 +38,7 @@ public abstract class CrossoverDoubleElementwise extends CrossoverDouble {
 	 * @param random
 	 *            the random number generator
 	 */
-	public CrossoverDoubleElementwise(NormalizeDouble normalize, Random random) {
+	public CrossoverDoubleElementwise(NormalizeDouble normalize, Rand random) {
 		super(normalize, random);
 	}
 

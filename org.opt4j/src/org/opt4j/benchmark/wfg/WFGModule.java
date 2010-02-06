@@ -36,7 +36,7 @@ import org.opt4j.core.problem.ProblemModule;
  * 
  * @author lukasiewycz
  * 
- * @see " A Scalable Multi-objective Test Problem Toolkit, Simon Huband, Luigi
+ * @see "A Scalable Multi-objective Test Problem Toolkit, Simon Huband, Luigi
  *      Barone, R. Lyndon While, and Philip Hingston (EMO 2005)"
  * 
  */
@@ -44,7 +44,7 @@ import org.opt4j.core.problem.ProblemModule;
 public class WFGModule extends ProblemModule {
 
 	@Order(0)
-	@Info("The WFG function")
+	@Info("The WFG function.")
 	protected Function function = Function.WFG1;
 
 	@Order(2)
@@ -60,11 +60,11 @@ public class WFGModule extends ProblemModule {
 	protected int l = 4;
 
 	@Required(property = "encoding", elements = { "BINARY" })
-	@Info("The number of bits per double value")
+	@Info("The number of bits per double value.")
 	protected int bits = 30;
 
 	@Order(10)
-	@Info("The encoding of the optimization problem")
+	@Info("The encoding of the optimization problem.")
 	protected Encoding encoding = Encoding.DOUBLE;
 
 	/**

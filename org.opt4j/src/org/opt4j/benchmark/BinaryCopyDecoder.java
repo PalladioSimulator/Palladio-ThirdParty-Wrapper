@@ -18,14 +18,17 @@ package org.opt4j.benchmark;
 import org.opt4j.core.problem.Decoder;
 
 /**
- * The {@code BinaryCopyDecoder} passes the {@code BinaryString} directly to
- * the evaluator.
+ * The {@code BinaryCopyDecoder} passes the {@code BinaryString} directly to the
+ * evaluator.
+ * 
  * @author lukasiewycz
  * 
  */
 public class BinaryCopyDecoder implements Decoder<BinaryString, BinaryString> {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.opt4j.core.problem.Decoder#decode(org.opt4j.core.Genotype)
 	 */
 	public BinaryString decode(BinaryString genotype) {

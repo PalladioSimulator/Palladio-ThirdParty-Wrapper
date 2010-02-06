@@ -87,7 +87,7 @@ public class FileChooser {
 	 * 
 	 */
 	@SuppressWarnings("serial")
-	private class MyFileChooser extends JFileChooser {
+	private static class MyFileChooser extends JFileChooser {
 
 		public MyFileChooser() {
 			super(new File(System.getProperty("user.home")));

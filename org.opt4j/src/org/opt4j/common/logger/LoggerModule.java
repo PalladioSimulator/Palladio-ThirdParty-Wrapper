@@ -22,7 +22,7 @@ import org.opt4j.config.annotations.Info;
 import org.opt4j.config.annotations.Order;
 import org.opt4j.config.annotations.Required;
 import org.opt4j.start.Constant;
-import org.opt4j.start.Opt4JModule;
+import org.opt4j.viewer.VisualizationModule;
 
 /**
  * Module for logging.
@@ -30,9 +30,9 @@ import org.opt4j.start.Opt4JModule;
  * @author reimann, lukasiewycz
  * 
  */
-@Icon(Icons.PUZZLE_BLUE)
+@Icon(Icons.TEXT)
 @Info("Logs the contents of the archive to a file.")
-public class LoggerModule extends Opt4JModule {
+public class LoggerModule extends VisualizationModule {
 
 	@Info("The name of the output file.")
 	@Order(0)
@@ -64,8 +64,8 @@ public class LoggerModule extends Opt4JModule {
 
 		bind(NDLogger.class).in(SINGLETON);
 
-		bindOptimizerIterationListener(NDLogger.class);
-		bindOptimizerStateListener(NDLogger.class);
+		addOptimizerIterationListener(NDLogger.class);
+		addOptimizerStateListener(NDLogger.class);
 
 		int evaluationStep = this.evaluationStep;
 		int iterationStep = this.iterationStep;

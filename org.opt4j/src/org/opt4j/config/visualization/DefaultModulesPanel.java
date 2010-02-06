@@ -30,14 +30,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.RejectedExecutionException;
 
@@ -58,10 +59,8 @@ import javax.swing.tree.TreeSelectionModel;
 import org.opt4j.config.Icons;
 import org.opt4j.config.ModuleRegister;
 import org.opt4j.config.PropertyModule;
-import org.opt4j.config.annotations.Annotations;
 import org.opt4j.config.annotations.Category;
 import org.opt4j.config.annotations.Parent;
-import org.opt4j.config.annotations.Annotations.Info;
 
 import com.google.inject.Inject;
 import com.google.inject.Module;
@@ -210,7 +209,7 @@ public class DefaultModulesPanel extends ModulesPanel {
 	 * 
 	 */
 	@Category("Default")
-	public interface Default {
+	class Default {
 
 	}
 
@@ -218,7 +217,7 @@ public class DefaultModulesPanel extends ModulesPanel {
 	 * The {@code TreeCellRenderer} for the modules tree.
 	 * 
 	 */
-	protected class TreeCellRenderer extends DefaultTreeCellRenderer {
+	protected static class TreeCellRenderer extends DefaultTreeCellRenderer {
 		@Override
 		public Component getTreeCellRendererComponent(JTree tree, Object value,
 				boolean sel, boolean expanded, boolean leaf, int row,
@@ -249,7 +248,7 @@ public class DefaultModulesPanel extends ModulesPanel {
 	 * The {@code MyTree} that extends a {@code JTree} by a drag method.
 	 * 
 	 */
-	protected class MyTree extends JTree implements DragGestureListener {
+	protected static class MyTree extends JTree implements DragGestureListener {
 
 		DragSource dragSource = null;
 
@@ -334,34 +333,50 @@ public class DefaultModulesPanel extends ModulesPanel {
 		thread.start();
 	}
 
+	private Class<?> getCategory(Class<?> clazz, boolean include) {
+		if (include && isCategory(clazz)) {
+			return clazz;
+		}
+		if (clazz.equals(Object.class)) {
+			return null;
+		} else if (clazz.getAnnotation(Parent.class) != null) {
+			Class<?> pClass = clazz.getAnnotation(Parent.class).value();
+			return pClass;
+		} else {
+			assert (clazz.getSuperclass() != null) : clazz;
+			return getCategory(clazz.getSuperclass(), true);
+		}
+	}
+
+	private boolean isCategory(Class<?> clazz) {
+		Category category = clazz.getAnnotation(Category.class);
+		return (category != null);
+	}
+
 	/**
 	 * Build and order the tree
 	 */
 	protected void populateTree() {
 		// get all relevant categories
 
-		Map<Class<?>, Info> map = new HashMap<Class<?>, Info>();
-		for (Class<? extends Module> clazz : allModules) {
-			Map<Class<? extends Annotation>, Info> annotations = Annotations
-					.getUniques(clazz);
+		// map from the modules (categories) to their categories
+		// (supercategories)
+		Map<Class<?>, Class<?>> map = new HashMap<Class<?>, Class<?>>();
 
-			if (annotations.containsKey(Category.class)) {
-				Info info = annotations.get(Category.class);
-				map.put(info.getClazz(), info);
-			}
+		for (Class<? extends Module> module : allModules) {
+			Class<?> category = getCategory(module, false);
+			assert (module != category) : module;
+			map.put(module, category);
 		}
 
 		int size;
 		do {
 			size = map.size();
-			for (Info info : map.values()) {
-				Class<?> clazz = info.getClazz();
-				Map<Class<? extends Annotation>, Info> annotations = Annotations
-						.getUniques(clazz, false);
-
-				if (annotations.containsKey(Category.class)) {
-					Info i = annotations.get(Category.class);
-					map.put(i.getClazz(), i);
+			Set<Class<?>> values = new HashSet<Class<?>>(map.values());
+			for (Class<?> cat : values) {
+				if (cat != null) {
+					Class<?> category = getCategory(cat, false);
+					map.put(cat, category);
 				}
 			}
 		} while (map.size() != size);
@@ -371,72 +386,39 @@ public class DefaultModulesPanel extends ModulesPanel {
 		Map<Class<?>, ModuleTreeNode> mtn = new HashMap<Class<?>, ModuleTreeNode>();
 		Map<Class<?>, DefaultMutableTreeNode> atn = new HashMap<Class<?>, DefaultMutableTreeNode>();
 
-		for (Entry<Class<?>, Info> entry : map.entrySet()) {
-			Class<?> clazz = entry.getKey();
-			Info info = entry.getValue();
-
-			CategoryTreeNode node = new CategoryTreeNode(info.getClazz());
-			ctn.put(clazz, node);
-			atn.put(clazz, node);
+		for (Class<?> clazz : map.keySet()) {
+			if (isCategory(clazz)) {
+				CategoryTreeNode node = new CategoryTreeNode(clazz);
+				ctn.put(clazz, node);
+			} else {
+				@SuppressWarnings("unchecked")
+				ModuleTreeNode node = new ModuleTreeNode(
+						(Class<? extends Module>) clazz);
+				mtn.put(clazz, node);
+			}
 		}
-		for (Class<? extends Module> clazz : allModules) {
-			ModuleTreeNode node = new ModuleTreeNode(clazz);
-			mtn.put(clazz, node);
-			atn.put(clazz, node);
-		}
+		atn.putAll(ctn);
+		atn.putAll(mtn);
 
 		// create hierarchy by parent annotation
+		CategoryTreeNode def = new CategoryTreeNode(Default.class);
+		root.add(def);
 		for (Entry<Class<?>, DefaultMutableTreeNode> entry : atn.entrySet()) {
 			Class<?> clazz = entry.getKey();
 			DefaultMutableTreeNode node = entry.getValue();
 
-			Parent parent = clazz.getAnnotation(Parent.class);
+			Class<?> category = map.get(clazz);
 
-			if (parent != null) {
-				if (parent.value() == null) {
+			if (category == null) {
+				if (isCategory(clazz)) {
 					root.add(node);
-				} else {
-					DefaultMutableTreeNode n = atn.get(parent.value());
-					if (n != null && n != node) {
-						n.add(node);
-					}
-				}
-			}
-		}
-
-		// create category hierarchy
-		for (CategoryTreeNode node : ctn.values()) {
-			if (node.getParent() == null) {
-				Class<?> clazz = node.getType();
-				Info info = Annotations.getUniques(clazz, false).get(
-						Category.class);
-
-				if (info != null) {
-					// this category has a super category
-					CategoryTreeNode parent = ctn.get(info.getClazz());
-					parent.add(node);
-				} else {
-					root.add(node);
-				}
-			}
-		}
-
-		CategoryTreeNode def = new CategoryTreeNode(Default.class);
-		root.add(def);
-
-		for (ModuleTreeNode node : mtn.values()) {
-			if (node.getParent() == null) {
-				Class<?> clazz = node.getModule().getModule().getClass();
-
-				Info info = Annotations.getUniques(clazz, false).get(
-						Category.class);
-
-				if (info != null) {
-					CategoryTreeNode p = ctn.get(info.getClazz());
-					p.add(node);
 				} else {
 					def.add(node);
 				}
+			} else {
+				DefaultMutableTreeNode n = atn.get(category);
+				assert (n != null && n != node) : clazz + " " + category;
+				n.add(node);
 			}
 
 		}

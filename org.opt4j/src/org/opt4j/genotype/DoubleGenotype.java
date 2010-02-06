@@ -17,8 +17,9 @@ package org.opt4j.genotype;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code DoubleGenotype} consists of double values that can be used as a
@@ -28,21 +29,8 @@ import org.opt4j.core.Genotype;
  * 
  */
 @SuppressWarnings("serial")
-public class DoubleGenotype extends ArrayList<Double> implements ListGenotype {
-
-	static class DefaultBounds implements Bounds<Double> {
-
-		@Override
-		public Double getLowerBound(int index) {
-			return 0.0;
-		}
-
-		@Override
-		public Double getUpperBound(int index) {
-			return 1.0;
-		}
-
-	}
+public class DoubleGenotype extends ArrayList<Double> implements
+		ListGenotype<Double> {
 
 	protected final Bounds<Double> bounds;
 
@@ -51,7 +39,20 @@ public class DoubleGenotype extends ArrayList<Double> implements ListGenotype {
 	 * upper bounds {@code 1.0}.
 	 */
 	public DoubleGenotype() {
-		this(new DefaultBounds());
+		this(0, 1);
+	}
+
+	/**
+	 * Constructs a {@code DoubleGenotype} with a specified lower and upper
+	 * bound for all values.
+	 * 
+	 * @param lowerBound
+	 *            the lower bound
+	 * @param upperBound
+	 *            the upper bound
+	 */
+	public DoubleGenotype(double lowerBound, double upperBound) {
+		this(new FixedBounds<Double>(lowerBound, upperBound));
 	}
 
 	/**
@@ -99,6 +100,27 @@ public class DoubleGenotype extends ArrayList<Double> implements ListGenotype {
 			return (G) cstr.newInstance(bounds);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * Initialize this genotype with {@code n} random values.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 * @param n
+	 *            the number of elements in the resulting genotype
+	 */
+	public void init(Random random, int n) {
+		for (int i = 0; i < n; i++) {
+			double lo = getLowerBound(i);
+			double hi = getUpperBound(i);
+			double value = lo + random.nextDouble() * (hi - lo);
+			if (i >= size()) {
+				add(value);
+			} else {
+				set(i, value);
+			}
 		}
 	}
 }

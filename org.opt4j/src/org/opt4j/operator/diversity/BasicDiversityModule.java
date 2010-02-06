@@ -17,7 +17,6 @@ package org.opt4j.operator.diversity;
 
 import org.opt4j.config.annotations.Ignore;
 import org.opt4j.config.annotations.Info;
-import org.opt4j.start.Opt4JModule;
 
 /**
  * The {@code BasicDiversityModule} is the basic {@code PropertyModule} for the
@@ -27,14 +26,13 @@ import org.opt4j.start.Opt4JModule;
  * 
  */
 @Info("Setting for the basic diversity operators for genotypes.")
-public class BasicDiversityModule extends Opt4JModule implements
-		DiversityModule {
+public class BasicDiversityModule extends DiversityModule {
 
 	@Ignore
-	@Info("The type of the diversity operator for the Boolean genotype")
+	@Info("The type of the diversity operator for the Boolean genotype.")
 	BooleanType booleanType = BooleanType.FRACTION;
 
-	@Info("The type of the diversity operator for the Double genotype")
+	@Info("The type of the diversity operator for the Double genotype.")
 	DoubleType doubleType = DoubleType.ABSOLUTE;
 
 	/**

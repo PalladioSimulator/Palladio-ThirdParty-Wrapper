@@ -15,6 +15,8 @@
 
 package org.opt4j.sat;
 
+import static com.google.inject.internal.Preconditions.checkState;
+
 import org.opt4j.config.Icons;
 import org.opt4j.config.annotations.Icon;
 import org.opt4j.config.annotations.Info;
@@ -22,8 +24,8 @@ import org.opt4j.start.Constant;
 import org.opt4j.start.Opt4JModule;
 
 /**
- * The {@code SATDecoderModule} is used to configure the {@code
- * AbstractSATDecoder}.
+ * The {@code SATDecoderModule} is used to configure the {@code MixedSATDecoder}
+ * .
  * 
  * @author lukasiewycz
  * 
@@ -32,7 +34,7 @@ import org.opt4j.start.Opt4JModule;
 @Info("Module for the configuration of SAT decoding.")
 public class SATDecoderModule extends Opt4JModule {
 
-	@Info("The number of instances (pooled)")
+	@Info("The number of instances (pooled).")
 	@Constant(value = "instances", namespace = MixedSATManager.class)
 	protected int instances = 2;
 
@@ -53,6 +55,8 @@ public class SATDecoderModule extends Opt4JModule {
 	 */
 
 	public void setInstances(int instances) {
+		checkState(instances > 0,
+				"The number of instances must be positive: %s", instances);
 		this.instances = instances;
 	}
 
@@ -63,7 +67,7 @@ public class SATDecoderModule extends Opt4JModule {
 	 */
 	@Override
 	public void config() {
-		
+		bind(SATManager.class).to(MixedSATManager.class).in(SINGLETON);
 	}
 
 }

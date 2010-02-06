@@ -14,7 +14,6 @@
  */
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.genotype.IntegerGenotype;
 
 /**
@@ -29,18 +28,13 @@ import org.opt4j.genotype.IntegerGenotype;
 public class DiversityIntegerEuclidean implements DiversityInteger {
 
 	@Override
-	public double diversity(Genotype a, Genotype b) {
-		IntegerGenotype genotypeA = (IntegerGenotype) a;
-		IntegerGenotype genotypeB = (IntegerGenotype) b;
+	public double diversity(IntegerGenotype a, IntegerGenotype b) {
 
 		double diversity = 0;
-		int size = genotypeA.size();
+		int size = a.size();
 		for (int i = 0; i < size; i++) {
-			double diff = genotypeA.getUpperBound(i)
-					* genotypeA.getLowerBound(i);
-			double dist = ((double) genotypeA.get(i) - (double) genotypeB
-					.get(i))
-					/ diff;
+			double diff = a.getUpperBound(i) * a.getLowerBound(i);
+			double dist = ((double) a.get(i) - (double) b.get(i)) / diff;
 			diversity += dist * dist;
 		}
 

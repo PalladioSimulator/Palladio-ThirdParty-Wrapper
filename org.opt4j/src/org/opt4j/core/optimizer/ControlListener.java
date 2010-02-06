@@ -15,9 +15,11 @@
 
 package org.opt4j.core.optimizer;
 
+
 /**
  * The {@code ControlListener} is an interface of classes that listen to the
- * {@link Control} state.
+ * {@link Control} state. To add an {@code ControlListener} use the method
+ * {@code Opt4JModule#addControlListener(Class)}.
  * 
  * @author lukasiewycz
  * 

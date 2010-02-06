@@ -15,8 +15,7 @@
 
 package org.opt4j.operator.crossover;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.BooleanGenotype;
 import org.opt4j.start.Constant;
 
@@ -29,7 +28,7 @@ import com.google.inject.Inject;
  * @author lukasiewycz
  * 
  */
-public class CrossoverBooleanXPoint extends CrossoverListXPoint implements
+public class CrossoverBooleanXPoint extends CrossoverListXPoint<BooleanGenotype> implements
 		CrossoverBoolean {
 
 	/**
@@ -43,7 +42,7 @@ public class CrossoverBooleanXPoint extends CrossoverListXPoint implements
 	@Inject
 	public CrossoverBooleanXPoint(
 			@Constant(value = "x", namespace = CrossoverBooleanXPoint.class) int x,
-			Random random) {
+			Rand random) {
 		super(x, random);
 	}
 

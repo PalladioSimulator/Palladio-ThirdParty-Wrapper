@@ -16,8 +16,9 @@ package org.opt4j.genotype;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code DoubleMapGenotype} is a {@link DoubleGenotype} with the {@code
@@ -44,6 +45,28 @@ public class DoubleMapGenotype<K> extends DoubleGenotype implements
 	public DoubleMapGenotype(List<K> list, Bounds<Double> bounds) {
 		super(bounds);
 		this.list = list;
+	}
+
+	/**
+	 * Initialize this genotype with random values based on the size of the
+	 * {@code list}.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 */
+	public void init(Random random) {
+		super.init(random, list.size());
+	}
+
+	/**
+	 * Not supported. Use {@code DoubleMapGenotype#init(Random)} instead.
+	 * 
+	 * @see org.opt4j.genotype.DoubleGenotype#init(java.util.Random, int)
+	 */
+	@Override
+	public void init(Random random, int n) {
+		throw new UnsupportedOperationException(
+				"Use method init(Random) instead");
 	}
 
 	/*

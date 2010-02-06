@@ -15,7 +15,6 @@
 
 package org.opt4j.core.problem;
 
-import org.opt4j.core.Genotype;
 
 /**
  * The {@code Creator} creates random {@code Genotypes}.

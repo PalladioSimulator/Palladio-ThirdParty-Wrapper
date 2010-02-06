@@ -16,8 +16,8 @@
 package org.opt4j.operator.crossover;
 
 import java.util.List;
-import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 import org.opt4j.start.Constant;
 
@@ -71,7 +71,7 @@ public class CrossoverDoubleUnfairAverage extends CrossoverDouble {
 	@Inject
 	public CrossoverDoubleUnfairAverage(
 			@Constant(value = "alpha", namespace = CrossoverDoubleUnfairAverage.class) double alpha,
-			NormalizeDouble normalize, Random random) {
+			NormalizeDouble normalize, Rand random) {
 		super(normalize, random);
 		this.alpha = alpha;
 	}

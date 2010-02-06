@@ -29,6 +29,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -192,6 +193,12 @@ public final class PropertyModule implements Module, Serializable {
 					Required required = (Required) annotation;
 
 					Property p = getProperty(required.property());
+					if (p == null) {
+						throw new NullPointerException("Unknown property "
+								+ required.property() + " in annotation "
+								+ required + " in module " + this.getClass());
+					}
+
 					Class<?> type = p.getType();
 
 					if (type.isEnum()) {
@@ -223,56 +230,62 @@ public final class PropertyModule implements Module, Serializable {
 		}
 
 		// sort the properties
-		Collections.sort(properties, new Comparator<Property>() {
-
-			public int compare(Property arg0, Property arg1) {
-				int value0 = arg0.getOrder();
-				int value1 = arg1.getOrder();
-
-				int diff = value0 - value1;
-
-				if (diff != 0) {
-					return diff;
-				}
-
-				boolean r0 = false;
-				for (Requirement requirement : arg0.getRequirements()) {
-					if (requirement.getProperty().equals(arg1)) {
-						r0 = true;
-					}
-				}
-
-				boolean r1 = false;
-				for (Requirement requirement : arg1.getRequirements()) {
-					if (requirement.getProperty().equals(arg0)) {
-						r1 = true;
-					}
-				}
-
-				if (r0) {
-					return 1;
-				} else if (r1) {
-					return -1;
-				}
-
-				String s0 = arg0.getName();
-				String s1 = arg1.getName();
-
-				if (!arg0.getRequirements().isEmpty()) {
-					s0 = arg0.getRequirements().iterator().next().getProperty()
-							.getName();
-				}
-				if (!arg1.getRequirements().isEmpty()) {
-					s1 = arg1.getRequirements().iterator().next().getProperty()
-							.getName();
-				}
-
-				return s0.compareTo(s1);
-
+		final Map<Property, List<Property>> hierarchy = new HashMap<Property, List<Property>>();
+		
+		for(Property property: properties){
+			Property parent = null;
+			for (Requirement requirement : property.getRequirements()) {
+				parent = requirement.getProperty();
 			}
+			assert(parent != property);
+			
+			List<Property> level = hierarchy.get(parent);
+			if(level == null){
+				level = new ArrayList<Property>();
+				hierarchy.put(parent, level);
+			}
+			level.add(property);
+		}
+		
+		final class PropertyComparator implements Comparator<Property> {
+			@Override
+			public int compare(final Property o1, final Property o2) {
+				Integer value1 = o1.getOrder();
+				Integer value2 = o2.getOrder();
 
-		});
+				if (!value1.equals(value2)) {
+					return value1.compareTo(value2);
+				} else {
+					String s1 = o1.getName();
+					String s2 = o2.getName();
+					return s1.compareTo(s2);
+				}
+			}
+		}
+		
+		for(List<Property> level: hierarchy.values()){
+			Collections.sort(level, new PropertyComparator());
+		}
 
+		properties.clear();
+		LinkedList<Property> added = new LinkedList<Property>();
+		added.add(null);
+		
+		while(!added.isEmpty()){
+			Property property = added.pop();
+			if(hierarchy.containsKey(property)){
+				List<Property> level = hierarchy.get(property);
+				if(property == null){
+					properties.addAll(level);
+				} else {
+					int index = properties.indexOf(property);					
+					properties.addAll(index+1, level);
+				}
+				added.addAll(level);
+			}
+		}
+		
+		// remove ignored properties
 		for (Iterator<Property> it = properties.iterator(); it.hasNext();) {
 			Property property = it.next();
 			Ignore ignore = property.getAnnotation(Ignore.class);
@@ -371,8 +384,7 @@ public final class PropertyModule implements Module, Serializable {
 				try {
 					property.setValue(value);
 				} catch (InvocationTargetException e) {
-					System.err.println("Failed to assign value to property: "
-							+ key + "=" + value);
+					System.err.println(e.getMessage());
 				}
 			}
 		}
@@ -399,7 +411,7 @@ public final class PropertyModule implements Module, Serializable {
 
 				p.setAttribute("name", name);
 				if (value != null) {
-					if (value instanceof Class) {
+					if (value instanceof Class<?>) {
 						p.setText(((Class<?>) value).getCanonicalName());
 					} else {
 						p.setText(value.toString());

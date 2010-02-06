@@ -15,8 +15,7 @@
 
 package org.opt4j.operator.mutate;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 import org.opt4j.start.Constant;
 
@@ -49,7 +48,7 @@ public class MutateDoublePolynomial extends MutateDoubleElementwise {
 	@Inject
 	public MutateDoublePolynomial(
 			MutationRate mutationRate,
-			Random random,
+			Rand random,
 			NormalizeDouble normalize,
 			@Constant(value = "eta", namespace = MutateDoublePolynomial.class) double eta) {
 		super(mutationRate, random, normalize);

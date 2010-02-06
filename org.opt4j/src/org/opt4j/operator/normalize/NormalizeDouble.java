@@ -15,6 +15,8 @@
 
 package org.opt4j.operator.normalize;
 
+import org.opt4j.genotype.DoubleGenotype;
+
 import com.google.inject.ImplementedBy;
 
 /**
@@ -31,6 +33,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(NormalizeDoubleBorder.class)
-public interface NormalizeDouble extends Normalize {
+public interface NormalizeDouble extends Normalize<DoubleGenotype> {
 
 }

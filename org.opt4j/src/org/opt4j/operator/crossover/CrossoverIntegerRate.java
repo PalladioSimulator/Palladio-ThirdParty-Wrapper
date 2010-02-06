@@ -15,8 +15,7 @@
 
 package org.opt4j.operator.crossover;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.IntegerGenotype;
 import org.opt4j.start.Constant;
 
@@ -29,7 +28,7 @@ import com.google.inject.Inject;
  * @author lukasiewycz
  * 
  */
-public class CrossoverIntegerRate extends CrossoverListRate implements
+public class CrossoverIntegerRate extends CrossoverListRate<IntegerGenotype> implements
 		CrossoverInteger {
 
 	/**
@@ -43,7 +42,7 @@ public class CrossoverIntegerRate extends CrossoverListRate implements
 	@Inject
 	public CrossoverIntegerRate(
 			@Constant(value = "rate", namespace = CrossoverIntegerRate.class) double rate,
-			Random random) {
+			Rand random) {
 		super(rate, random);
 	}
 

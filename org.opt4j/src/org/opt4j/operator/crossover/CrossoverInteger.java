@@ -16,7 +16,6 @@
 package org.opt4j.operator.crossover;
 
 import org.opt4j.genotype.IntegerGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -30,7 +29,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(CrossoverIntegerDefault.class)
-@Apply(IntegerGenotype.class)
-public interface CrossoverInteger extends Crossover {
+public interface CrossoverInteger extends Crossover<IntegerGenotype> {
 
 }

@@ -14,15 +14,17 @@
  */
 package org.opt4j.genotype;
 
-import org.opt4j.core.Genotype;
+import java.util.List;
+
+import org.opt4j.core.problem.Genotype;
 
 /**
- * The {@code ListGenotype} is a marker interface for genotypes that are derived
- * from a {@code List} with basic objects.
+ * The {@code ListGenotype} is a interface for genotypes that are derived from a
+ * {@code List} with basic objects.
  * 
  * @author lukasiewycz
  * 
  */
-public interface ListGenotype extends Genotype {
+public interface ListGenotype<E> extends Genotype, List<E> {
 
 }

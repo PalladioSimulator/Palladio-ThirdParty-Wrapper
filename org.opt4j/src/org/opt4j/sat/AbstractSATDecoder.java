@@ -24,10 +24,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.core.Phenotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 import org.opt4j.core.problem.Decoder;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.core.problem.Phenotype;
 
 import com.google.inject.Inject;
 
@@ -71,7 +72,7 @@ public abstract class AbstractSATDecoder<G extends Genotype, P extends Phenotype
 	 *            the random number generator
 	 */
 	@Inject
-	public AbstractSATDecoder(SATManager manager, Random random) {
+	public AbstractSATDecoder(SATManager manager, Rand random) {
 		this.random = random;
 		this.manager = manager;
 	}

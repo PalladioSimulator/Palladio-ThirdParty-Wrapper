@@ -15,8 +15,6 @@
 
 package org.opt4j.core.problem;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.core.Phenotype;
 
 /**
  * The {@code Decoder} decodes {@code Genotypes} into {@code Phenotypes}.

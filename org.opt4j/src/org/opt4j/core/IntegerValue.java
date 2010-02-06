@@ -16,8 +16,12 @@
 package org.opt4j.core;
 
 /**
- * The {@code IntegerValue}.
+ * The {@code DoubleValue} is a {@link Value} with an {@code integer} as value.
+ * The {@link Objectives} contains a convenience method that allows to add an
+ * {@code IntegerValue} without creating a new instance:
+ * {@link Objectives#add(Objective, int)}.
  * 
+ * @see Objectives#add(Objective, int)
  * @author lukasiewycz
  * 
  */

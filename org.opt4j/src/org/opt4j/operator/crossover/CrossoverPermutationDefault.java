@@ -15,12 +15,10 @@
 
 package org.opt4j.operator.crossover;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * Crossover for the {@link PermutationGenotype}. The default operator is the
@@ -29,7 +27,6 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class CrossoverPermutationDefault extends CrossoverPermutationOnePoint {
 
 	/**
@@ -39,7 +36,7 @@ public class CrossoverPermutationDefault extends CrossoverPermutationOnePoint {
 	 *            the random number generator
 	 */
 	@Inject
-	public CrossoverPermutationDefault(Random random) {
+	public CrossoverPermutationDefault(Rand random) {
 		super(random, false);
 	}
 

@@ -17,17 +17,25 @@ package org.opt4j.core;
 
 import static org.opt4j.core.Objective.Sign.MIN;
 
+import org.opt4j.core.problem.Evaluator;
+
 /**
  * <p>
- * The {@code Objective} is an identifier for {@code Objectives}. You can
- * specify the following properties:
+ * The {@code Objective} is the identifier for a single objective in the {@code
+ * Objectives}. It is specified by the following properties:
  * </p>
  * <ul>
  * <li>Name</li>
  * <li>Minimization or Maximization</li>
  * <li>Rank (use for ordering)</li>
  * </ul>
+ * <p>
+ * Each {@code Evaluator} sets a specific amount of {@code Objective}-{@code
+ * Value} pairs.
+ * </p>
  * 
+ * @see Objectives
+ * @see Evaluator#getObjectives()
  * @author lukasiewycz
  * 
  */
@@ -128,7 +136,7 @@ public class Objective implements Comparable<Objective> {
 	}
 
 	/**
-	 * Returns the ranke.
+	 * Returns the rank.
 	 * 
 	 * @return the rank
 	 */

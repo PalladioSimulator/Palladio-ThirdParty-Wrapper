@@ -15,8 +15,7 @@
 
 package org.opt4j.operator.mutate;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 import org.opt4j.start.Constant;
 
@@ -47,7 +46,7 @@ public class MutateDoubleGauss extends MutateDoubleElementwise {
 	@Inject
 	public MutateDoubleGauss(
 			MutationRate mutationRate,
-			Random random,
+			Rand random,
 			NormalizeDouble normalize,
 			@Constant(value = "sigma", namespace = MutateDoubleGauss.class) double sigma) {
 		super(mutationRate, random, normalize);

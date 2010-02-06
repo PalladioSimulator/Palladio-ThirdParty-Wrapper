@@ -24,8 +24,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The {@code Info} annotation. Use this annotation for information about
- * modules and properties.
+ * The {@code Info} annotation contains textual information about a module or
+ * property.
  * 
  * @author lukasiewycz
  * 

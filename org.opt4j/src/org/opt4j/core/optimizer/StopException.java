@@ -16,8 +16,12 @@
 package org.opt4j.core.optimizer;
 
 /**
- * The {@code StopException} is thrown if the optimization is stopped.
+ * The {@code StopException} is thrown if the optimization is stopped. Note that
+ * this exception is not thrown manually, instead the
+ * {@link Control#doStop()} method ensures that a {@code StopException}  is thrown at the next
+ * checkpoint (holds only for {@link Control#checkpointStop()}).
  * 
+ * @see Control
  * @author lukasiewycz
  * 
  */

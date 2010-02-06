@@ -15,9 +15,8 @@
 
 package org.opt4j.operator.copy;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
 
@@ -27,8 +26,7 @@ import com.google.inject.Inject;
  * @author lukasiewycz
  * 
  */
-@Apply(CompositeGenotype.class)
-public class CopyComposite implements Copy {
+public class CopyComposite implements Copy<CompositeGenotype<?, ?>> {
 
 	protected final CopyGeneric copyGeneric;
 
@@ -48,15 +46,12 @@ public class CopyComposite implements Copy {
 	 * 
 	 * @see org.opt4j.operator.copy.Copy#copy(org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public Genotype copy(Genotype genotype) {
-		CompositeGenotype g = (CompositeGenotype) genotype;
-		
-		CompositeGenotype offspring = genotype.newInstance();
+	public CompositeGenotype<?, ?> copy(CompositeGenotype<?, ?> genotype) {
+		CompositeGenotype<Object,Genotype> offspring = genotype.newInstance();
 		offspring.clear();
 
-		for (final Object key : g.keySet()) {
-			Genotype go = copyGeneric.copy(g.get(key));
+		for (final Object key : genotype.keySet()) {
+			Genotype go = copyGeneric.copy(genotype.<Genotype>get(key));
 
 			offspring.put(key, go);
 		}

@@ -15,8 +15,7 @@
 
 package org.opt4j.operator.crossover;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 
 import com.google.inject.Inject;
@@ -40,7 +39,7 @@ public class CrossoverDoubleDefault extends CrossoverDoubleSBX {
 	 */
 	@Inject
 	public CrossoverDoubleDefault(NormalizeDouble normalize,
-			Random random) {
+			Rand random) {
 		super(15, normalize, random);
 	}
 

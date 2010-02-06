@@ -1,6 +1,6 @@
 package org.opt4j.operator.crossover;
 
-import java.util.Random;
+import org.opt4j.common.random.Rand;
 
 import com.google.inject.Inject;
 
@@ -20,7 +20,7 @@ public class CrossoverIntegerDefault extends CrossoverIntegerRate {
 	 *            the random number generator
 	 */
 	@Inject
-	public CrossoverIntegerDefault(Random random) {
+	public CrossoverIntegerDefault(Rand random) {
 		super(0.5, random);
 	}
 

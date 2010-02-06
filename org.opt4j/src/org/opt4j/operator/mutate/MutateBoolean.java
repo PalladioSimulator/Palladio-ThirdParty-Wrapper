@@ -17,12 +17,10 @@ package org.opt4j.operator.mutate;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.BooleanGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * Mutate for the {@link BooleanGenotype}.
@@ -30,9 +28,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(BooleanGenotype.class)
-public class MutateBoolean implements Mutate {
+public class MutateBoolean implements Mutate<BooleanGenotype> {
 
 	protected final Random random;
 
@@ -47,7 +43,7 @@ public class MutateBoolean implements Mutate {
 	 *            the random number generator
 	 */
 	@Inject
-	public MutateBoolean(MutationRate mutationRate, Random random) {
+	public MutateBoolean(MutationRate mutationRate, Rand random) {
 		this.mutationRate = mutationRate;
 		this.random = random;
 	}
@@ -57,14 +53,12 @@ public class MutateBoolean implements Mutate {
 	 * 
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
-	public void mutate(Genotype genotype) {
-		BooleanGenotype vector = (BooleanGenotype) genotype;
-
-		int size = vector.size();
+	public void mutate(BooleanGenotype genotype) {
+		int size = genotype.size();
 
 		for (int i = 0; i < size; i++) {
 			if (random.nextDouble() < mutationRate.get()) {
-				vector.set(i, !vector.get(i));
+				genotype.set(i, !genotype.get(i));
 			}
 		}
 

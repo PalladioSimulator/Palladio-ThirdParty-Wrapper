@@ -19,6 +19,7 @@ import java.util.Random;
 
 import org.opt4j.benchmark.BinaryString;
 import org.opt4j.benchmark.N;
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
@@ -44,7 +45,7 @@ public class ZDT5BinaryCreator implements Creator<BinaryString> {
 	 *            the n value
 	 */
 	@Inject
-	public ZDT5BinaryCreator(Random random, @N int n) {
+	public ZDT5BinaryCreator(Rand random, @N int n) {
 		super();
 		this.random = random;
 
@@ -58,9 +59,7 @@ public class ZDT5BinaryCreator implements Creator<BinaryString> {
 	 */
 	public BinaryString create() {
 		BinaryString string = new BinaryString();
-		for (int i = 0; i < length; i++) {
-			string.add(random.nextBoolean());
-		}
+		string.init(random, length);
 		return string;
 	}
 

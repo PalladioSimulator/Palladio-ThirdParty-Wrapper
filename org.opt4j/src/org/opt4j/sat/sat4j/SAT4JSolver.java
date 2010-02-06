@@ -59,9 +59,26 @@ public class SAT4JSolver implements Solver {
 	 * 
 	 */
 	public enum Learning {
+		/**
+		 * Fixed length learning
+		 * 
+		 * @see org.sat4j.minisat.learning.FixedLengthLearning
+		 */
 		@Info("Learning only constraints with less or equal number of variables.")
-		FIXEDLENGTH, @Info("Use the MiniSAT learning scheme.")
-		MINISAT, @Info("Learn only clauses.")
+		FIXEDLENGTH,
+		/**
+		 * MiniSAT learning
+		 * 
+		 * @see org.sat4j.minisat.learning.MiniSATLearning
+		 */
+		@Info("Use the MiniSAT learning scheme.")
+		MINISAT,
+		/**
+		 * Clause only learning
+		 * 
+		 * @see org.sat4j.minisat.learning.ClauseOnlyLearning
+		 */
+		@Info("Learn only clauses.")
 		CLAUSEONLY;
 	}
 
@@ -72,9 +89,27 @@ public class SAT4JSolver implements Solver {
 	 * 
 	 */
 	public enum Restarts {
+
+		/**
+		 * MiniSAT restarts
+		 * 
+		 * @see org.sat4j.minisat.restarts.MiniSATRestarts
+		 */
 		@Info("Use MiniSAT restarts.")
-		MINISAT, @Info("Use Luby restarts.")
-		LUBY, @Info("Use Rapid restarts.")
+		MINISAT,
+		/**
+		 * Luby restarts
+		 * 
+		 * @see org.sat4j.minisat.restarts.LubyRestarts
+		 */
+		@Info("Use Luby restarts.")
+		LUBY,
+		/**
+		 * Rapid restarts
+		 * 
+		 * @see org.sat4j.minisat.restarts.ArminRestarts
+		 */
+		@Info("Use Rapid restarts.")
 		RAPID;
 	}
 
@@ -149,11 +184,10 @@ public class SAT4JSolver implements Solver {
 	public Instance getInstance() {
 		if (instance == null) {
 			return createInstance();
-		} else {
-			Instance i = instance;
-			instance = null;
-			return i;
 		}
+		Instance i = instance;
+		instance = null;
+		return i;
 	}
 
 	/*

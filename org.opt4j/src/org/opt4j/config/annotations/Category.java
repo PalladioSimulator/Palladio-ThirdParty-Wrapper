@@ -22,8 +22,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The {@code Category} annotation. Use this annotation for (interfaces and
- * abstract) modules to create a category.
+ * The {@code Category} annotation marks a class as a category.
  * 
  * @author lukasiewycz
  * 

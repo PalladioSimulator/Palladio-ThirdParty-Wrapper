@@ -18,17 +18,17 @@ package org.opt4j.common.completer;
 import java.util.Arrays;
 import java.util.List;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.IncompatibilityException;
 import org.opt4j.core.Individual;
 import org.opt4j.core.Objectives;
-import org.opt4j.core.Phenotype;
 import org.opt4j.core.Individual.State;
 import org.opt4j.core.optimizer.Completer;
 import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.TerminationException;
 import org.opt4j.core.problem.Decoder;
 import org.opt4j.core.problem.Evaluator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.core.problem.Phenotype;
 
 import com.google.inject.Inject;
 
@@ -110,7 +110,6 @@ public class SequentialCompleter implements Completer {
 								+ evaluator.getObjectives() + ". But actually "
 								+ objectives.getKeys() + " are set.");
 			}
-			objectives.submit();
 			individual.setObjectives(objectives);
 
 		} else {

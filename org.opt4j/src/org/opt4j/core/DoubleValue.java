@@ -16,8 +16,12 @@
 package org.opt4j.core;
 
 /**
- * The {@code DoubleValue}.
+ * The {@code DoubleValue} is a {@link Value} with a {@code double} as value.
+ * The {@link Objectives} contains a convenience method that allows to add a
+ * {@code DoubleValue} without creating a new instance:
+ * {@link Objectives#add(Objective, double)}.
  * 
+ * @see Objectives#add(Objective, double)
  * @author lukasiewycz
  * 
  */
@@ -72,7 +76,7 @@ public class DoubleValue implements Value<Double> {
 		if (arg == null) {
 			return -1;
 		}
-		Double other = arg.getDouble();
+		Double other = arg.getValue();
 		if (value == null) {
 			if (other == null) {
 				return 0;

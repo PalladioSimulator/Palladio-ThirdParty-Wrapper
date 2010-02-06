@@ -17,13 +17,11 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.DoubleGenotype;
-import org.opt4j.operator.common.Apply;
 import org.opt4j.operator.normalize.NormalizeDouble;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * The {@code NeighborDouble} operator for the {@link DoubleGenotype}.
@@ -31,9 +29,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(DoubleGenotype.class)
-public class NeighborDouble implements Neighbor {
+public class NeighborDouble implements Neighbor<DoubleGenotype> {
 
 	protected final Random random;
 
@@ -48,7 +44,7 @@ public class NeighborDouble implements Neighbor {
 	 *            the random number generator
 	 */
 	@Inject
-	public NeighborDouble(final NormalizeDouble normalize, Random random) {
+	public NeighborDouble(final NormalizeDouble normalize, Rand random) {
 		this.normalize = normalize;
 		this.random = random;
 	}
@@ -59,17 +55,15 @@ public class NeighborDouble implements Neighbor {
 	 * @see
 	 * org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
-	public void neighbor(Genotype genotype) {
-		DoubleGenotype vector = (DoubleGenotype) genotype;
-
-		int size = vector.size();
+	public void neighbor(DoubleGenotype genotype) {
+		int size = genotype.size();
 
 		int i = random.nextInt(size);
 
-		double value = vector.get(i) + random.nextDouble() * 0.1 - 0.05;
-		vector.set(i, value);
+		double value = genotype.get(i) + random.nextDouble() * 0.1 - 0.05;
+		genotype.set(i, value);
 
-		normalize.normalize(vector);
+		normalize.normalize(genotype);
 	}
 
 }

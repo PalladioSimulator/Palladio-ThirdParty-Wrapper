@@ -1,7 +1,6 @@
 package org.opt4j.optimizer.mopso;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.mutate.MutateDoubleElementwise;
 import org.opt4j.operator.mutate.MutationRate;
 import org.opt4j.operator.normalize.NormalizeDouble;
@@ -35,7 +34,7 @@ public class MutateDoubleUniform extends MutateDoubleElementwise {
 	@Inject
 	public MutateDoubleUniform(
 			MutationRate mutationRate,
-			Random random,
+			Rand random,
 			NormalizeDouble normalize,
 			@Constant(value = "perturbation", namespace = MutateDoubleNonUniform.class) double perturbation) {
 		super(mutationRate, random, normalize);

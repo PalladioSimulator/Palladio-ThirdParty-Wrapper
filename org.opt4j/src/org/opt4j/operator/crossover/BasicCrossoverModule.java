@@ -19,7 +19,6 @@ import org.opt4j.config.annotations.Info;
 import org.opt4j.config.annotations.Required;
 import org.opt4j.operator.crossover.CrossoverDoubleSBX.Nu;
 import org.opt4j.start.Constant;
-import org.opt4j.start.Opt4JModule;
 
 /**
  * The basic {@code CrossoverModule}.
@@ -27,24 +26,23 @@ import org.opt4j.start.Opt4JModule;
  * @author lukasiewycz
  * 
  */
-@Info("Setting for the basic crossover operators for genotype manipulation.")
-public class BasicCrossoverModule extends Opt4JModule implements
-		CrossoverModule {
+@Info("Setting for the basic crossover operators for genotype variation.")
+public class BasicCrossoverModule extends CrossoverModule {
 
-	@Info("The type of the crossover operator for the Boolean genotype")
+	@Info("The type of the crossover operator for the Boolean genotype.")
 	protected BooleanType booleanType = BooleanType.RATE;
 
 	@Required(property = "booleanType", elements = { "RATE" })
-	@Info("The probability for a crossover point")
+	@Info("The probability for a crossover point.")
 	@Constant(value = "rate", namespace = CrossoverBooleanRate.class)
 	protected double booleanRate = 0.5;
 
 	@Required(property = "booleanType", elements = { "XPOINT" })
-	@Info("The number of crossover points")
+	@Info("The number of crossover points.")
 	@Constant(value = "x", namespace = CrossoverBooleanXPoint.class)
 	protected int booleanXPoints = 1;
 
-	@Info("The type of the crossover operator for the Double genotype")
+	@Info("The type of the crossover operator for the Double genotype.")
 	protected DoubleType doubleType = DoubleType.SBX;
 
 	@Required(property = "doubleType", elements = { "BLX", "UNFAIR_AVERAGE" })
@@ -54,23 +52,23 @@ public class BasicCrossoverModule extends Opt4JModule implements
 	@Constant(value = "nu", namespace = CrossoverDoubleSBX.class)
 	protected double nu = 15;
 
-	@Info("The type of the crossover operator for the Permutation genotype")
+	@Info("The type of the crossover operator for the Permutation genotype.")
 	protected PermutationType permutationType = PermutationType.ONEPOINT;
 
 	@Required(property = "permutationType", elements = { "ONEPOINT" })
 	@Constant(value = "rotation", namespace = CrossoverPermutationOnePoint.class)
 	protected boolean rotation = false;
 
-	@Info("The type of the crossover operator for the Integer genotype")
+	@Info("The type of the crossover operator for the Integer genotype.")
 	protected IntegerType integerType = IntegerType.RATE;
 
 	@Required(property = "integerType", elements = { "RATE" })
-	@Info("The probability for a crossover point")
+	@Info("The probability for a crossover point.")
 	@Constant(value = "rate", namespace = CrossoverIntegerRate.class)
 	protected double integerRate = 0.5;
 
 	@Required(property = "integerType", elements = { "XPOINT" })
-	@Info("The number of crossover points")
+	@Info("The number of crossover points.")
 	@Constant(value = "x", namespace = CrossoverIntegerXPoint.class)
 	protected int integerXPoints = 1;
 

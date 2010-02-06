@@ -17,7 +17,12 @@ package org.opt4j.core.optimizer;
 
 /**
  * The {@code TerminationException} is thrown if the optimization is terminated.
+ * Note that this exception is not thrown manually, instead the
+ * {@link Control#doTerminate()} method ensures that a {@code
+ * TerminationException} is thrown at the next checkpoint (holds for
+ * {@link Control#checkpointStop()} and {@link Control#checkpoint()}).
  * 
+ * @see Control
  * @author lukasiewycz
  * 
  */

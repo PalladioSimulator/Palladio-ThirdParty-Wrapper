@@ -15,7 +15,6 @@
 package org.opt4j.operator.diversity;
 
 import org.opt4j.genotype.IntegerGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -27,7 +26,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(DiversityIntegerEuclidean.class)
-@Apply(IntegerGenotype.class)
-public interface DiversityInteger extends Diversity {
+public interface DiversityInteger extends Diversity<IntegerGenotype> {
 
 }

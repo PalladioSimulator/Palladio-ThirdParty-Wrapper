@@ -17,6 +17,7 @@ package org.opt4j.benchmark;
 
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
@@ -45,7 +46,7 @@ public class BinaryCreator implements Creator<BinaryString> {
 	 *            the number of bits per double value
 	 */
 	@Inject
-	public BinaryCreator(Random random, @N int n, @Bits int bits) {
+	public BinaryCreator(Rand random, @N int n, @Bits int bits) {
 		super();
 		this.random = random;
 
@@ -63,9 +64,7 @@ public class BinaryCreator implements Creator<BinaryString> {
 	 */
 	public BinaryString create() {
 		BinaryString string = new BinaryString();
-		for (int i = 0; i < length; i++) {
-			string.add(random.nextBoolean());
-		}
+		string.init(random, length);
 		return string;
 	}
 

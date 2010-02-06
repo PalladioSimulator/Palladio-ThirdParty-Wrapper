@@ -16,8 +16,15 @@
 package org.opt4j.core;
 
 /**
- * The {@code Value} is assigned to an {@code Objective}.
+ * The {@code Value} represents the result for an {@code Objective}. Each
+ * {@code Value} has to be {@code Comparable} and have a double representation
+ * which is used by some optimization algorithms. Thus, an appropriate double
+ * representation is not necessary if the optimization algorithm does not
+ * require it.
  * 
+ * @see DoubleValue
+ * @see IntegerValue
+ * @see Objectives#add(Objective, Value)
  * @author lukasiewycz
  * 
  * @param <V>

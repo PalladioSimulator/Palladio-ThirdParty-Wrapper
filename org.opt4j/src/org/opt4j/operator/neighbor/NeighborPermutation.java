@@ -16,7 +16,6 @@
 package org.opt4j.operator.neighbor;
 
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -28,7 +27,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(NeighborPermutationMixed.class)
-@Apply(PermutationGenotype.class)
-public interface NeighborPermutation extends Neighbor {
+public interface NeighborPermutation extends Neighbor<PermutationGenotype<?>> {
 
 }

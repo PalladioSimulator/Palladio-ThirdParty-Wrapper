@@ -17,16 +17,62 @@ package org.opt4j.operator.crossover;
 
 import org.opt4j.config.Icons;
 import org.opt4j.config.annotations.Icon;
-import org.opt4j.operator.common.OperatorModule;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.OperatorModule;
+
+import com.google.inject.Binder;
+import com.google.inject.TypeLiteral;
+import com.google.inject.multibindings.Multibinder;
 
 /**
- * Marker interface for modules for the {@code Crossover} operator.
+ * The {@code CrossoverModule} is used for modules for the {@code Crossover}
+ * operator.
  * 
  * @author lukasiewycz
  * @see Crossover
  * 
  */
 @Icon(Icons.OPERATOR)
-public interface CrossoverModule extends OperatorModule{
+public abstract class CrossoverModule extends OperatorModule {
+
+	/**
+	 * Adds a {@code Crossover} operator to the {@link CrossoverGeneric}.
+	 * 
+	 * @param crossover
+	 *            the crossover operator class
+	 */
+	public void addCrossover(Class<? extends Crossover<?>> crossover) {
+		addCrossover(binder(), crossover);
+	}
+
+	/**
+	 * Adds a {@code Crossover} operator to the {@link CrossoverGeneric}.
+	 * 
+	 * @param binder
+	 *            the binder (use {@code binder()} in a module to get the binder)
+	 * @param crossover
+	 *            the crossover operator class
+	 */
+	public static void addCrossover(Binder binder, Class<? extends Crossover<?>> crossover) {
+		Multibinder<Crossover<?>> multi = Multibinder.newSetBinder(binder,
+				new TypeLiteral<Crossover<?>>() {
+				});
+		multi.addBinding().to(crossover);
+	}
+
+	/**
+	 * Bind the {@code Crossover} operator. Using this method replaces the
+	 * {@link CrossoverGeneric} with the given class. If you just want to add a new
+	 * {@code Crossover} operator, use the {@code #addCrossover(Class)} method.
+	 * 
+	 * @param crossover
+	 *            the crossover operator class
+	 */
+	@SuppressWarnings("unchecked")
+	public void bindCrossover(Class<? extends Crossover<?>> crossover) {
+		bind(new TypeLiteral<Crossover<Genotype>>() {
+		}).to((Class<? extends Crossover<Genotype>>) crossover);
+	}
+	
 
 }

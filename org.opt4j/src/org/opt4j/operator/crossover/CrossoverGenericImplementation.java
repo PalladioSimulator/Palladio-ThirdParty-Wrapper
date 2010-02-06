@@ -17,8 +17,8 @@ package org.opt4j.operator.crossover;
 
 import java.util.Collection;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.operator.common.AbstractGenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.AbstractGenericOperator;
 import org.opt4j.optimizer.ea.Pair;
 
 import com.google.inject.Inject;
@@ -32,7 +32,8 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class CrossoverGenericImplementation extends
-		AbstractGenericOperator<Crossover> implements CrossoverGeneric {
+		AbstractGenericOperator<Crossover<Genotype>> implements
+		CrossoverGeneric {
 
 	/**
 	 * Constructs the {@link CrossoverGenericImplementation}.
@@ -51,7 +52,7 @@ public class CrossoverGenericImplementation extends
 	 * @author lukasiewycz
 	 * 
 	 */
-	static class CrossoverHolder extends OperatorHolder<Crossover> {
+	static class CrossoverHolder extends OperatorHolder<Crossover<?>> {
 
 		/**
 		 * Constructs a {@code CrossoverHolder}.
@@ -88,9 +89,10 @@ public class CrossoverGenericImplementation extends
 	 * @param crossovers
 	 *            the crossover operators
 	 */
-	public CrossoverGenericImplementation(Collection<Crossover> crossovers) {
+	@SuppressWarnings("unchecked")
+	public CrossoverGenericImplementation(Collection<Crossover<?>> crossovers) {
 		for (Crossover crossover : crossovers) {
-			addHandler(crossover);
+			addOperator((Crossover<Genotype>) crossover);
 		}
 	}
 
@@ -102,7 +104,7 @@ public class CrossoverGenericImplementation extends
 	 * org.opt4j.core.Genotype)
 	 */
 	public Pair<Genotype> crossover(Genotype parent1, Genotype parent2) {
-		Crossover crossover = getHandler(parent1.getClass());
+		Crossover<Genotype> crossover = getOperator(parent1.getClass());
 
 		return crossover.crossover(parent1, parent2);
 

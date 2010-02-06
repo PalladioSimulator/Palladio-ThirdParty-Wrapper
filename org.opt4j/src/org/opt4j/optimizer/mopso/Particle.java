@@ -15,9 +15,9 @@
 
 package org.opt4j.optimizer.mopso;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.Individual;
 import org.opt4j.core.Objectives;
+import org.opt4j.core.problem.Genotype;
 
 import com.google.inject.Inject;
 

@@ -17,23 +17,32 @@ package org.opt4j.core;
 
 import java.util.Set;
 
+import org.opt4j.core.problem.Decoder;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.core.problem.Phenotype;
+
 import com.google.inject.Inject;
 
 /**
+ * <p>
  * The {@code Individual} class forms a single solution for the given
  * optimization problem.
+ * </p>
+ * <p>
+ * An {@code Individual} contains the {@link Genotype}, {@link Phenotype}, and
+ * {@link Objectives}: Initially, the {@code Individual} contains only a {@code
+ * Genotype}. The {@link Decoder} decodes the {@code Genotype} into a {@code
+ * Phenotype} and adds it to the {@code Individual}. Finally, the {@code
+ * Phenotype} is evaluated and the resulting {@code Objectives} are added to the
+ * {@code Individual}.
+ * </p>
  * 
+ * @see Genotype
+ * @see Phenotype
+ * @see Objectives
  * @author glass, lukasiewycz
  */
 public class Individual {
-
-	/*
-	 * protected final Creator<Genotype> creator;
-	 * 
-	 * protected final Decoder<Genotype, Phenotype> decoder;
-	 * 
-	 * protected final Evaluator<Phenotype> evaluator;
-	 */
 
 	protected Genotype genotype;
 

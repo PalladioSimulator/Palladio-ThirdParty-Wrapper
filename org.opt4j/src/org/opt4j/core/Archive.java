@@ -21,11 +21,9 @@ import org.opt4j.common.archive.DefaultArchive;
 
 import com.google.inject.ImplementedBy;
 
-
-
 /**
- * An {@code Archive} is able to store a set of non-dominated
- * {@code Individuals}.
+ * An {@code Archive} is used to store a set of high-quality {@code Individuals}
+ * . Commonly, these {@code Individuals} are non-dominated.
  * 
  * @author helwig, lukasiewycz
  */
@@ -47,7 +45,7 @@ public interface Archive extends Collection<Individual> {
 	 *            some individuals
 	 */
 	public void update(Collection<Individual> individuals);
-	
+
 	/**
 	 * Adds a listener.
 	 * 
@@ -64,5 +62,4 @@ public interface Archive extends Collection<Individual> {
 	 */
 	public void removeListener(IndividualCollectionListener listener);
 
-	
 }

@@ -18,6 +18,7 @@ package org.opt4j.benchmark.lotz;
 import java.util.Random;
 
 import org.opt4j.benchmark.BinaryString;
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 import org.opt4j.start.Constant;
 
@@ -44,7 +45,7 @@ public class LOTZCreator implements Creator<BinaryString> {
 	 *            the size of the string
 	 */
 	@Inject
-	public LOTZCreator(Random random,
+	public LOTZCreator(Rand random,
 			@Constant(value = "size", namespace = LOTZCreator.class) int size) {
 		super();
 		this.random = random;
@@ -58,10 +59,7 @@ public class LOTZCreator implements Creator<BinaryString> {
 	 */
 	public BinaryString create() {
 		BinaryString string = new BinaryString();
-
-		for (int i = 0; i < size; i++) {
-			string.add(random.nextBoolean());
-		}
+		string.init(random, size);
 
 		return string;
 	}

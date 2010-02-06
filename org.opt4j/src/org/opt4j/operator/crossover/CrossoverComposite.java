@@ -15,13 +15,11 @@
 
 package org.opt4j.operator.crossover;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
-import org.opt4j.operator.common.Apply;
 import org.opt4j.optimizer.ea.Pair;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * Crossover for the {@link CompositeGenotype}.
@@ -29,9 +27,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(CompositeGenotype.class)
-public class CrossoverComposite implements Crossover {
+public class CrossoverComposite implements Crossover<CompositeGenotype<?, ?>> {
 
 	private final CrossoverGeneric crossoverGeneric;
 
@@ -53,22 +49,20 @@ public class CrossoverComposite implements Crossover {
 	 * org.opt4j.operator.crossover.Crossover#crossover(org.opt4j.core.Genotype,
 	 * org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public Pair<Genotype> crossover(Genotype parent1, Genotype parent2) {
-		CompositeGenotype p1 = (CompositeGenotype) parent1;
-		CompositeGenotype p2 = (CompositeGenotype) parent2;
-
-		CompositeGenotype o1 = parent1.newInstance();
-		CompositeGenotype o2 = parent2.newInstance();
+	public Pair<CompositeGenotype<?, ?>> crossover(CompositeGenotype<?, ?> p1,
+			CompositeGenotype<?, ?> p2) {
+		CompositeGenotype<Object, Genotype> o1 = p1.newInstance();
+		CompositeGenotype<Object, Genotype> o2 = p2.newInstance();
 
 		for (Object key : p1.keySet()) {
-			Pair<Genotype> genotype = crossoverGeneric.crossover(p1.get(key),
-					p2.get(key));
+			Pair<Genotype> genotype = crossoverGeneric.crossover(p1
+					.<Genotype> get(key), p2.<Genotype> get(key));
 			o1.put(key, genotype.getFirst());
 			o2.put(key, genotype.getSecond());
 		}
 
-		Pair<Genotype> offspring = new Pair<Genotype>(o1, o2);
+		Pair<CompositeGenotype<?, ?>> offspring = new Pair<CompositeGenotype<?, ?>>(
+				o1, o2);
 		return offspring;
 	}
 

@@ -15,20 +15,28 @@
 
 package org.opt4j.operator.algebra;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
 
 import com.google.inject.ImplementedBy;
 
 /**
+ * <p>
  * The {@code Algebra} operator. By default this class is implemented by the
  * {@link AlgebraDouble}.
+ * </p>
+ * <p>
+ * Since the operator method is accepting {@code varargs} it cannot be
+ * parameterized for each genotype.
+ * </p>
  * 
  * @author lukasiewycz
  * 
+ * @param <G>
+ *            the type of genotype
  */
 @ImplementedBy(AlgebraGeneric.class)
-public interface Algebra extends Operator {
+public interface Algebra<G extends Genotype> extends Operator<G> {
 
 	/**
 	 * Performs the term for each element of the genotypes and returns the
@@ -40,6 +48,6 @@ public interface Algebra extends Operator {
 	 *            the genotypes
 	 * @return the resulting genotype
 	 */
-	public Genotype algebra(Term term, Genotype... genotypes);
+	public G algebra(Term term, Genotype... genotypes);
 
 }

@@ -15,14 +15,10 @@
 
 package org.opt4j.operator.copy;
 
-import java.util.List;
-
-import org.opt4j.core.Genotype;
 import org.opt4j.genotype.BooleanGenotype;
 import org.opt4j.genotype.DoubleGenotype;
 import org.opt4j.genotype.ListGenotype;
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.Apply;
 
 /**
  * Copy operator for plain lists like {@link BooleanGenotype},
@@ -31,31 +27,21 @@ import org.opt4j.operator.common.Apply;
  * @author lukasiewycz
  * 
  */
-@Apply(ListGenotype.class)
-public class CopyList implements Copy {
-
-	/**
-	 * Constructs a {@code CopyList}.
-	 */
-	public CopyList() {
-		super();
-	}
+public class CopyList implements Copy<ListGenotype<?>> {
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.opt4j.operator.copy.Copy#copy(org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public Genotype copy(Genotype genotype) {
-		List<Object> original = (List<Object>) genotype;
-		List<Object> copy = (List<Object>) genotype.newInstance();
+	public ListGenotype<?> copy(ListGenotype<?> genotype) {
+		ListGenotype<Object> copy = genotype.newInstance();
 
-		for (Object element : original) {
+		for (Object element : genotype) {
 			copy.add(element);
 		}
 
-		return (Genotype) copy;
+		return copy;
 	}
 
 }

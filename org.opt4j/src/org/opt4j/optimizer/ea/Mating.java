@@ -19,9 +19,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Individual;
 import org.opt4j.core.IndividualBuilder;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.operator.copy.Copy;
 import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.operator.mutate.Mutate;
@@ -36,9 +37,9 @@ import com.google.inject.Inject;
  */
 public class Mating {
 
-	protected final Crossover crossover;
-	protected final Mutate mutate;
-	protected final Copy copy;
+	protected final Crossover<Genotype> crossover;
+	protected final Mutate<Genotype> mutate;
+	protected final Copy<Genotype> copy;
 	protected final Coupler coupler;
 	protected final CrossoverRate crossoverRate;
 	protected final Random random;
@@ -65,9 +66,9 @@ public class Mating {
 	 *            the individual builder
 	 */
 	@Inject
-	public Mating(Crossover crossover, Mutate mutate,
-			Copy copy, Coupler coupler, CrossoverRate crossoverRate,
-			Random random, IndividualBuilder individualBuilder) {
+	public Mating(Crossover<Genotype> crossover, Mutate<Genotype> mutate,
+			Copy<Genotype> copy, Coupler coupler, CrossoverRate crossoverRate,
+			Rand random, IndividualBuilder individualBuilder) {
 		super();
 		this.crossover = crossover;
 		this.mutate = mutate;
@@ -78,11 +79,18 @@ public class Mating {
 		this.individualBuilder = individualBuilder;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Creates offspring from a given set of parents.
 	 * 
-	 * @see org.opt4j.operator.mating.Mating#getOffspring(int,
-	 * java.util.Collection)
+	 * The {@link Coupler} is used to create pairs of parents, which are mated
+	 * using the {@link Mutate} and, depending on the {@link CrossoverRate}, the
+	 * {@link Crossover} operator.
+	 * 
+	 * @param size
+	 *            the number of individuals to create
+	 * @param parents
+	 *            the parents
+	 * @return the offspring
 	 */
 	public Collection<Individual> getOffspring(int size,
 			Collection<Individual> parents) {
@@ -97,7 +105,7 @@ public class Mating {
 			Pair<Individual> i = mate(parent1, parent2, crossover);
 			Individual i1 = i.getFirst();
 			Individual i2 = i.getSecond();
-			
+
 			offspring.add(i1);
 			if (offspring.size() < size) {
 				offspring.add(i2);
@@ -108,7 +116,7 @@ public class Mating {
 	}
 
 	/**
-	 * Performs the actual coupler process of two parents.
+	 * Performs the actual {@link Coupler} process of two parents.
 	 * 
 	 * @param parent1
 	 *            parent one

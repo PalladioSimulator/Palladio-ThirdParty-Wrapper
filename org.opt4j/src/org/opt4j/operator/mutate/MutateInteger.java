@@ -16,7 +16,6 @@
 package org.opt4j.operator.mutate;
 
 import org.opt4j.genotype.IntegerGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -28,7 +27,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(MutateIntegerRandom.class)
-@Apply(IntegerGenotype.class)
-public interface MutateInteger extends Mutate {
+public interface MutateInteger extends Mutate<IntegerGenotype> {
 
 }

@@ -18,9 +18,8 @@ package org.opt4j.operator.crossover;
 import java.util.List;
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.DoubleGenotype;
-import org.opt4j.operator.common.Apply;
 import org.opt4j.operator.normalize.NormalizeDouble;
 import org.opt4j.optimizer.ea.Pair;
 
@@ -34,8 +33,7 @@ import com.google.inject.Inject;
  * 
  */
 @ImplementedBy(CrossoverDoubleDefault.class)
-@Apply(DoubleGenotype.class)
-public abstract class CrossoverDouble implements Crossover {
+public abstract class CrossoverDouble implements Crossover<DoubleGenotype> {
 
 	protected final Random random;
 
@@ -50,7 +48,7 @@ public abstract class CrossoverDouble implements Crossover {
 	 *            the random number generator
 	 */
 	@Inject
-	public CrossoverDouble(NormalizeDouble normalize, Random random) {
+	public CrossoverDouble(NormalizeDouble normalize, Rand random) {
 		this.normalize = normalize;
 		this.random = random;
 	}
@@ -62,19 +60,16 @@ public abstract class CrossoverDouble implements Crossover {
 	 * org.opt4j.operator.crossover.Crossover#crossover(org.opt4j.core.Genotype,
 	 * org.opt4j.core.Genotype)
 	 */
-	public Pair<Genotype> crossover(Genotype parent1, Genotype parent2) {
-		DoubleGenotype p1 = (DoubleGenotype) parent1;
-		DoubleGenotype p2 = (DoubleGenotype) parent2;
-
-		DoubleGenotype o1 = parent1.newInstance();
-		DoubleGenotype o2 = parent1.newInstance();
+	public Pair<DoubleGenotype> crossover(DoubleGenotype p1, DoubleGenotype p2) {
+		DoubleGenotype o1 = p1.newInstance();
+		DoubleGenotype o2 = p2.newInstance();
 
 		crossover(p1, p2, o1, o2);
 
 		normalize.normalize(o1);
 		normalize.normalize(o2);
 
-		Pair<Genotype> offspring = new Pair<Genotype>(o1, o2);
+		Pair<DoubleGenotype> offspring = new Pair<DoubleGenotype>(o1, o2);
 		return offspring;
 	}
 

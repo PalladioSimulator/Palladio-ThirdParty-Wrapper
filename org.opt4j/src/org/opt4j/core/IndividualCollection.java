@@ -25,13 +25,13 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * The {@code IndividualCollection} is a class that holds a specific number of
- * {@code Individuals}. It is {@code Iterable} and can register
- * {@code Listeners} for adding and removing {@code Individuals}.
+ * {@code Individuals}. It is {@code Iterable} and can register {@code
+ * Listeners} for adding and removing {@code Individuals}.
  * 
  * @author lukasiewycz
  * 
  */
-public class IndividualCollection implements Collection<Individual> {
+public class IndividualCollection implements Set<Individual> {
 
 	protected final List<Individual> individuals = new ArrayList<Individual>();
 
@@ -52,17 +52,12 @@ public class IndividualCollection implements Collection<Individual> {
 		public Individual next() {
 			return individuals.get(i++);
 		}
-		
+
 		public void remove() {
-			individuals.remove(--i);
+			i--;
+			IndividualCollection.this.remove(individuals.get(i));
 		}
 
-	}
-
-	/**
-	 * Constructs an {@code IndividualCollection}.
-	 */
-	public IndividualCollection() {
 	}
 
 	/*
@@ -71,7 +66,10 @@ public class IndividualCollection implements Collection<Individual> {
 	 * @see java.util.Collection#add(java.lang.Object)
 	 */
 	public boolean add(Individual individual) {
-		boolean b = individuals.add(individual);
+		boolean b = false;
+		if(!individuals.contains(individual)){
+			b = individuals.add(individual);
+		}
 		if (b) {
 			for (IndividualCollectionListener listener : listeners) {
 				listener.individualAdded(this, individual);
@@ -156,7 +154,7 @@ public class IndividualCollection implements Collection<Individual> {
 	 * @see java.util.Collection#containsAll(java.util.Collection)
 	 */
 	public boolean containsAll(Collection<?> c) {
-		return individuals.contains(c);
+		return individuals.containsAll(c);
 	}
 
 	/*
@@ -193,7 +191,7 @@ public class IndividualCollection implements Collection<Individual> {
 		for (Object obj : c) {
 			b |= remove(obj);
 		}
-		
+
 		return b;
 	}
 

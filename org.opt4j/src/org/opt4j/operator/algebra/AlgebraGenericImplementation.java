@@ -17,11 +17,10 @@ package org.opt4j.operator.algebra;
 
 import java.util.Collection;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.genotype.BooleanGenotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
 import org.opt4j.genotype.DoubleGenotype;
-import org.opt4j.operator.common.AbstractGenericOperator;
+import org.opt4j.operator.AbstractGenericOperator;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -35,7 +34,7 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class AlgebraGenericImplementation extends
-		AbstractGenericOperator<Algebra> implements AlgebraGeneric {
+		AbstractGenericOperator<Algebra<Genotype>> implements AlgebraGeneric {
 
 	/**
 	 * Constructs the {@link AlgebraGenericImplementation}.
@@ -54,22 +53,19 @@ public class AlgebraGenericImplementation extends
 	 * @author lukasiewycz
 	 * 
 	 */
-	static class AlgebraHolder extends OperatorHolder<Algebra> {
+	static class AlgebraHolder extends OperatorHolder<Algebra<?>> {
 
 		/**
 		 * Constructs an {@code AlgebraHolder}.
 		 * 
-		 * @param algebraBoolean
-		 *            Algebra for {@link BooleanGenotype}
 		 * @param algebraDouble
 		 *            Algebra for {@link DoubleGenotype}
 		 * @param algebraComposite
 		 *            Algebra for {@link CompositeGenotype}
 		 */
 		@Inject
-		protected AlgebraHolder(AlgebraBoolean algebraBoolean,
-				AlgebraDouble algebraDouble, AlgebraComposite algebraComposite) {
-			add(algebraBoolean);
+		protected AlgebraHolder(AlgebraDouble algebraDouble,
+				AlgebraComposite algebraComposite) {
 			add(algebraDouble);
 			add(algebraComposite);
 		}
@@ -82,9 +78,10 @@ public class AlgebraGenericImplementation extends
 	 * @param algebras
 	 *            the algebra operators
 	 */
-	public AlgebraGenericImplementation(Collection<Algebra> algebras) {
-		for (Algebra algebra : algebras) {
-			addHandler(algebra);
+	@SuppressWarnings("unchecked")
+	public AlgebraGenericImplementation(Collection<Algebra<?>> algebras) {
+		for (Algebra<?> algebra : algebras) {
+			addOperator((Algebra<Genotype>) algebra);
 		}
 	}
 
@@ -96,7 +93,7 @@ public class AlgebraGenericImplementation extends
 	 * .Term, org.opt4j.core.Genotype[])
 	 */
 	public Genotype algebra(Term term, Genotype... genotypes) {
-		Algebra algebra = getHandler(genotypes[0].getClass());
+		Algebra<Genotype> algebra = getOperator(genotypes[0].getClass());
 
 		return algebra.algebra(term, genotypes);
 	}

@@ -15,7 +15,8 @@
 
 package org.opt4j.operator.crossover;
 
-import org.opt4j.operator.common.GenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.GenericOperator;
 
 import com.google.inject.ImplementedBy;
 
@@ -28,6 +29,7 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(CrossoverGenericImplementation.class)
-public interface CrossoverGeneric extends Crossover, GenericOperator<Crossover> {
+public interface CrossoverGeneric extends Crossover<Genotype>,
+		GenericOperator<Crossover<Genotype>> {
 
 }

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Individual;
 
 import com.google.inject.Inject;
@@ -44,7 +45,7 @@ public class CouplerUnique implements Coupler {
 	 *            the random number generator
 	 */
 	@Inject
-	public CouplerUnique(Random random) {
+	public CouplerUnique(Rand random) {
 		this.random = random;
 	}
 

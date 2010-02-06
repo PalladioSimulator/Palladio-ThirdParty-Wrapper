@@ -15,11 +15,13 @@
 
 package org.opt4j.core;
 
+import org.opt4j.start.Opt4JModule;
+
 /**
- * The interface for recieving notifications of an {@code Individual} changing
- * its {@code State}.
- * 
- * An implementing class must register itself at the {@link IndividualBuilder}.
+ * The {@code IndividualStateListener} receives notifications of an {@code
+ * Individual} changing its {@code State}. To add an {@code
+ * IndividualStateListener} use the method
+ * {@link Opt4JModule#addIndividualStateListener(Class)}.
  * 
  * @author lukasiewycz
  * 

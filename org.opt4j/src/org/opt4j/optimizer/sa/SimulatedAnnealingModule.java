@@ -29,17 +29,9 @@ import org.opt4j.core.optimizer.OptimizerModule;
 		+ "Adds the objective values in case of a multi-objective optimization.")
 public class SimulatedAnnealingModule extends OptimizerModule {
 
-	@Info("The number of iterations")
+	@Info("The number of iterations.")
 	@Iterations
 	protected int iterations = 100000;
-
-	/**
-	 * Constructs a {@code SimulatedAnnealingModule}.
-	 * 
-	 */
-	public SimulatedAnnealingModule() {
-		super();
-	}
 
 	/**
 	 * Returns the number of iterations.

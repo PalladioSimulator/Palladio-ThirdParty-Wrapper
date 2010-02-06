@@ -24,8 +24,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The {@code Name} annotation. Change the name of a module or property in the
- * {@code Configurator}.
+ * The {@code Name} annotation assigns a user defined name to a module or
+ * property.
  * 
  * @author lukasiewycz
  * 

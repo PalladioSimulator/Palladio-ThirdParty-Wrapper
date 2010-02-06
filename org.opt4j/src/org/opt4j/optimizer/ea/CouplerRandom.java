@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.Individual;
 
 import com.google.inject.Inject;
@@ -44,7 +45,7 @@ public class CouplerRandom implements Coupler {
 	 *            the random number generator
 	 */
 	@Inject
-	public CouplerRandom(Random random) {
+	public CouplerRandom(Rand random) {
 		this.random = random;
 	}
 

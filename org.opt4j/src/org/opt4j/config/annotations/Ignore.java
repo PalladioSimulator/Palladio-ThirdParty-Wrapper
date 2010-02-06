@@ -25,8 +25,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The {@code Ignore} annotation. Use this annotation to ignore (not listed in
- * the {@code Configurator}) modules and properties.
+ * The {@code Ignore} annotation can either be used for modules or properties
+ * such that these are ignored in the configurator.
  * 
  * @author lukasiewycz
  * 

@@ -19,12 +19,11 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 import org.opt4j.optimizer.ea.Pair;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -53,7 +52,6 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class CrossoverPermutationBucket implements CrossoverPermutation {
 
 	protected final Random random;
@@ -65,7 +63,7 @@ public class CrossoverPermutationBucket implements CrossoverPermutation {
 	 *            the random number generator
 	 */
 	@Inject
-	public CrossoverPermutationBucket(Random random) {
+	public CrossoverPermutationBucket(Rand random) {
 		this.random = random;
 	}
 
@@ -76,10 +74,8 @@ public class CrossoverPermutationBucket implements CrossoverPermutation {
 	 * org.opt4j.operator.crossover.Crossover#crossover(org.opt4j.core.Genotype,
 	 * org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public Pair<Genotype> crossover(Genotype parent1, Genotype parent2) {
-		PermutationGenotype<Object> p1 = (PermutationGenotype<Object>) parent1;
-		PermutationGenotype<Object> p2 = (PermutationGenotype<Object>) parent2;
+	public Pair<PermutationGenotype<?>> crossover(PermutationGenotype<?> p1,
+			PermutationGenotype<?> p2) {
 
 		PermutationGenotype<Object> o1 = p1.newInstance();
 		PermutationGenotype<Object> o2 = p1.newInstance();
@@ -112,7 +108,8 @@ public class CrossoverPermutationBucket implements CrossoverPermutation {
 			}
 		}
 
-		Pair<Genotype> offspring = new Pair<Genotype>(o1, o2);
+		Pair<PermutationGenotype<?>> offspring = new Pair<PermutationGenotype<?>>(
+				o1, o2);
 		return offspring;
 	}
 

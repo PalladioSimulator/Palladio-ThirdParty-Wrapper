@@ -15,9 +15,8 @@
 
 package org.opt4j.operator.algebra;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.DoubleGenotype;
-import org.opt4j.operator.common.Apply;
 import org.opt4j.operator.normalize.NormalizeDouble;
 
 import com.google.inject.Inject;
@@ -28,8 +27,7 @@ import com.google.inject.Inject;
  * @author lukasiewycz
  * 
  */
-@Apply(DoubleGenotype.class)
-public class AlgebraDouble implements Algebra {
+public class AlgebraDouble implements Algebra<DoubleGenotype> {
 
 	protected final NormalizeDouble normalize;
 
@@ -52,7 +50,7 @@ public class AlgebraDouble implements Algebra {
 	 * org.opt4j.operator.algebra.Algebra#algebra(org.opt4j.operator.algebra
 	 * .Term, org.opt4j.core.Genotype[])
 	 */
-	public Genotype algebra(Term term, Genotype... genotypes) {
+	public DoubleGenotype algebra(Term term, Genotype... genotypes) {
 		int n = genotypes.length;
 		assert (n > 0);
 

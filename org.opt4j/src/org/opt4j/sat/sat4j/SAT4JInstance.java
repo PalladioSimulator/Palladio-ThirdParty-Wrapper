@@ -15,7 +15,9 @@
 
 package org.opt4j.sat.sat4j;
 
-import static org.opt4j.sat.Constraint.Operator.*;
+import static org.opt4j.sat.Constraint.Operator.EQ;
+import static org.opt4j.sat.Constraint.Operator.GE;
+import static org.opt4j.sat.Constraint.Operator.LE;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -37,7 +39,6 @@ import org.opt4j.sat.sat4j.SAT4JSolver.Learning;
 import org.opt4j.sat.sat4j.SAT4JSolver.Restarts;
 import org.sat4j.core.Vec;
 import org.sat4j.core.VecInt;
-import org.sat4j.minisat.core.ILits;
 import org.sat4j.minisat.core.LearningStrategy;
 import org.sat4j.minisat.core.RestartStrategy;
 import org.sat4j.minisat.learning.ClauseOnlyLearning;
@@ -49,7 +50,7 @@ import org.sat4j.minisat.restarts.ArminRestarts;
 import org.sat4j.minisat.restarts.LubyRestarts;
 import org.sat4j.minisat.restarts.MiniSATRestarts;
 import org.sat4j.minisat.uip.FirstUIP;
-import org.sat4j.pb.constraints.CompetPBMaxClauseCardConstrDataStructure;
+import org.sat4j.pb.constraints.CompetResolutionPBMixedHTClauseCardConstrDataStructure;
 import org.sat4j.pb.core.PBDataStructureFactory;
 import org.sat4j.pb.core.PBSolverResolution;
 import org.sat4j.specs.IVec;
@@ -76,6 +77,8 @@ public class SAT4JInstance implements Instance {
 
 	protected int nVars = 0;
 
+	protected boolean okay = true;
+
 	/**
 	 * Constructs a SAT4J instance.
 	 * 
@@ -92,17 +95,17 @@ public class SAT4JInstance implements Instance {
 	public SAT4JInstance(int timeout, int clauseLearningLength,
 			Learning learning, Restarts restarts) {
 
-		LearningStrategy<ILits, PBDataStructureFactory<ILits>> l = null;
+		LearningStrategy<PBDataStructureFactory> l = null;
 		switch (learning) {
 		case FIXEDLENGTH:
-			l = new FixedLengthLearning<ILits, PBDataStructureFactory<ILits>>(
+			l = new FixedLengthLearning<PBDataStructureFactory>(
 					clauseLearningLength);
 			break;
 		case MINISAT:
-			l = new MiniSATLearning<ILits, PBDataStructureFactory<ILits>>();
+			l = new MiniSATLearning<PBDataStructureFactory>();
 			break;
 		case CLAUSEONLY:
-			l = new ClauseOnlyLearning<ILits, PBDataStructureFactory<ILits>>();
+			l = new ClauseOnlyLearning<PBDataStructureFactory>();
 			break;
 		}
 
@@ -118,12 +121,9 @@ public class SAT4JInstance implements Instance {
 			r = new ArminRestarts();
 			break;
 		}
-		solver = new PBSolverResolution(
-				new FirstUIP(),
-				l,
-				new CompetPBMaxClauseCardConstrDataStructure(),
-				new VarOrderHeap<ILits>(new PositiveLiteralSelectionStrategy()),
-				r);
+		solver = new PBSolverResolution(new FirstUIP(), l,
+				new CompetResolutionPBMixedHTClauseCardConstrDataStructure(),
+				new VarOrderHeap(new PositiveLiteralSelectionStrategy()), r);
 		l.setSolver(solver);
 		l.setVarActivityListener(solver);
 		if (l instanceof MiniSATLearning) {
@@ -189,6 +189,7 @@ public class SAT4JInstance implements Instance {
 				solver.addPseudoBoolean(lits, coeffs, true, d);
 			}
 		} catch (org.sat4j.specs.ContradictionException e) {
+			okay = false;
 			throw new ContradictionException();
 		}
 	}
@@ -228,6 +229,9 @@ public class SAT4JInstance implements Instance {
 	 * @see org.opt4j.sat.Instance#solve()
 	 */
 	public boolean solve() throws TimeoutException {
+		if (!okay) {
+			return false;
+		}
 		return solve(new ArrayList<Literal>());
 	}
 
@@ -267,7 +271,13 @@ public class SAT4JInstance implements Instance {
 		try {
 			VecInt assumps = toVecInt(assumptions);
 
-			if (solver.isSatisfiable(assumps)) {
+			if (assumps.isEmpty()) {
+				okay = okay && solver.isSatisfiable();
+			} else {
+				okay = solver.isSatisfiable(assumps);
+			}
+
+			if (okay) {
 
 				model = new Model();
 

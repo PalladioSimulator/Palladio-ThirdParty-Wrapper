@@ -17,11 +17,10 @@ package org.opt4j.operator.mutate;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -30,14 +29,13 @@ import com.google.inject.Singleton;
  * </p>
  * 
  * <p>
- * Given a permutation {@code 1 2 3 4 5 6 7 8}, this might result in
- * {@code 1 2 6 3 4 5 7 8}.
+ * Given a permutation {@code 1 2 3 4 5 6 7 8}, this might result in {@code 1 2
+ * 6 3 4 5 7 8}.
  * </p>
  * 
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class MutatePermutationInsert implements MutatePermutation {
 
 	protected final Random random;
@@ -53,7 +51,7 @@ public class MutatePermutationInsert implements MutatePermutation {
 	 *            the random number generator
 	 */
 	@Inject
-	public MutatePermutationInsert(final MutationRate mutationRate, Random random) {
+	public MutatePermutationInsert(final MutationRate mutationRate, Rand random) {
 		this.mutationRate = mutationRate;
 		this.random = random;
 	}
@@ -64,9 +62,8 @@ public class MutatePermutationInsert implements MutatePermutation {
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
 	@SuppressWarnings("unchecked")
-	public void mutate(Genotype genotype) {
+	public void mutate(PermutationGenotype<?> genotype) {
 		PermutationGenotype<Object> permutation = (PermutationGenotype<Object>) genotype;
-
 		int size = permutation.size();
 
 		if (size > 1) {

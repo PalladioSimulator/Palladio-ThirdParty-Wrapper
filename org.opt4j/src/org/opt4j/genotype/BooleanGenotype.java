@@ -16,8 +16,9 @@
 package org.opt4j.genotype;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code BooleanGenotype} consists of Boolean values that can be used as a
@@ -27,7 +28,8 @@ import org.opt4j.core.Genotype;
  * 
  */
 @SuppressWarnings("serial")
-public class BooleanGenotype extends ArrayList<Boolean> implements ListGenotype {
+public class BooleanGenotype extends ArrayList<Boolean> implements
+		ListGenotype<Boolean> {
 
 	/**
 	 * Constructs a {@code BooleanGenotype}.
@@ -49,6 +51,24 @@ public class BooleanGenotype extends ArrayList<Boolean> implements ListGenotype 
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * Initialize this genotype with {@code n} random values.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 * @param n
+	 *            the number of elements in the resulting genotype
+	 */
+	public void init(Random random, int n) {
+		for (int i = 0; i < n; i++) {
+			if (i >= size()) {
+				add(random.nextBoolean());
+			} else {
+				set(i, random.nextBoolean());
+			}
 		}
 	}
 }

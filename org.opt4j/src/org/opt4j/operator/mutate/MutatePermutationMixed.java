@@ -17,11 +17,10 @@ package org.opt4j.operator.mutate;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -33,7 +32,6 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class MutatePermutationMixed implements MutatePermutation {
 
 	protected final Random random;
@@ -60,7 +58,7 @@ public class MutatePermutationMixed implements MutatePermutation {
 	@Inject
 	public MutatePermutationMixed(final MutatePermutationSwap swap,
 			final MutatePermutationInsert insert,
-			final MutatePermutationRevert revert, Random random) {
+			final MutatePermutationRevert revert, Rand random) {
 		this.swap = swap;
 		this.insert = insert;
 		this.revert = revert;
@@ -72,7 +70,7 @@ public class MutatePermutationMixed implements MutatePermutation {
 	 * 
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
-	public void mutate(Genotype genotype) {
+	public void mutate(PermutationGenotype<?> genotype) {
 		if (random.nextDouble() < 0.33) {
 			swap.mutate(genotype);
 		} else if (random.nextBoolean()) {

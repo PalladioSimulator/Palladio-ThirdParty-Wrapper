@@ -15,10 +15,10 @@
 
 package org.opt4j.operator.mutate;
 
-import org.opt4j.operator.common.GenericOperator;
+import org.opt4j.core.problem.Genotype;
+import org.opt4j.operator.GenericOperator;
 
 import com.google.inject.ImplementedBy;
-
 
 /**
  * Interface for a generic {@code Mutate} that handles different types of
@@ -28,6 +28,7 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(MutateGenericImplementation.class)
-public interface MutateGeneric extends Mutate, GenericOperator<Mutate> {
-	
+public interface MutateGeneric extends Mutate<Genotype>,
+		GenericOperator<Mutate<Genotype>> {
+
 }

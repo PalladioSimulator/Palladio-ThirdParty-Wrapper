@@ -23,8 +23,6 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-//import org.opt4j.Opt4JPluginActivator;
-
 /**
  * The {@code Icons} class is used to get {@code ImageIcons} from a given
  * {@code filename}. Moreover, it contains the {@code filenames} of some
@@ -61,6 +59,11 @@ public class Icons {
 	public static final String PARETO = "icons/stat.png";
 
 	/**
+	 * The icon for the convergence plot.
+	 */
+	public static final String CONVERGENCE = "icons/convergence.png";
+
+	/**
 	 * The icon for the play button.
 	 */
 	public static final String PLAY = "icons/play.png";
@@ -74,12 +77,12 @@ public class Icons {
 	 * The icon for the application.
 	 */
 	public static final String APPLICATION = "icons/appl.png";
-	
+
 	/**
 	 * The icon for the green puzzle.
 	 */
 	public static final String PUZZLE_GREEN = "icons/puzzle-green.png";
-	
+
 	/**
 	 * The icon for the blue puzzle.
 	 */
@@ -89,6 +92,11 @@ public class Icons {
 	 * The icon for the selector.
 	 */
 	public static final String SELECTOR = "icons/tools-orange.png";
+
+	/**
+	 * The icon for the tutorial.
+	 */
+	public static final String HELP = "icons/help.png";
 
 	/**
 	 * The icon for the control start.
@@ -156,10 +164,28 @@ public class Icons {
 	public static final String LOADING = "icons/loading.gif";
 
 	/**
+	 * A text sheet.
+	 */
+	public static final String TEXT = "icons/text.png";
+
+	/**
 	 * Constructs {@code Icons}.
 	 */
 	public Icons() {
 		super();
+	}
+
+	/**
+	 * Returns the {@code URL} of a file.
+	 * 
+	 * @param filename
+	 *            the filename
+	 * @return the url
+	 */
+	public static URL getURL(String filename) {
+		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+		URL url = classLoader.getResource(filename);
+		return url;
 	}
 
 	/**
@@ -170,10 +196,7 @@ public class Icons {
 	 * @return an {@code ImageIcon} from a filename
 	 */
 	public static ImageIcon getIcon(String filename) {
-		
-		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-		URL url = classLoader.getResource(filename);
-		//URL url = Opt4JPluginActivator.getURLForOpt4JIcon(filename);
+		URL url = getURL(filename);
 		try {
 			return new ImageIcon(url);
 		} catch (NullPointerException e) {

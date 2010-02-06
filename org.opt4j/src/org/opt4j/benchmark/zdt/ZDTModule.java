@@ -31,7 +31,7 @@ import org.opt4j.core.problem.Evaluator;
 import org.opt4j.core.problem.ProblemModule;
 
 /**
- * Module for the ZDT benchmarks.
+ * The {@code ZDTModule} configures the ZDT benchmarks.
  * 
  * @see "Comparison of Multiobjective Evolutionary Algorithms: Empirical
  *      Results, Eckart Zitzler, Kalyanmoy Deb, Lothar Thiele, Evolutionary
@@ -44,22 +44,22 @@ import org.opt4j.core.problem.ProblemModule;
 public class ZDTModule extends ProblemModule {
 
 	@Order(0)
-	@Info("The ZDT function")
+	@Info("The ZDT function.")
 	protected Function function = Function.ZDT1;
 
 	@Order(1)
-	@Info("The size of the search space")
+	@Info("The size of the search space.")
 	protected int n = 30;
 
 	@Order(2)
 	@Required(property = "function", elements = { "ZDT1", "ZDT2", "ZDT3",
 			"ZDT4", "ZDT6" })
-	@Info("The encoding of the optimization problem")
+	@Info("The encoding of the optimization problem.")
 	protected Encoding encoding = Encoding.BINARY;
 
 	@Order(3)
 	@Required(property = "encoding", elements = { "BINARY" })
-	@Info("The number of bits per double value")
+	@Info("The number of bits per double value.")
 	protected int bits = 30;
 
 	/**

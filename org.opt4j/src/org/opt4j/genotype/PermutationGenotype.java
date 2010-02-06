@@ -16,8 +16,10 @@
 package org.opt4j.genotype;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code PermutationGenotype} can be used as a {@code Genotype}. The order
@@ -30,7 +32,7 @@ import org.opt4j.core.Genotype;
  */
 @SuppressWarnings("serial")
 public class PermutationGenotype<E> extends ArrayList<E> implements
-		ListGenotype {
+		ListGenotype<E> {
 
 	/**
 	 * Constructs a {@code PermutationGenotype}.
@@ -53,5 +55,15 @@ public class PermutationGenotype<E> extends ArrayList<E> implements
 		} catch (IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * Randomizes this genotype by a random permutation.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 */
+	public void init(Random random) {
+		Collections.shuffle(this, random);
 	}
 }

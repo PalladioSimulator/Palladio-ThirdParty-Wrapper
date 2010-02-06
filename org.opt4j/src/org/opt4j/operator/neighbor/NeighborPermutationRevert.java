@@ -18,11 +18,10 @@ package org.opt4j.operator.neighbor;
 import java.util.Collections;
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -37,7 +36,6 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class NeighborPermutationRevert implements NeighborPermutation {
 
 	protected final Random random;
@@ -50,7 +48,7 @@ public class NeighborPermutationRevert implements NeighborPermutation {
 	 *            the random number generator
 	 */
 	@Inject
-	public NeighborPermutationRevert(Random random) {
+	public NeighborPermutationRevert(Rand random) {
 		this.random = random;
 	}
 
@@ -59,10 +57,8 @@ public class NeighborPermutationRevert implements NeighborPermutation {
 	 * 
 	 * @see org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
-	public void neighbor(Genotype genotype) {
-		PermutationGenotype<?> permutation = (PermutationGenotype<?>) genotype;
-
-		int size = permutation.size();
+	public void neighbor(PermutationGenotype<?> genotype) {
+		int size = genotype.size();
 
 		if (size > 1) {
 			int a = random.nextInt(size - 1);
@@ -72,7 +68,7 @@ public class NeighborPermutationRevert implements NeighborPermutation {
 			} while (b == a);
 
 			while (a < b) {
-				Collections.swap(permutation, a, b);
+				Collections.swap(genotype, a, b);
 				a++;
 				b--;
 			}

@@ -16,7 +16,6 @@
 package org.opt4j.operator.crossover;
 
 import org.opt4j.genotype.BooleanGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -27,7 +26,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(CrossoverBooleanDefault.class)
-@Apply(BooleanGenotype.class)
-public interface CrossoverBoolean extends Crossover {
+public interface CrossoverBoolean extends Crossover<BooleanGenotype> {
 
 }

@@ -18,12 +18,10 @@ package org.opt4j.operator.algebra;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * The {@code AlgebraComposite} is an implementation of the {@code Diversity}
@@ -32,9 +30,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(CompositeGenotype.class)
-public class AlgebraComposite implements Algebra {
+public class AlgebraComposite implements Algebra<CompositeGenotype<?, ?>> {
 
 	protected final AlgebraGeneric algebraGeneric;
 
@@ -58,7 +54,7 @@ public class AlgebraComposite implements Algebra {
 	 * .Term, org.opt4j.core.Genotype[])
 	 */
 	@SuppressWarnings("unchecked")
-	public Genotype algebra(Term term, Genotype... genotypes) {
+	public CompositeGenotype<?, ?> algebra(Term term, Genotype... genotypes) {
 		int n = genotypes.length;
 		List<CompositeGenotype<Object, Genotype>> composites = new ArrayList<CompositeGenotype<Object, Genotype>>();
 		for (int i = 0; i < n; i++) {

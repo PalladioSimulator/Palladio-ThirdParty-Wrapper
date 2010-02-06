@@ -16,7 +16,6 @@
 package org.opt4j.operator.neighbor;
 
 import org.opt4j.genotype.IntegerGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.ImplementedBy;
 
@@ -28,7 +27,6 @@ import com.google.inject.ImplementedBy;
  * 
  */
 @ImplementedBy(NeighborIntegerRandom.class)
-@Apply(IntegerGenotype.class)
-public interface NeighborInteger extends Neighbor {
+public interface NeighborInteger extends Neighbor<IntegerGenotype> {
 
 }

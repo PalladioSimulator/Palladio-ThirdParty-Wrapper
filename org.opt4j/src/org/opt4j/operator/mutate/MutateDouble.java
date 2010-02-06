@@ -18,9 +18,8 @@ package org.opt4j.operator.mutate;
 import java.util.List;
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.DoubleGenotype;
-import org.opt4j.operator.common.Apply;
 import org.opt4j.operator.normalize.NormalizeDouble;
 
 import com.google.inject.ImplementedBy;
@@ -33,8 +32,7 @@ import com.google.inject.Inject;
  * 
  */
 @ImplementedBy(MutateDoubleDefault.class)
-@Apply(DoubleGenotype.class)
-public abstract class MutateDouble implements Mutate {
+public abstract class MutateDouble implements Mutate<DoubleGenotype> {
 
 	protected final Random random;
 
@@ -53,7 +51,7 @@ public abstract class MutateDouble implements Mutate {
 	 *            the normalizer
 	 */
 	@Inject
-	public MutateDouble(MutationRate mutationRate, Random random,
+	public MutateDouble(MutationRate mutationRate, Rand random,
 			NormalizeDouble normalize) {
 		this.random = random;
 		this.mutationRate = mutationRate;
@@ -65,12 +63,9 @@ public abstract class MutateDouble implements Mutate {
 	 * 
 	 * @see org.opt4j.operator.mutate.Mutate#mutate(org.opt4j.core.Genotype)
 	 */
-	public void mutate(Genotype genotype) {
-		DoubleGenotype vector = (DoubleGenotype) genotype;
-
-		mutateList(vector);
-
-		normalize.normalize(vector);
+	public void mutate(DoubleGenotype genotype) {
+		mutateList(genotype);
+		normalize.normalize(genotype);
 	}
 
 	/**

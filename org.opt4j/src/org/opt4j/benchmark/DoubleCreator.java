@@ -17,6 +17,7 @@ package org.opt4j.benchmark;
 
 import java.util.Random;
 
+import org.opt4j.common.random.Rand;
 import org.opt4j.core.problem.Creator;
 
 import com.google.inject.Inject;
@@ -43,7 +44,7 @@ public class DoubleCreator implements Creator<DoubleString> {
 	 *            the n value
 	 */
 	@Inject
-	public DoubleCreator(Random random, @N int n) {
+	public DoubleCreator(Rand random, @N int n) {
 		super();
 		this.random = random;
 		this.n = n;
@@ -56,11 +57,7 @@ public class DoubleCreator implements Creator<DoubleString> {
 	 */
 	public DoubleString create() {
 		DoubleString string = new DoubleString();
-		for (int i = 0; i < n; i++) {
-			double lb = string.getLowerBound(i);
-			double ub = string.getUpperBound(i);
-			string.add(lb+random.nextDouble()*(ub-lb));
-		}
+		string.init(random, n);
 		return string;
 	}
 }

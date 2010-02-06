@@ -52,11 +52,23 @@ import com.google.inject.Singleton;
 @Singleton
 public class Opt4JAbout extends JPanel implements About, Startupable {
 
+	/**
+	 * Date of build
+	 */
 	public static final String DATE = "@DATE@";
+	/**
+	 * Version number
+	 */
 	public static final String VERSION = "@VERSION@";
+	/**
+	 * Contributers to Opt4J
+	 */
 	public static final String[] AUTHORS = { "Martin Lukasiewycz",
 			"Michael Gla&szlig;", "Sabine Helwig", "Felix Reimann" };
 
+	/**
+	 * LGPL disclaimer
+	 */
 	private static final String LICENSE_TEXT = "Opt4J is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n"
 
 			+ "Opt4J is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.\n\n"
@@ -83,6 +95,7 @@ public class Opt4JAbout extends JPanel implements About, Startupable {
 		content.add(logo, BorderLayout.PAGE_START);
 
 		JTextPane license = new JTextPane();
+		license.setEditable(false);
 		final JScrollPane licenseScroll = new JScrollPane(license);
 		licenseScroll
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

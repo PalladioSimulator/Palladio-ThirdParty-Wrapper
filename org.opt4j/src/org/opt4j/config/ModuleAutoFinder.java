@@ -22,11 +22,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import org.apache.commons.collections15.Transformer;
 import org.opt4j.config.annotations.Ignore;
 import org.opt4j.start.Opt4JModule;
 
@@ -40,11 +43,13 @@ import com.google.inject.Module;
  * @author lukasiewycz
  * 
  */
-public class ModuleAutoFinder implements ModuleFinder {
+public class ModuleAutoFinder implements ModuleList {
 
 	protected final Transformer<Class<? extends Module>, Boolean> accept;
 
 	protected final Transformer<Class<? extends Module>, Boolean> ignore;
+
+	protected final Set<ModuleAutoFinderListener> listeners = new CopyOnWriteArraySet<ModuleAutoFinderListener>();
 
 	protected final Collection<String> directories;
 
@@ -56,7 +61,7 @@ public class ModuleAutoFinder implements ModuleFinder {
 	 * @author lukasiewycz
 	 * 
 	 */
-	private class AllTrue implements
+	private static class AllTrue implements
 			Transformer<Class<? extends Module>, Boolean> {
 		public Boolean transform(Class<? extends Module> arg) {
 			return true;
@@ -69,13 +74,16 @@ public class ModuleAutoFinder implements ModuleFinder {
 	 * @author lukasiewycz
 	 * 
 	 */
-	private class AllFalse implements
+	private static class AllFalse implements
 			Transformer<Class<? extends Module>, Boolean> {
 		public Boolean transform(Class<? extends Module> arg) {
 			return false;
 		}
 	}
 
+	/**
+	 * Constructs a {@code ModuleAutoFinder}.
+	 */
 	@Inject
 	public ModuleAutoFinder() {
 		this(null, null, null);
@@ -169,9 +177,11 @@ public class ModuleAutoFinder implements ModuleFinder {
 				Class<? extends Module> module = clazz.asSubclass(Module.class);
 				Ignore i = module.getAnnotation(Ignore.class);
 
-				if (i == null && accept.transform(module)
+				if (i == null && !module.isAnonymousClass()
+						&& accept.transform(module)
 						&& !ignore.transform(module)) {
 					modules.add(module);
+					invokeOut("Add module: " + module.toString());
 				}
 			}
 		}
@@ -193,8 +203,8 @@ public class ModuleAutoFinder implements ModuleFinder {
 		}
 
 		try {
-			@SuppressWarnings("unused")
 			ZipFile zf = new ZipFile(file);
+			zf.close();
 			return true;
 		} catch (ZipException e) {
 
@@ -238,12 +248,15 @@ public class ModuleAutoFinder implements ModuleFinder {
 			if (s.endsWith(".class")) {
 				s = s.substring(0, s.length() - 6);
 				try {
-					classes.add(classLoader.loadClass(s));
+					Class<?> clazz = classLoader.loadClass(s);
+					classes.add(clazz);
+					invokeOut("Check: " + clazz.getName());
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (UnsupportedClassVersionError e) {
 					System.err
 							.println(s + " not supported: bad version number");
+					invokeErr(s + " not supported");
 				}
 			}
 		}
@@ -260,6 +273,7 @@ public class ModuleAutoFinder implements ModuleFinder {
 	 * @return the {@code List} of all classes
 	 */
 	protected List<Class<?>> getAllClasses(ZipFile zipFile) {
+		invokeOut(zipFile.toString());
 		List<Class<?>> classes = new ArrayList<Class<?>>();
 
 		List<? extends ZipEntry> entries = Collections.list(zipFile.entries());
@@ -277,17 +291,63 @@ public class ModuleAutoFinder implements ModuleFinder {
 				try {
 					Class<?> clazz = classLoader.loadClass(s);
 					classes.add(clazz);
+					invokeOut("Check: " + clazz.getName());
 				} catch (ClassNotFoundException e) {
 				} catch (NoClassDefFoundError e) {
 				} catch (UnsupportedClassVersionError e) {
 					System.err
 							.println(s + " not supported: bad version number");
+					invokeErr(s + " not supported");
 				}
 
 			}
 		}
 
 		return classes;
+	}
+
+	/**
+	 * Invoke an out message for the {@code ModuleAutoFinderListener}.
+	 * 
+	 * @param message
+	 *            the message
+	 */
+	protected void invokeOut(String message) {
+		for (ModuleAutoFinderListener listener : listeners) {
+			listener.out(message);
+		}
+	}
+
+	/**
+	 * Invoke an err message for the {@code ModuleAutoFinderListener}.
+	 * 
+	 * @param message
+	 *            the message
+	 */
+	protected void invokeErr(String message) {
+		for (ModuleAutoFinderListener listener : listeners) {
+			listener.out(message);
+		}
+	}
+
+	/**
+	 * Add a {@code ModuleAutoFinderListener}.
+	 * 
+	 * @param listener
+	 *            the listener to be added
+	 */
+	public void addListener(ModuleAutoFinderListener listener) {
+		listeners.add(listener);
+	}
+
+	/**
+	 * Remove a {@code ModuleAutoFinderListener}.
+	 * 
+	 * @param listener
+	 *            the listener to be removed
+	 */
+	public void removeListener(ModuleAutoFinderListener listener) {
+		listeners.remove(listener);
 	}
 
 }

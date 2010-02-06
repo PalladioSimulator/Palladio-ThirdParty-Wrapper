@@ -17,13 +17,15 @@ start.bat
 
 ###### All Users ######
 
+Documentation:
+documentation.pdf
+
 Test configuration:
 test.config.xml
 
 Tutorial:
-tutorials.pdf
-opt4j_tutorials_x.x.zip
+tutorials/opt4j.tutorial-@VERSION@.jar
 
 Website:
-http://www.Opt4J.org
-(c) Opt4J.org 2007-2008
+http://www.opt4j.org
+(c) Opt4J.org 2007-2009

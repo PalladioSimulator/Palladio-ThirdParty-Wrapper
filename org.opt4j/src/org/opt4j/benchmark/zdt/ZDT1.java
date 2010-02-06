@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.opt4j.benchmark.DoubleString;
-import org.opt4j.core.Phenotype;
+import org.opt4j.core.problem.Phenotype;
 
 /**
  * Function ZDT 1.

@@ -15,9 +15,6 @@
 
 package org.opt4j.operator.normalize;
 
-import org.opt4j.core.Genotype;
-import org.opt4j.genotype.DoubleGenotype;
-
 /**
  * The {@code NormalizeDoubleMirror} normalizes the {@code DoubleGenotype} by
  * mirroring the values on the borders if the bounds are violated.
@@ -25,40 +22,18 @@ import org.opt4j.genotype.DoubleGenotype;
  * @author lukasiewycz
  * 
  */
-public class NormalizeDoubleMirror implements NormalizeDouble {
+public class NormalizeDoubleMirror extends NormalizeDoubleElementwise {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.opt4j.operator.normalize.NormalizeDoubleElementwise#normalize(double,
+	 * double, double)
+	 */
 	@Override
-	public void normalize(Genotype genotype) {
-
-		DoubleGenotype d = (DoubleGenotype) genotype;
-
-		int size = d.size();
-
-		for (int i = 0; i < size; i++) {
-			double value = d.get(i);
-
-			boolean out = false;
-
-			double lb = d.getLowerBound(i);
-			double ub = d.getUpperBound(i);
-
-			if (value < lb) {
-				out = true;
-			} else if (value > ub) {
-				out = true;
-			}
-
-			if (out) {
-				value = mirror(value, lb, ub);
-				d.set(i, value);
-			}
-
-		}
-
-	}
-
-	protected double mirror(double x, double lb, double ub) {
-		double nh = (x - lb) / (ub - lb);
+	public double normalize(double value, double lb, double ub) {
+		double nh = (value - lb) / (ub - lb);
 
 		if (nh < 0) {
 			nh = -nh;

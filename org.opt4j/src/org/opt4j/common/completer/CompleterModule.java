@@ -15,6 +15,8 @@
 
 package org.opt4j.common.completer;
 
+import static com.google.inject.internal.Preconditions.checkState;
+
 import org.opt4j.config.Icons;
 import org.opt4j.config.annotations.Icon;
 import org.opt4j.config.annotations.Info;
@@ -34,10 +36,10 @@ import org.opt4j.start.Opt4JModule;
 @Info("The Completer decodes and evaluates the individuals in the optimization process.")
 public class CompleterModule extends Opt4JModule {
 
-	@Info("Sets the type of the completer")
+	@Info("Sets the type of the completer.")
 	protected Type type = Type.SEQUENTIAL;
 
-	@Info("Sets the numer of maximal processes")
+	@Info("Sets the numer of maximal parallel processes.")
 	@Required(property = "type", elements = { "PARALLEL" })
 	@Constant(value = "maxThreads", namespace = ParallelCompleter.class)
 	protected int threads = 4;
@@ -49,8 +51,20 @@ public class CompleterModule extends Opt4JModule {
 	 * 
 	 */
 	public enum Type {
+		/**
+		 * Use a sequential completer.
+		 * 
+		 * @see SequentialCompleter
+		 */
 		@Info("Use a SequentialCompleter")
-		SEQUENTIAL, @Info("Use a ParallelCompleter")
+		SEQUENTIAL,
+
+		/**
+		 * Use a parallel completer.
+		 * 
+		 * @see ParallelCompleter
+		 */
+		@Info("Use a ParallelCompleter")
 		PARALLEL;
 	}
 
@@ -97,6 +111,8 @@ public class CompleterModule extends Opt4JModule {
 	 *            the maximal number of parallel threads
 	 */
 	public void setThreads(int threads) {
+		checkState(threads > 0, "The number of threads must be positive: %s",
+				threads);
 		this.threads = threads;
 	}
 
@@ -112,7 +128,9 @@ public class CompleterModule extends Opt4JModule {
 			bind(Completer.class).to(SequentialCompleter.class).in(SINGLETON);
 			break;
 		default: // PARALLEL
-			bind(Completer.class).to(ParallelCompleter.class).in(SINGLETON);
+			bind(ParallelCompleter.class).in(SINGLETON);
+			bind(Completer.class).to(ParallelCompleter.class);
+			addOptimizerStateListener(ParallelCompleter.class);
 			break;
 		}
 	}

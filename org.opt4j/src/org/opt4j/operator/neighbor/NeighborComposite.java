@@ -17,12 +17,11 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * The {@code NeighborComposite} operator for the {@link CompositeGenotype}.
@@ -30,9 +29,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(CompositeGenotype.class)
-public class NeighborComposite implements Neighbor {
+public class NeighborComposite implements Neighbor<CompositeGenotype<?, ?>> {
 
 	protected final NeighborGeneric neighborGeneric;
 
@@ -48,8 +45,7 @@ public class NeighborComposite implements Neighbor {
 	 *            the random number generator
 	 */
 	@Inject
-	public NeighborComposite(final NeighborGeneric neighborGeneric,
-			Random random) {
+	public NeighborComposite(final NeighborGeneric neighborGeneric, Rand random) {
 		this.neighborGeneric = neighborGeneric;
 		this.random = random;
 	}
@@ -60,18 +56,15 @@ public class NeighborComposite implements Neighbor {
 	 * @see
 	 * org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public void neighbor(Genotype genotype) {
-		CompositeGenotype<Object, Genotype> composite = (CompositeGenotype<Object, Genotype>) genotype;
-
-		int size = composite.size();
+	public void neighbor(CompositeGenotype<?, ?> genotype) {
+		int size = genotype.size();
 
 		int i = random.nextInt(size);
 		int sum = 0;
 
 		Genotype g = null;
 
-		for (Genotype entry : composite.values()) {
+		for (Genotype entry : genotype.values()) {
 			g = entry;
 			sum += g.size();
 			if (i < sum) {

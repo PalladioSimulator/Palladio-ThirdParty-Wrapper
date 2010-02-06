@@ -19,7 +19,6 @@ import java.util.Collection;
 
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
-import org.opt4j.core.Phenotype;
 
 /**
  * The {@code Evaluator} evaluates {@code Phenotypes} to {@code Objectives}.

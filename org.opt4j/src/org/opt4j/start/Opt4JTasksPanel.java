@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -41,7 +43,8 @@ import org.opt4j.config.visualization.DefaultTasksPanel;
 import org.opt4j.config.visualization.Format;
 import org.opt4j.config.visualization.SelectedModules;
 import org.opt4j.core.optimizer.Control;
-import org.opt4j.gui.Progress;
+import org.opt4j.core.optimizer.Optimizer;
+import org.opt4j.viewer.Progress;
 
 import com.google.inject.Inject;
 import com.google.inject.Module;
@@ -56,9 +59,11 @@ import com.google.inject.Module;
 @SuppressWarnings("serial")
 public class Opt4JTasksPanel extends DefaultTasksPanel {
 
+	protected final Map<Task, Progress> progessMap = new WeakHashMap<Task, Progress>();
+
 	protected final SelectedModules selectedModules;
 
-	class ProgressRenderer extends DefaultTableCellRenderer {
+	static class ProgressRenderer extends DefaultTableCellRenderer {
 		private final JProgressBar b = new JProgressBar(0, 100);
 
 		public ProgressRenderer() {
@@ -69,21 +74,23 @@ public class Opt4JTasksPanel extends DefaultTasksPanel {
 			b.setBackground(Color.WHITE);
 		}
 
+		@Override
 		public Component getTableCellRendererComponent(JTable table,
 				Object value, boolean isSelected, boolean hasFocus, int row,
 				int column) {
 			if (value instanceof Progress) {
 				Progress progress = (Progress) value;
 				Double v = progress.get();
+				if (v == null) {
+					v = 0.0;
+				}
 				b.setValue((int) (v * 100));
 				b.setString("" + progress.getCurrentIteration() + "/"
 						+ progress.getMaxIterations());
 				return b;
-			} else {
-				return super.getTableCellRendererComponent(table, value,
-						isSelected, hasFocus, row, column);
 			}
-
+			return super.getTableCellRendererComponent(table, value,
+					isSelected, hasFocus, row, column);
 		}
 	}
 
@@ -99,12 +106,9 @@ public class Opt4JTasksPanel extends DefaultTasksPanel {
 		@Override
 		public Component prepareRenderer(TableCellRenderer renderer, int row,
 				int column) {
-			if (renderer instanceof ProgressRenderer) {
-				Component c = super.prepareRenderer(renderer, row, column);
-				return c;
-			} else {
-				Component c = super.prepareRenderer(renderer, row, column);
+			Component c = super.prepareRenderer(renderer, row, column);
 
+			if (!(renderer instanceof ProgressRenderer)) {
 				Task task = executionEnvironment.getTasks().get(row);
 				if (task.getException() == null) {
 					c.setForeground(Color.BLACK);
@@ -130,10 +134,12 @@ public class Opt4JTasksPanel extends DefaultTasksPanel {
 						}
 					}
 				}
-				return c;
 			}
+
+			return c;
 		}
 
+		@Override
 		public TableCellRenderer getCellRenderer(final int row, final int column) {
 			if (column == 2) {
 				return new ProgressRenderer();
@@ -175,8 +181,19 @@ public class Opt4JTasksPanel extends DefaultTasksPanel {
 			} else if (column == 2) {
 				switch (task.getState()) {
 				case EXECUTING:
-					Progress progress = task.getInstance(Progress.class);
-					return progress;
+					Progress progress = Opt4JTasksPanel.this.progessMap
+							.get(task);
+					if (progress != null) {
+						return progress;
+					}
+					Optimizer optimizer = task.getInstance(Optimizer.class);
+					if (optimizer != null) {
+						progress = task.getInstance(Progress.class);
+						optimizer.addOptimizerIterationListener(progress);
+						progessMap.put(task, progress);
+						return progress;
+					}
+					return " " + task.getState();
 				default:
 					return "  " + task.getState();
 				}

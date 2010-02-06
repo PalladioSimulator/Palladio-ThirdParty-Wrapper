@@ -26,8 +26,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//import org.opt4j.dse.DSEModuleAutoFinder;
-
 import com.google.inject.Module;
 
 /**

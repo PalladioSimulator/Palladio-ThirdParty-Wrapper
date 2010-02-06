@@ -16,8 +16,9 @@ package org.opt4j.genotype;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code IntegerMapGenotype} is a {@link IntegerGenotype} with the {@code
@@ -44,6 +45,43 @@ public class IntegerMapGenotype<K> extends IntegerGenotype implements
 	public IntegerMapGenotype(List<K> list, Bounds<Integer> bounds) {
 		super(bounds);
 		this.list = list;
+	}
+
+	/**
+	 * Constructs a {@code IntegerMapGenotype} with fixed bounds.
+	 * 
+	 * @param list
+	 *            the list of keys
+	 * @param lowerBound
+	 *            the lower bound
+	 * @param upperBound
+	 *            the upper bound
+	 */
+	public IntegerMapGenotype(List<K> list, int lowerBound, int upperBound) {
+		super(lowerBound, upperBound);
+		this.list = list;
+	}
+
+	/**
+	 * Initialize this genotype with random values based on the size of the
+	 * {@code list}.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 */
+	public void init(Random random) {
+		super.init(random, list.size());
+	}
+
+	/**
+	 * Not supported. Use {@code IntegerMapGenotype#init(Random)} instead.
+	 * 
+	 * @see org.opt4j.genotype.IntegerGenotype#init(java.util.Random, int)
+	 */
+	@Override
+	public void init(Random random, int n) {
+		throw new UnsupportedOperationException(
+				"Use method init(Random) instead");
 	}
 
 	/*

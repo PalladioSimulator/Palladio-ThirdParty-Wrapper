@@ -46,7 +46,7 @@ public class CrowdingArchive extends BoundedArchive {
 	 */
 	@Inject
 	public CrowdingArchive(
-			@Constant(value = "capapcity", namespace = BoundedArchive.class) int capacity) {
+			@Constant(value = "capacity", namespace = BoundedArchive.class) int capacity) {
 		super(capacity);
 	}
 

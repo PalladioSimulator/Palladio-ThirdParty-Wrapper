@@ -15,11 +15,7 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.operator.common.Apply;
-
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -34,7 +30,7 @@ import com.google.inject.Singleton;
  * </p>
  * 
  * <pre>
- * 	diversity(p1,p2)=sum[e in E] |p1(e)-p2(e)|/(n²/2)
+ * 	diversity(p1,p2)=sum[e in E] |p1(e)-p2(e)|/(n^2/2)
  * </pre>
  * 
  * This value is bounded by {@code 0} and {@code 1} since
@@ -49,9 +45,9 @@ import com.google.inject.Singleton;
  * 	max { sum[e in E] |p1(e)-p2(e)| } =
  * 		= 2 * sum[i=1 to n/2] (n-i)-(i-1) =
  * 		= 2 * sum[i=1 to n/2] (n-2i+1) =
- * 		= 2 * ( n²/2 + n/2 - n/2(n/2+1)) =
- * 		= 2 * ( n²/2 + n/2 - n²/2 - n/2) =
- * 		= n²/2
+ * 		= 2 * ( n^2/2 + n/2 - n/2(n/2+1)) =
+ * 		= 2 * ( n^2/2 + n/2 - n^2/4 - n/2) =
+ * 		= n^2/2
  * </pre>
  * 
  * .
@@ -59,9 +55,7 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
-@Apply(PermutationGenotype.class)
-public class DiversityPermutation implements Diversity {
+public class DiversityPermutation implements Diversity<PermutationGenotype<?>> {
 
 	/*
 	 * (non-Javadoc)
@@ -70,19 +64,17 @@ public class DiversityPermutation implements Diversity {
 	 * org.opt4j.operator.diversity.Diversity#diversity(org.opt4j.core.Genotype,
 	 * org.opt4j.core.Genotype)
 	 */
-	public double diversity(Genotype a, Genotype b) {
+	public double diversity(PermutationGenotype<?> a, PermutationGenotype<?> b) {
 		int n = a.size();
-		PermutationGenotype<?> p1 = (PermutationGenotype<?>) a;
-		PermutationGenotype<?> p2 = (PermutationGenotype<?>) b;
 
 		int sum = 0;
 		for (int i = 0; i < n; i++) {
-			Object o = p1.get(i);
-			int j = p2.indexOf(o);
+			Object o = a.get(i);
+			int j = b.indexOf(o);
 			sum += Math.abs(i - j);
 		}
 
-		double diversity = (double) sum / (n * n / 2);
+		double diversity = sum / (n * n / 2.0);
 
 		assert (diversity >= 0);
 		assert (diversity <= 1);

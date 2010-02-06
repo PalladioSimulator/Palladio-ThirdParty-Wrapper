@@ -17,11 +17,10 @@ package org.opt4j.operator.neighbor;
 
 import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.PermutationGenotype;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * <p>
@@ -37,7 +36,6 @@ import com.google.inject.Singleton;
  * @author lukasiewycz
  * 
  */
-@Singleton
 public class NeighborPermutationInsert implements NeighborPermutation {
 
 	protected final Random random;
@@ -50,7 +48,7 @@ public class NeighborPermutationInsert implements NeighborPermutation {
 	 *            the random number generator
 	 */
 	@Inject
-	public NeighborPermutationInsert(Random random) {
+	public NeighborPermutationInsert(Rand random) {
 		this.random = random;
 	}
 
@@ -60,7 +58,7 @@ public class NeighborPermutationInsert implements NeighborPermutation {
 	 * @see org.opt4j.operator.neighbor.Neighbor#neighbor(org.opt4j.core.Genotype)
 	 */
 	@SuppressWarnings("unchecked")
-	public void neighbor(Genotype genotype) {
+	public void neighbor(PermutationGenotype<?> genotype) {
 		PermutationGenotype<Object> permutation = (PermutationGenotype<Object>) genotype;
 
 		int size = permutation.size();

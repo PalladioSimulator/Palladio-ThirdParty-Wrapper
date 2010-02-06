@@ -16,8 +16,9 @@ package org.opt4j.genotype;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
+import java.util.Random;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 
 /**
  * The {@code BooleanMapGenotype} is a {@link BooleanGenotype} with the {@code
@@ -42,6 +43,28 @@ public class BooleanMapGenotype<K> extends BooleanGenotype implements
 	public BooleanMapGenotype(List<K> list) {
 		super();
 		this.list = list;
+	}
+
+	/**
+	 * Initialize this genotype with random values based on the size of the
+	 * {@code list}.
+	 * 
+	 * @param random
+	 *            the random number generator
+	 */
+	public void init(Random random) {
+		super.init(random, list.size());
+	}
+
+	/**
+	 * Not supported. Use {@code BooleanMapGenotype#init(Random)} instead.
+	 * 
+	 * @see org.opt4j.genotype.BooleanGenotype#init(java.util.Random, int)
+	 */
+	@Override
+	public void init(Random random, int n) {
+		throw new UnsupportedOperationException(
+				"Use method init(Random) instead");
 	}
 
 	/*

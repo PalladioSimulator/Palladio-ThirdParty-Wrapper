@@ -120,7 +120,7 @@ public class NDLogger extends AbstractLogger implements Logger {
 			Objectives objectives = individual.getObjectives();
 			for (Entry<Objective, Value<?>> entry : objectives) {
 				Value<?> value = entry.getValue();
-				out.print("\t" + value.getDouble());
+				out.print("\t" + value.getValue());
 			}
 			out.println();
 		}

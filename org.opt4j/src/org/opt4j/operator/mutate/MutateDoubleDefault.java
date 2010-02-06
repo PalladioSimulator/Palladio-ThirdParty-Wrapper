@@ -15,8 +15,7 @@
 
 package org.opt4j.operator.mutate;
 
-import java.util.Random;
-
+import org.opt4j.common.random.Rand;
 import org.opt4j.operator.normalize.NormalizeDouble;
 
 import com.google.inject.Inject;
@@ -42,7 +41,7 @@ public class MutateDoubleDefault extends MutateDoublePolynomial {
 	 *            the normalizer
 	 */
 	@Inject
-	public MutateDoubleDefault(MutationRate mutationRate, Random random,
+	public MutateDoubleDefault(MutationRate mutationRate, Rand random,
 			NormalizeDouble normalize) {
 		super(mutationRate, random, normalize, 20);
 	}

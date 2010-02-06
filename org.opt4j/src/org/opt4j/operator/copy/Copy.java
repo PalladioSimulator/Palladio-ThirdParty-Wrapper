@@ -29,28 +29,30 @@
  */
 package org.opt4j.operator.copy;
 
-import org.opt4j.core.Genotype;
 import org.opt4j.core.optimizer.Operator;
+import org.opt4j.core.problem.Genotype;
 
 import com.google.inject.ImplementedBy;
-
 
 /**
  * Operator that creates copies of a {@code Genotype}.
  * 
  * @author lukasiewycz
  * 
+ * @param <G>
+ *            the type of genotype
  */
 @ImplementedBy(CopyGeneric.class)
-public interface Copy extends Operator {
+public interface Copy<G extends Genotype> extends Operator<G> {
 
 	/**
 	 * Copies a {@code Genotype}. This operation is a deep copy whereas unit
 	 * elements are not cloned.
 	 * 
-	 * @param genotype the {@code Genotype} to copy
-	 * @return the copy of the {@code  Genotype}
+	 * @param genotype
+	 *            the {@code Genotype} to copy
+	 * @return the copy of the {@code Genotype}
 	 */
-	public Genotype copy(Genotype genotype);
+	public G copy(G genotype);
 
 }

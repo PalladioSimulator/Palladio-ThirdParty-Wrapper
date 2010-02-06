@@ -15,12 +15,10 @@
 
 package org.opt4j.operator.diversity;
 
-import org.opt4j.core.Genotype;
+import org.opt4j.core.problem.Genotype;
 import org.opt4j.genotype.CompositeGenotype;
-import org.opt4j.operator.common.Apply;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * The {@code DiversityComposite} is an implementation of the {@code Diversity}
@@ -29,9 +27,7 @@ import com.google.inject.Singleton;
  * @author glass
  * 
  */
-@Singleton
-@Apply(CompositeGenotype.class)
-public class DiversityComposite implements Diversity {
+public class DiversityComposite implements Diversity<CompositeGenotype<?, ?>> {
 
 	protected final DiversityGeneric diversityGeneric;
 
@@ -55,20 +51,17 @@ public class DiversityComposite implements Diversity {
 	 * org.opt4j.operator.diversity.Diversity#distance(org.opt4j.core.Genotype,
 	 * org.opt4j.core.Genotype)
 	 */
-	@SuppressWarnings("unchecked")
-	public double diversity(Genotype a, Genotype b) {
-		CompositeGenotype<Object, Genotype> compositeA = (CompositeGenotype<Object, Genotype>) a;
-		CompositeGenotype<Object, Genotype> compositeB = (CompositeGenotype<Object, Genotype>) b;
-
+	public double diversity(CompositeGenotype<?, ?> a, CompositeGenotype<?, ?> b) {
+		
 		double diversity = 0;
-		for (Object key : compositeA.keySet()) {
-			Genotype childA = compositeA.get(key);
-			Genotype childB = compositeB.get(key);
-			int size = childA.size();
+		for (Object key : a.keySet()) {
+			Genotype childA = a.get(key);
+			Genotype childB = b.get(key);
+			int size = a.size();
 
 			diversity += diversityGeneric.diversity(childA, childB) * size;
 		}
-		return diversity / compositeA.size();
+		return diversity / a.size();
 
 	}
 
