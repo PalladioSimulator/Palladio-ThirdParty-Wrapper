@@ -15,6 +15,8 @@
 
 package org.opt4j.genotype;
 
+import java.util.Collection;
+
 /**
  * The {@code MapGenotype} extends a {@code Genotype} with {@code Map}
  * functionalities.
@@ -27,6 +29,13 @@ package org.opt4j.genotype;
  *            the type of values
  */
 public interface MapGenotype<K, V> {
+
+	/**
+	 * Return all keys.
+	 * 
+	 * @return all keys
+	 */
+	public Collection<K> getKeys();
 
 	/**
 	 * Returns the value for the specified key.

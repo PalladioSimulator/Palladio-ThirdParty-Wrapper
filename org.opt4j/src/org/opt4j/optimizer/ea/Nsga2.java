@@ -32,6 +32,8 @@ import org.opt4j.start.Constant;
 
 import com.google.inject.Inject;
 
+
+
 /**
  * The {@code Nsga2} {@code Selector}.
  * 
@@ -53,6 +55,8 @@ public class Nsga2 implements Selector {
 	protected double[] dist = new double[0];
 
 	protected Integer m = null;
+
+	protected List<List<Integer>> fronts;
 
 	/**
 	 * Constructs a {@code Nsga2} {@code Selector}.
@@ -98,13 +102,32 @@ public class Nsga2 implements Selector {
 		List<Individual> parents = new ArrayList<Individual>();
 
 		int size = all.size();
+
+		//To avoid multiple distance calculations, save the calculated ranks (front numbers)
+		List<Integer> alreadyCalculatedRanks = new ArrayList<Integer>();
+
 		for (int i = 0; i < mu; i++) {
 			int winner = all.get(random.nextInt(size));
 
-			for (int t = 0; t < 0; t++) {
+			for (int t = 0; t < tournament; t++) {
 				int opponent = all.get(random.nextInt(size));
 				if (rank[opponent] < rank[winner] || opponent == winner) {
 					winner = opponent;
+				} else if (rank[opponent] == rank[winner]) {
+					// The winner is determined considering the crowding distance
+				
+					List<Integer> front = fronts.get(rank[winner]);
+					if (!(alreadyCalculatedRanks.contains(rank[winner]))) {
+						// calculation needed
+						alreadyCalculatedRanks.add(rank[winner]);
+						calcDistance(front);
+					}
+					
+					// Opponent wins, if it has a better crowding distance
+					if(dist[winner] < dist[opponent]) {
+						winner = opponent;
+					}
+
 				}
 			}
 
@@ -215,6 +238,9 @@ public class Nsga2 implements Selector {
 			i++;
 		}
 
+		//To avoid recalculations, save the fronts!
+		this.fronts = fronts;
+
 		return fronts;
 	}
 
@@ -303,8 +329,9 @@ public class Nsga2 implements Selector {
 		// register add
 		int i = 0;
 		for (Individual e : add) {
-			while (ind[i++] != null)
+			while (ind[i++] != null) {
 				;
+			}
 			ind[--i] = e;
 			map.put(e, i);
 		}

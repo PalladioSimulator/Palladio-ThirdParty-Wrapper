@@ -231,22 +231,22 @@ public final class PropertyModule implements Module, Serializable {
 
 		// sort the properties
 		final Map<Property, List<Property>> hierarchy = new HashMap<Property, List<Property>>();
-		
-		for(Property property: properties){
+
+		for (Property property : properties) {
 			Property parent = null;
 			for (Requirement requirement : property.getRequirements()) {
 				parent = requirement.getProperty();
 			}
-			assert(parent != property);
-			
+			assert (parent != property);
+
 			List<Property> level = hierarchy.get(parent);
-			if(level == null){
+			if (level == null) {
 				level = new ArrayList<Property>();
 				hierarchy.put(parent, level);
 			}
 			level.add(property);
 		}
-		
+
 		final class PropertyComparator implements Comparator<Property> {
 			@Override
 			public int compare(final Property o1, final Property o2) {
@@ -255,36 +255,36 @@ public final class PropertyModule implements Module, Serializable {
 
 				if (!value1.equals(value2)) {
 					return value1.compareTo(value2);
-				} else {
-					String s1 = o1.getName();
-					String s2 = o2.getName();
-					return s1.compareTo(s2);
 				}
+
+				String s1 = o1.getName();
+				String s2 = o2.getName();
+				return s1.compareTo(s2);
 			}
 		}
-		
-		for(List<Property> level: hierarchy.values()){
+
+		for (List<Property> level : hierarchy.values()) {
 			Collections.sort(level, new PropertyComparator());
 		}
 
 		properties.clear();
 		LinkedList<Property> added = new LinkedList<Property>();
 		added.add(null);
-		
-		while(!added.isEmpty()){
+
+		while (!added.isEmpty()) {
 			Property property = added.pop();
-			if(hierarchy.containsKey(property)){
+			if (hierarchy.containsKey(property)) {
 				List<Property> level = hierarchy.get(property);
-				if(property == null){
+				if (property == null) {
 					properties.addAll(level);
 				} else {
-					int index = properties.indexOf(property);					
-					properties.addAll(index+1, level);
+					int index = properties.indexOf(property);
+					properties.addAll(index + 1, level);
 				}
 				added.addAll(level);
 			}
 		}
-		
+
 		// remove ignored properties
 		for (Iterator<Property> it = properties.iterator(); it.hasNext();) {
 			Property property = it.next();

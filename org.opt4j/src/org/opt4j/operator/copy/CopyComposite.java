@@ -51,7 +51,8 @@ public class CopyComposite implements Copy<CompositeGenotype<?, ?>> {
 		offspring.clear();
 
 		for (final Object key : genotype.keySet()) {
-			Genotype go = copyGeneric.copy(genotype.<Genotype>get(key));
+			final Genotype g = genotype.get(key);
+			Genotype go = copyGeneric.copy(g);
 
 			offspring.put(key, go);
 		}

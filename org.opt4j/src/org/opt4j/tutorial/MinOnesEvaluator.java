@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.opt4j.core.Objective;
-import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.Objectives;
+import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.problem.Evaluator;
 
 public class MinOnesEvaluator implements Evaluator<MinOnesResult> {

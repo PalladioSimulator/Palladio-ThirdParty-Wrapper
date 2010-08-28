@@ -25,8 +25,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
- * Self adaptive {@code MutationRate} that uses the size of the genotype ({@code size})
- * to estimate a rate. The calculated rate is 1/{@code size}.
+ * Self adaptive {@code MutationRate} that uses the size of the genotype (
+ * {@code size}) to estimate a rate. The calculated rate is 1/{@code size}.
  * 
  * @author lukasiewycz
  * 
@@ -81,11 +81,16 @@ public class AdaptiveMutationRate implements MutationRate,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.opt4j.core.IndividualStateListener#inidividualStateChanged(org.opt4j.core.Individual)
+	 * @see
+	 * org.opt4j.core.IndividualStateListener#inidividualStateChanged(org.opt4j
+	 * .core.Individual)
 	 */
 	public synchronized void inidividualStateChanged(Individual individual) {
 		if (!isInit && individual.getState() != EMPTY) {
-			set(1.0 / individual.getGenotype().size());
+			final int size = individual.getGenotype().size();
+			if (size > 0) {
+				set(1.0 / individual.getGenotype().size());
+			}
 			individualBuilder.removeIndividualStateListener(this);
 			isInit = true;
 		}

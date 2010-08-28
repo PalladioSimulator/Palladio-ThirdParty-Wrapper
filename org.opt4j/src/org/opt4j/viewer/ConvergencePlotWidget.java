@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -80,15 +81,11 @@ public class ConvergencePlotWidget implements Widget,
 		super();
 		this.data = data;
 
-		Collection<Objective> objectives = evaluator.getObjectives();
-
-		selection = new Selection(objectives);
-
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
 		plot = new Plot();
-		
+
 		Color[] colors = new Color[3];
 		colors[0] = Color.RED;
 		colors[1] = Color.LIGHT_GRAY;
@@ -96,8 +93,14 @@ public class ConvergencePlotWidget implements Widget,
 		plot.setColors(colors);
 
 		panel.add(plot);
-		panel.add(selection, BorderLayout.NORTH);
 
+		Collection<Objective> objectives = evaluator.getObjectives();
+		if (objectives != null) {
+			selection = new Selection(objectives);
+		} else {
+			selection = new Selection(new HashSet<Objective>());
+		}
+		panel.add(selection, BorderLayout.NORTH);
 		optimizer.addOptimizerIterationListener(this);
 
 		doPaint();

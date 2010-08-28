@@ -158,7 +158,11 @@ public class ParetoPlotWidget implements OptimizerIterationListener, Widget {
 		this.archive = archive;
 
 		optimizer.addOptimizerIterationListener(this);
-		objectives.addAll(evaluator.getObjectives());
+
+		Collection<Objective> objectiveCollection = evaluator.getObjectives();
+		if (objectiveCollection != null) {
+			objectives.addAll(objectiveCollection);
+		}
 		Collections.sort(objectives);
 	}
 

@@ -82,6 +82,9 @@ public class CrossoverPermutationBucket implements CrossoverPermutation {
 
 		int size = p1.size();
 
+		assert (size == p2.size()) : "Permutation is undefined for genotypes with different lengths.";
+		assert p1.containsAll(p2) : "Permutation is undefined for different domains.";
+
 		Set<Object> elements = new HashSet<Object>();
 
 		int i = 0;
@@ -112,5 +115,4 @@ public class CrossoverPermutationBucket implements CrossoverPermutation {
 				o1, o2);
 		return offspring;
 	}
-
 }

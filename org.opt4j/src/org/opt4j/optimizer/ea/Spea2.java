@@ -49,7 +49,7 @@ import com.google.inject.Inject;
  * @see "SPEA2: Improving the Strength Pareto Evolutionary Algorithm For
  *      Multiobjective Optimization, Eckart Zitzler, Marco Laumanns, and Lothar
  *      Thiele, In Evolutionary Methods for Design, Optimisation, and Control,
- *      pages 19–26, 2002."
+ *      pages 19ï¿½26, 2002."
  * @author lukasiewycz
  * 
  */
@@ -199,7 +199,7 @@ public class Spea2 implements Selector {
 		for (int i = 0; i < mu; i++) {
 			Individual winner = candidates.get(random.nextInt(size));
 
-			for (int j = 1; j < tournament; j++) {
+			for (int j = 0; j < tournament; j++) {
 				Individual opponent = candidates.get(random.nextInt(size));
 
 				IndividualSet wWinner = map.get(winner);

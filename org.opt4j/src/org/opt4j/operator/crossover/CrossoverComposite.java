@@ -55,8 +55,9 @@ public class CrossoverComposite implements Crossover<CompositeGenotype<?, ?>> {
 		CompositeGenotype<Object, Genotype> o2 = p2.newInstance();
 
 		for (Object key : p1.keySet()) {
-			Pair<Genotype> genotype = crossoverGeneric.crossover(p1
-					.<Genotype> get(key), p2.<Genotype> get(key));
+			final Genotype g1 = p1.get(key);
+			final Genotype g2 = p2.get(key);
+			Pair<Genotype> genotype = crossoverGeneric.crossover(g1, g2);
 			o1.put(key, genotype.getFirst());
 			o2.put(key, genotype.getSecond());
 		}

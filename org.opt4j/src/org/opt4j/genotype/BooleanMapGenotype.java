@@ -15,6 +15,8 @@
 package org.opt4j.genotype;
 
 import java.lang.reflect.Constructor;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -147,4 +149,12 @@ public class BooleanMapGenotype<K> extends BooleanGenotype implements
 	}
 
 	private static final long serialVersionUID = 1L;
+
+	/* (non-Javadoc)
+	 * @see org.opt4j.genotype.MapGenotype#getKeys()
+	 */
+	@Override
+	public Collection<K> getKeys() {
+		return Collections.unmodifiableList(list);
+	}
 }

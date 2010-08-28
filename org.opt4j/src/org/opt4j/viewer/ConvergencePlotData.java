@@ -152,7 +152,7 @@ public class ConvergencePlotData implements IndividualStateListener,
 	@SuppressWarnings("unchecked")
 	@Inject
 	public ConvergencePlotData(Evaluator evaluator) {
-		Evaluator<?> eval = (Evaluator<?>) evaluator;
+		Evaluator<?> eval = evaluator;
 		for (Objective obj : eval.getObjectives()) {
 			map.put(obj, new PlotDataObjective(obj));
 		}

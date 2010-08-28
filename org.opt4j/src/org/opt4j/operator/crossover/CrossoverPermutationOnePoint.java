@@ -101,34 +101,39 @@ public class CrossoverPermutationOnePoint implements CrossoverPermutation {
 
 		int size = p1.size();
 
-		Set<Object> elements1 = new HashSet<Object>();
-		Set<Object> elements2 = new HashSet<Object>();
+		assert (size == p2.size()) : "Permutation is undefined for genotypes with different lengths.";
+		assert p1.containsAll(p2) : "Permutation is undefined for different domains.";
 
-		int offset = rotation ? random.nextInt(size) : 0;
+		if (size > 0) {
+			Set<Object> elements1 = new HashSet<Object>();
+			Set<Object> elements2 = new HashSet<Object>();
 
-		int cutpoint = random.nextInt(size);
+			int offset = rotation ? random.nextInt(size) : 0;
 
-		for (int i = 0; i < cutpoint; i++) {
-			final int pos = (offset + i) % size;
-			Object e1 = p1.get(pos);
-			Object e2 = p2.get(pos);
-			o1.add(e1);
-			o2.add(e2);
-			elements1.add(e1);
-			elements2.add(e2);
-		}
+			int cutpoint = random.nextInt(size);
 
-		offset = rotation ? random.nextInt(size) : 0;
-
-		for (int i = 0; i < size; i++) {
-			final int pos = (offset + i) % size;
-			Object e1 = p1.get(pos);
-			Object e2 = p2.get(pos);
-			if (!elements1.contains(e2)) {
-				o1.add(e2);
+			for (int i = 0; i < cutpoint; i++) {
+				final int pos = (offset + i) % size;
+				Object e1 = p1.get(pos);
+				Object e2 = p2.get(pos);
+				o1.add(e1);
+				o2.add(e2);
+				elements1.add(e1);
+				elements2.add(e2);
 			}
-			if (!elements2.contains(e1)) {
-				o2.add(e1);
+
+			offset = rotation ? random.nextInt(size) : 0;
+
+			for (int i = 0; i < size; i++) {
+				final int pos = (offset + i) % size;
+				Object e1 = p1.get(pos);
+				Object e2 = p2.get(pos);
+				if (!elements1.contains(e2)) {
+					o1.add(e2);
+				}
+				if (!elements2.contains(e1)) {
+					o2.add(e1);
+				}
 			}
 		}
 

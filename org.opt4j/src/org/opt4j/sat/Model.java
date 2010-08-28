@@ -17,8 +17,8 @@ package org.opt4j.sat;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * The {@code Model} is a data structure that represents a solution of an

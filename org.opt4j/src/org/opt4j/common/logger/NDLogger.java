@@ -20,7 +20,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map.Entry;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.opt4j.core.Archive;
 import org.opt4j.core.Individual;
@@ -50,6 +52,19 @@ public class NDLogger extends AbstractLogger implements Logger {
 	private final PrintWriter out;
 
 	private long timeOffset;
+
+	private SortedSet<Objective> sortedSet = new TreeSet<Objective>(
+			new Comparator<Objective>() {
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see java.util.Comparator#compare()
+				 */
+				@Override
+				public int compare(Objective o1, Objective o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
 
 	/**
 	 * Constructs an {@code NDLogger}.
@@ -118,8 +133,8 @@ public class NDLogger extends AbstractLogger implements Logger {
 			out.print(iteration + "\t" + evaluation + "\t" + seconds);
 
 			Objectives objectives = individual.getObjectives();
-			for (Entry<Objective, Value<?>> entry : objectives) {
-				Value<?> value = entry.getValue();
+			for (Objective objective : sortedSet) {
+				Value<?> value = objectives.get(objective);
 				out.print("\t" + value.getValue());
 			}
 			out.println();
@@ -134,14 +149,16 @@ public class NDLogger extends AbstractLogger implements Logger {
 	 */
 	@Override
 	public void optimizationStarted() {
+		sortedSet.addAll(evaluator.getObjectives());
+
 		out.print("#generations\tevaluations\truntime[s]");
-		for (Objective objective : evaluator.getObjectives()) {
+		for (Objective objective : sortedSet) {
 			out.print("\t" + objective.getName());
 		}
 		out.println();
 
 		out.print("#-\t-\t-");
-		for (Objective objective : evaluator.getObjectives()) {
+		for (Objective objective : sortedSet) {
 			out.print("\t" + objective.getSign());
 		}
 		out.println();
