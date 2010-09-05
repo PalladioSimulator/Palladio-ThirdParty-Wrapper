@@ -44,7 +44,7 @@ public class ConstraintCheckerImpl implements ConstraintChecker, IndividualColle
 	//as this class listens on Population, it must be registered there
 	@Inject
 	public ConstraintCheckerImpl(Population population) {
-		// XXX: when individuals are added, they are NOT yet evaluated!! 
+		// When individuals are added, they are NOT yet evaluated! 
 		// Wait for a state change
 		population.addListener(this);
 	}
@@ -78,10 +78,12 @@ public class ConstraintCheckerImpl implements ConstraintChecker, IndividualColle
 		Entry<Constraint, Value<?>> entry;
 		double violation = 0;
 		double violSingleConstraint;
+		boolean isViolated;
 		Range range;
 		// Check every constraint and add up all violation
 		while (constraint_iterator.hasNext()) {
 			
+			isViolated = false;
 			violSingleConstraint = 0;
 			entry = (Entry<Constraint, Value<?>>) constraint_iterator.next();
 			constraint = entry.getKey();
@@ -94,28 +96,43 @@ public class ConstraintCheckerImpl implements ConstraintChecker, IndividualColle
 			// check depends on direction of the constraint
 			switch (constraint.getDirection()) {
 				case less:
-					if (!(value.getDouble() < constraint.getLimit())){ 
-						violSingleConstraint = Math.abs(value.getDouble() - constraint.getLimit());
-					}
-					// Scaling according to range (if possible)
-					range = constraintRanges.get(constraint);
-					if(range.getMin() != range.getMax()) {
-						violSingleConstraint /= (range.getMax() - range.getMin());
+					if (!(value.getDouble() < constraint.getLimit())){
+						isViolated = true;						
 					}
 					break;					
 				case greater:
 					if (!(value.getDouble() > constraint.getLimit())){
-						violSingleConstraint = Math.abs(constraint.getLimit() - value.getDouble());
+						isViolated = true;
 					}
-					// Scaling according to range (if possible)
-					range = constraintRanges.get(constraint);
-					if(range.getMin() != range.getMax()) {
-						violSingleConstraint /= (range.getMax() - range.getMin());
+					break;
+				case lessOrEqual:
+					if (!(value.getDouble() <= constraint.getLimit())){
+						isViolated = true;						
+					}
+					break;					
+				case greaterOrEqual:
+					if (!(value.getDouble() >= constraint.getLimit())){
+						isViolated = true;
+					}
+					break;
+				case equal:
+					if (!(value.getDouble() == constraint.getLimit())){
+						isViolated = true;						
 					}
 					break;
 				default:
 					throw new RuntimeException("No matching case in switch statement: " + constraint.getDirection());
 			}
+			if(isViolated){
+				violSingleConstraint = Math.abs(value.getDouble() - constraint.getLimit());
+			
+				// Scaling according to range (if possible)
+				range = constraintRanges.get(constraint);
+				if(range.getMin() != range.getMax()) {
+					violSingleConstraint /= (range.getMax() - range.getMin());
+				}
+			}
+			
 			violation += violSingleConstraint;
 		}
 		return violation;
@@ -154,6 +171,21 @@ public class ConstraintCheckerImpl implements ConstraintChecker, IndividualColle
 					break;					
 				case greater:
 					if (!(value.getDouble() > constraint.getLimit())){
+						return false;
+					}
+					break;
+				case lessOrEqual:
+					if (!(value.getDouble() <= constraint.getLimit())){
+						return false;
+					}
+					break;					
+				case greaterOrEqual:
+					if (!(value.getDouble() >= constraint.getLimit())){
+						return false;
+					}
+					break;
+				case equal:
+					if (!(value.getDouble() == constraint.getLimit())){
 						return false;
 					}
 					break;

@@ -15,7 +15,7 @@ public abstract class Constraint extends Criterion implements Comparable<Constra
 	 * Defines the possible directions a constraint can be defined.
 	 */
 	public enum Direction {
-		less, greater;
+		less, greater, equal, lessOrEqual, greaterOrEqual;
 	}
 
 	protected final Direction direction;

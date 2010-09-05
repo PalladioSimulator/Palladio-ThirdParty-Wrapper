@@ -97,23 +97,43 @@ public class GoalAttainmentDomination implements DominationStrategy {
 			i++; 
 			violation = false;
 			switch (c.getDirection()) {
-			case less:
-				if (!(constraints1.get(c).getDouble() < c.getLimit())) {
-					violation = true;
-				} else if (!(constraints2.get(c).getDouble() < c.getLimit())) {
-					constraint2hasViolationsConstraint1doesNotHave = true;
-				}
-				break;
-
-			case greater:
-				if (!(constraints1.get(c).getDouble() > c.getLimit())) {
-					violation = true;
-				} else if (!(constraints2.get(c).getDouble() > c.getLimit())) {
-					constraint2hasViolationsConstraint1doesNotHave = true;
-				}
-				break;
-			default:
-				throw new RuntimeException("No matching case in switch statement!");
+				case less:
+					if (!(constraints1.get(c).getDouble() < c.getLimit())) {
+						violation = true;
+					} else if (!(constraints2.get(c).getDouble() < c.getLimit())) {
+						constraint2hasViolationsConstraint1doesNotHave = true;
+					}
+					break;
+				case greater:
+					if (!(constraints1.get(c).getDouble() > c.getLimit())) {
+						violation = true;
+					} else if (!(constraints2.get(c).getDouble() > c.getLimit())) {
+						constraint2hasViolationsConstraint1doesNotHave = true;
+					}
+					break;
+				case lessOrEqual:
+					if (!(constraints1.get(c).getDouble() <= c.getLimit())) {
+						violation = true;
+					} else if (!(constraints2.get(c).getDouble() <= c.getLimit())) {
+						constraint2hasViolationsConstraint1doesNotHave = true;
+					}
+					break;
+				case greaterOrEqual:
+					if (!(constraints1.get(c).getDouble() >= c.getLimit())) {
+						violation = true;
+					} else if (!(constraints2.get(c).getDouble() >= c.getLimit())) {
+						constraint2hasViolationsConstraint1doesNotHave = true;
+					}
+					break;
+				case equal:
+					if (!(constraints1.get(c).getDouble() == c.getLimit())) {
+						violation = true;
+					} else if (!(constraints2.get(c).getDouble() == c.getLimit())) {
+						constraint2hasViolationsConstraint1doesNotHave = true;
+					}
+					break;
+				default:
+					throw new RuntimeException("No matching case in switch statement!");
 			}		
 			
 			if (violation) {
