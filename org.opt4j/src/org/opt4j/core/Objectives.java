@@ -48,7 +48,7 @@ public class Objectives extends CriterionSet<Objective> {
 	
 	/**
 	 * Inject a {@code Provider<Objectives>} object instead 
-	 * and create {@code Objectivess} objects with
+	 * and create {@code Objectives} objects with
 	 * {@code provider.get()}.
 	 */
 	@Deprecated
