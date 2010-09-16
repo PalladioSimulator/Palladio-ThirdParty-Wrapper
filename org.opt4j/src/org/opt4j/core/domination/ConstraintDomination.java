@@ -25,6 +25,8 @@ import com.google.inject.name.Named;
  * It needs a {@code ConstraintChecker} that checks <em>infeasibility</em> and/or
  * <em>satisfaction</em> constraints.
  * 
+ * @see DominationStrategy
+ * @see ConstraintDomination
  * @author noorshams
  *
  */
@@ -114,38 +116,38 @@ public class ConstraintDomination implements DominationStrategy {
 		return (equals || this.dominates(o1, o2));
 	}
 
-}
-
-/**
- * Data structure to save information about objectives in the cache of the strategy class {@code ConstraintDomination}.
- * 
- * @author noorshams
- *
- */
-class ConstrainDominationInformation{
-	protected final boolean isFeasible;
-	protected final Double constraintViolation;
-	
-	public ConstrainDominationInformation(boolean isFeasible, Double constraintViolation){
-		this.isFeasible = isFeasible;
-		this.constraintViolation = constraintViolation;
-	}
 	
 	/**
-	 * @return the isFeasible
+	 * Data structure to save information about objectives in the cache of the strategy class {@code ConstraintDomination}.
+	 * 
+	 * @author noorshams
+	 *
 	 */
-	public boolean isFeasible() {
-		return isFeasible;
-	}
-	/**
-	 * @return the constraintViolation
-	 */
-	public Double getConstraintViolation() {
-		return constraintViolation;
-	}
-	
-	@Override
-	public String toString() {
-		return "Info: isFeasible: "+isFeasible+", CV: "+constraintViolation;
+	protected class ConstrainDominationInformation{
+		protected final boolean isFeasible;
+		protected final Double constraintViolation;
+		
+		public ConstrainDominationInformation(boolean isFeasible, Double constraintViolation){
+			this.isFeasible = isFeasible;
+			this.constraintViolation = constraintViolation;
+		}
+		
+		/**
+		 * @return the isFeasible
+		 */
+		public boolean isFeasible() {
+			return isFeasible;
+		}
+		/**
+		 * @return the constraintViolation
+		 */
+		public Double getConstraintViolation() {
+			return constraintViolation;
+		}
+		
+		@Override
+		public String toString() {
+			return "Info: isFeasible: "+isFeasible+", CV: "+constraintViolation;
+		}
 	}
 }

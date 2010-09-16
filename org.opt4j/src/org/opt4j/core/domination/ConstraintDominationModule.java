@@ -10,8 +10,8 @@ import com.google.inject.name.Names;
 
 /**
  * Constraint Domination Module.
- * @see ConstraintDomination
  * 
+ * @see ConstraintDomination
  * @author noorshams
  *
  */

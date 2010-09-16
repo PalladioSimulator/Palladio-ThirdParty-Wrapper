@@ -30,6 +30,7 @@ import com.google.inject.Singleton;
  * {@code ConstraintCheckerImpl} calculates constraint violations of 
  * <em>infeasibility</em> constraints.
  *  
+ * @see ConstraintChecker
  * @author noorshams
  *
  */

@@ -4,6 +4,12 @@
 package org.opt4j.core;
 
 /**
+ * A concrete constraint with the same attributes as the base class {@code Constraint}.
+ * Semantically, a individual violating this constraint is considered infeasible.
+ *
+ * @see Constraint
+ * @see Constraints
+ * @see SatisfactionConstraint
  * @author noorshams
  *
  */

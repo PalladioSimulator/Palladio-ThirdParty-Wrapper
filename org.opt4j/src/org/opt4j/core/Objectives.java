@@ -62,6 +62,8 @@ public class Objectives extends CriterionSet<Objective> {
 	}
 	
 	/**
+	 * Returns the constraints.
+	 * 
 	 * @return the constraints
 	 */
 	public Constraints getConstraints() {
@@ -69,6 +71,8 @@ public class Objectives extends CriterionSet<Objective> {
 	}
 
 	/**
+	 * Sets the constraints.
+	 * 
 	 * @param constraints the constraints to set
 	 */
 	public void setConstraints(Constraints constraints) {

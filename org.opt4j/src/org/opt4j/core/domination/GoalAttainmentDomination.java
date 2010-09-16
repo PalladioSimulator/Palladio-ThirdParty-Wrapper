@@ -42,6 +42,8 @@ import com.google.inject.Singleton;
  * satisfaction constraint {@code x < a} will mean, that the attribute {@code x} satisfies 
  * the goal, if its value {@code v(x)} is less than {@code a}. 
  * 
+ * @see DominationStrategy
+ * @see SatisfactionConstraint
  * @author noorshams
  *
  */

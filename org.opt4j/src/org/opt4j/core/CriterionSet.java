@@ -10,6 +10,9 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 
 /**
+ * Superclass for {@code Criterion}-{@code Values} pairs. Provides methods for 
+ * the administration of these pairs.
+ * 
  * @author noorshams
  *
  */

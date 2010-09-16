@@ -11,8 +11,9 @@ import com.google.inject.ImplementedBy;
 
 
 /**
- * This is the interface for a domination strategy.
+ * This is the interface for a domination strategy. It is used to compare {@code Individual}s. 
  * 
+ * @see Objectives#dominates(Objectives)
  * @author noorshams
  *
  */

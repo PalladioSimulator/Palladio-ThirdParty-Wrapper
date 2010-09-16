@@ -20,9 +20,12 @@ import java.util.Map.Entry;
 
 
 /**
+ * The {@code Constraints} contains the {@code Constraint}-{@code Values} pairs of
+ * an {@code Individual}. It is contained in {@code Objectives}.
  * 
  * @see Value
  * @see Constraint
+ * @see Objectives
  * @author noorshams
  * 
  */

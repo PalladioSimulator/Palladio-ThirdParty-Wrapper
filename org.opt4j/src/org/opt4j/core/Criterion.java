@@ -4,6 +4,11 @@
 package org.opt4j.core;
 
 /**
+ * Superclass for criteria handled in a {@code CriterionSet}. It is specified by a name.
+ * 
+ * @see Objective
+ * @see Constraint
+ * @see CriterionSet
  * @author noorshams
  *
  */

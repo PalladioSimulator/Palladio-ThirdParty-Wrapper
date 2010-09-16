@@ -4,8 +4,25 @@
 package org.opt4j.core;
 
 /**
- * The definition of a constraint. Besides a unique key, this class has a direction and a limit.
+ * <p>
+ * The {@code Constraint} is the identifier for a single constraint in the {@code
+ * Constraints}. It is the superclass for concrete constraints. It is specified by 
+ * the following properties:
+ * </p>
+ * <ul>
+ * <li>Name</li>
+ * <li>Direction</li>
+ * <li>Limit</li>
+ * </ul>
+ * <p>
+ * Each {@code Evaluator} sets a specific amount of {@code Constraint}-{@code
+ * Value} pairs.
+ * </p>
  * 
+ * @see InfeasibilityConstraint
+ * @see SatisfactionConstraint
+ * @see Constraints
+ * @see Objectives#getConstraints()
  * @author noorshams
  *
  */
