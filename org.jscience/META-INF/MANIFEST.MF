@@ -58,7 +58,7 @@ Export-Package: javax.measure;uses:="javax.measure.unit",
    javax.measure.unit,
    javolution.lang",
  org.jscience.physics.model;uses:="javax.measure.converter,javax.measure.unit"
-Bundle-ClassPath: bin/,
+Bundle-ClassPath: .,
  lib/javolution.jar,
  lib/geoapi.jar,
  lib/colapi.jar
