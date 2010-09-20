@@ -52,43 +52,46 @@ public class ConstraintDomination implements DominationStrategy {
 	 */
 	@Override
 	public boolean dominates(Objectives o1, Objectives o2) {
-		boolean feas1;
-		boolean feas2;
-		Double viol1 = null;
-		Double viol2 = null;
+		boolean isFeasibleO1;
+		boolean isFeasibleO2;
+		Double violationO1 = new Double(0);
+		Double violationO2 = new Double(0);
 		
 		if(cache.containsKey(o1)){
-			feas1 = cache.get(o1).isFeasible();
-			viol1 = cache.get(o1).getConstraintViolation();
+			isFeasibleO1 = cache.get(o1).isFeasible();
+			violationO1 = cache.get(o1).getConstraintViolation();
 		} else {
-			feas1 = constraintChecker.isFeasible(o1);
-			if(!feas1){
-				viol1 = constraintChecker.getConstraintViolation(o1); 
+			isFeasibleO1 = constraintChecker.isFeasible(o1);
+			if(!isFeasibleO1){
+				violationO1 = constraintChecker.getConstraintViolation(o1); 
 			}
-			cache.put(o1, new ConstrainDominationInformation(feas1, viol1));
+			cache.put(o1, new ConstrainDominationInformation(isFeasibleO1, violationO1));
 		}
 		if(cache.containsKey(o2)){
-			feas2 = cache.get(o2).isFeasible();
-			viol2 = cache.get(o2).getConstraintViolation();
+			isFeasibleO2 = cache.get(o2).isFeasible();
+			violationO2 = cache.get(o2).getConstraintViolation();
 		} else {
-			feas2 = constraintChecker.isFeasible(o2);
-			if(!feas2){
-				viol2 = constraintChecker.getConstraintViolation(o2);
+			isFeasibleO2 = constraintChecker.isFeasible(o2);
+			if(!isFeasibleO2){
+				violationO2 = constraintChecker.getConstraintViolation(o2);
 			}
-			cache.put(o2, new ConstrainDominationInformation(feas2, viol2));
+			cache.put(o2, new ConstrainDominationInformation(isFeasibleO2, violationO2));
 		}
 		
+		//Set feasibility of objectives
+		o1.setFeasible(isFeasibleO1);
+		o2.setFeasible(isFeasibleO2);
 
-		if(feas1 && feas2) { //both feasible, calculate normal dominance	
+		if(isFeasibleO1 && isFeasibleO2) { //both feasible, calculate normal dominance	
 			
 			return this.feasibleStrategy.dominates(o1, o2);
-		} else if (!feas1 && !feas2) { // both infeasible
+		} else if (!isFeasibleO1 && !isFeasibleO2) { // both infeasible
 			
 			//Does o2 have a greater constraint violation?
-			return (viol2 > viol1);			
+			return (violationO2 > violationO1);			
 		} else { // 1 infeasible, 1 feasible			
 			// feas1 == true XOR feas2 == true			
-			return feas1;
+			return isFeasibleO1;
 		}
 	}
 
@@ -121,7 +124,7 @@ public class ConstraintDomination implements DominationStrategy {
 	 * Data structure to save information about objectives in the cache of the strategy class {@code ConstraintDomination}.
 	 * 
 	 * @author noorshams
-	 *
+	 * @see ConstraintDomination
 	 */
 	protected class ConstrainDominationInformation{
 		protected final boolean isFeasible;

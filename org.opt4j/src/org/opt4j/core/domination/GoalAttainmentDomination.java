@@ -35,6 +35,11 @@ import com.google.inject.Singleton;
  * Here, it is shown that the relation is transitive.
  * <br><br>
  * 
+ * The strategy is based on {@link ParetoDomination} and uses its <em>array based</em>
+ * method {@link ParetoDomination#dominates(double[], double[])}.
+ * <br><br>
+ * 
+ * 
  * It is essential to provide a <em>goal vector (reference point)</em> by a 
  * number of {@code SatisfactionConstraints} on {@code Objective}s! If no 
  * satisfaction for an {@code Objective o} exists, the constraint is consequently 
@@ -44,6 +49,7 @@ import com.google.inject.Singleton;
  * 
  * @see DominationStrategy
  * @see SatisfactionConstraint
+ * @see ParetoDomination
  * @author noorshams
  *
  */
