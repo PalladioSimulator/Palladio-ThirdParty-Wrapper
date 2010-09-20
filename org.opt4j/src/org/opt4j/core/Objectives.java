@@ -34,7 +34,7 @@ import com.google.inject.Inject;
  * 
  * @see Value
  * @see Objective
- * @author lukasiewycz
+ * @author lukasiewycz, noorshams
  * 
  */
 public class Objectives extends CriterionSet<Objective> {
@@ -142,7 +142,7 @@ public class Objectives extends CriterionSet<Objective> {
 
 	/**
 	 * Returns {@code true} if this objectives weakly dominates the specified
-	 * objectives. This comparison is based on the {@code #array()} values.
+	 * objectives. This comparison depends on the chosen {@code DominationStrategy}.
 	 * 
 	 * @param opponent
 	 *            other objectives
@@ -155,7 +155,7 @@ public class Objectives extends CriterionSet<Objective> {
 
 	/**
 	 * Returns {@code true} if this objectives dominate the specified
-	 * objectives. This comparison is based on the {@code #array()} values.
+	 * objectives. This comparison depends on the chosen {@code DominationStrategy}.
 	 * 
 	 * @param opponent
 	 *            other objectives

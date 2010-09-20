@@ -36,7 +36,7 @@ import org.opt4j.core.problem.Evaluator;
  * 
  * @see Objectives
  * @see Evaluator#getObjectives()
- * @author lukasiewycz
+ * @author lukasiewycz, noorshams
  * 
  */
 public class Objective extends Criterion implements Comparable<Objective> {

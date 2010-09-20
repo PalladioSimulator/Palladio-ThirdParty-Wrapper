@@ -14,7 +14,7 @@ import com.google.inject.Singleton;
  * The {@code DominationStrategy} Pareto-Domination.
  * 
  * @see DominationStrategy
- * @author noorshams
+ * @author lukasiewycz, noorshams
  *
  */
 @Singleton
