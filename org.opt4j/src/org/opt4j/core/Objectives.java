@@ -78,6 +78,15 @@ public class Objectives extends CriterionSet<Objective> {
 	public void setConstraints(Constraints constraints) {
 		this.constraints = constraints;
 	}
+	
+	/**
+	 * Returns the domination strategy of the Objective.
+	 * 
+	 * @return the domination strategy of the Objective
+	 */
+	public DominationStrategy getDominationStrategy(){
+		return this.dominationStrategy;
+	}
 
 	/**
 	 * Returns the feasibility.
