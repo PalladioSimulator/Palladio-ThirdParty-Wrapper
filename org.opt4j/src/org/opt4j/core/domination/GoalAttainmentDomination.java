@@ -74,6 +74,9 @@ public class GoalAttainmentDomination implements DominationStrategy {
 	 * these objectives, or if x satisfies the goal in all objectives, x is 
 	 * preferred over y either if y does not fulfill some of the objectives 
 	 * fulfilled by x, or if x dominates y on the objectives fulfilled by x.
+	 * 
+	 * If no {@link SatisfactionConstraint}s are present, this method just passes 
+	 * the parameters on to its internal strategy for Pareto Domination. 
 	 */
 	/* (non-Javadoc)
 	 * @see org.opt4j.core.domination.DominationStrategy#dominates(org.opt4j.core.Objectives, org.opt4j.core.Objectives)
@@ -82,6 +85,12 @@ public class GoalAttainmentDomination implements DominationStrategy {
 	public boolean dominates(Objectives o1, Objectives o2) {
 		
 		List<Constraint> eligibleConstraints = getAllElibleConstraints(o1);
+		
+		//If no eligible constraints are there, just pass the parameters on. 
+		if (eligibleConstraints.size() == 0){
+			return this.paretoDomination.dominates(o1, o2);
+		}
+		
 		Constraints constraints1 = o1.getConstraints();
 		Constraints constraints2 = o2.getConstraints();
 		List<Double> notFullfilledConstraints1 = new ArrayList<Double>();
