@@ -1,3 +1,10 @@
+Updated licenses are maintained here:
+http://sdqweb.ipd.kit.edu/wiki/Licenses
+
+-------------------------
+
+Old version below
+
 © Copyright FZI Deutschland 2009.
 
 Die Lizenzübersicht muss jeweils mitverteilt werden.
