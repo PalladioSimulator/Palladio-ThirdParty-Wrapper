@@ -7,7 +7,7 @@ Bundle-ClassPath: .,
  JRI.jar,
  JRIEngine.jar,
  REngine.jar
-Bundle-Vendor: org.rosuda.JRI
+Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: org.rosuda.JRI,
  org.rosuda.REngine,
  org.rosuda.REngine.JRI;uses:="org.rosuda.JRI,org.rosuda.REngine"

@@ -24,3 +24,4 @@ Export-Package: org.apache.bcel,
  org.apache.commons.logging,
  org.apache.commons.logging.impl
 Bundle-ClassPath: javaflow.jar
+Bundle-Vendor: sdq.ipd.uka.de

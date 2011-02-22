@@ -16,4 +16,4 @@ Export-Package: flanagan.analysis,
  flanagan.physprop,
  flanagan.plot,
  flanagan.roots
-Bundle-Vendor: Michael Thomas Flanagan
+Bundle-Vendor: sdq.ipd.uka.de

@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Jscience Plug-in
 Bundle-SymbolicName: org.jscience
 Bundle-Version: 4.1.3
-Bundle-Vendor: jscience.org
+Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: javax.measure;uses:="javax.measure.unit",
  javax.measure.converter,
  javax.measure.quantity;uses:="javax.measure.unit",

@@ -75,4 +75,4 @@ Export-Package: cern.clhep,
  umontreal.iro.lecuyer.simprocs,
   umontreal.iro.lecuyer.stat,
  umontreal.iro.lecuyer.util
-Bundle-Vendor: ca.umontreal.iro.lecuyer
+Bundle-Vendor: sdq.ipd.uka.de

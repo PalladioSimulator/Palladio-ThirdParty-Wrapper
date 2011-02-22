@@ -6,7 +6,7 @@ Bundle-Version: 1.0.9
 Bundle-ClassPath: jcommon-1.0.12.jar,
  jfreechart-1.0.9.jar,
  jfreechart-1.0.9-swt.jar
-Bundle-Vendor: org.jfree
+Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: com.keypoint,
  org.jfree,
  org.jfree.base,

@@ -34,3 +34,4 @@ Export-Package:
  net.sf.jclec.util.range
 Bundle-ClassPath: .,
  jclec-base.jar
+Bundle-Vendor: sdq.ipd.uka.de

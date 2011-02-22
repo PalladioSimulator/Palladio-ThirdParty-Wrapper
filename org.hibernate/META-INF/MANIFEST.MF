@@ -121,5 +121,5 @@ Export-Package: antlr,
  org.hibernate.util
 Require-Bundle: org.apache.commons.logging,
  org.apache.log4j
-Bundle-Vendor: hibernate.org
+Bundle-Vendor: sdq.ipd.uka.de
 Bundle-ActivationPolicy: lazy

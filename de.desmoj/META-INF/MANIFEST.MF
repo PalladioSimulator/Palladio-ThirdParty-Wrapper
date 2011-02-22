@@ -4,7 +4,7 @@ Bundle-Name: Desmoj Plug-in
 Bundle-SymbolicName: de.desmoj
 Bundle-Version: 2.1.1
 Bundle-ClassPath: desmojmod.jar
-Bundle-Vendor: asi-www.informatik.uni-hamburg.de
+Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: desmoj.core.advancedModellingFeatures,
  desmoj.core.advancedModellingFeatures.report,
  desmoj.core.dist,

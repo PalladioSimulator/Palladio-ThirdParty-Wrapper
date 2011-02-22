@@ -4,6 +4,6 @@ Bundle-Name: JRI Plug-in
 Bundle-SymbolicName: org.rosuda.JRI;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: org.rosuda.JRI
+Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: org.rosuda.JRI
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
