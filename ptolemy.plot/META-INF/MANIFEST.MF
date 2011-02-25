@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: sdq.ipd.uka.de
+Bundle-Name: Ptolemy Plot Wrapper Plugin
 Bundle-SymbolicName: ptolemy.plot
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -10,3 +10,4 @@ Export-Package: ptolemy.gui,
  ptolemy.plot,
  ptolemy.plot.zoomBox,
  ptolemy.util
+Bundle-Vendor: sdq.ipd.uka.de
