@@ -37,12 +37,14 @@ import com.google.inject.Singleton;
 @Singleton
 public class ConstraintCheckerImpl implements ConstraintChecker, IndividualCollectionListener, IndividualStateListener {
 
-	// stores range of each constraint
-	// make it thread safe to avoid accidental problems 
+	/** stores the current range of criterion values in the population for each constraint
+	 * i.e. stores the minimum value in the population for each Constraint and the maimum value.
+	 * make it thread safe to avoid accidental problems.
+	 */ 
 	protected Map<Constraint, Range> constraintRanges = new ConcurrentHashMap<Constraint, Range>(); 
 	
 	
-	//as this class listens on Population, it must be registered there
+	/**as this class listens on Population, it must be registered there*/
 	@Inject
 	public ConstraintCheckerImpl(Population population) {
 		// When individuals are added, they are NOT yet evaluated! 
