@@ -179,8 +179,8 @@ Export-Package:
    com.google.inject"
 Require-Bundle: com.google.inject;bundle-version="1.0.1",
  org.apache.commons.collections15;bundle-version="1.0.0",
- org.sat4j.core;bundle-version="[2.1.0,2.1.1)",
- org.sat4j.pb;bundle-version="[2.1.0,2.1.1)",
+ org.sat4j.core;bundle-version="[2.1.0,2.1.2)",
+ org.sat4j.pb;bundle-version="[2.1.0,2.1.2)",
  ptolemy.plot;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-BuddyPolicy: dependent
