@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Desmoj Plug-in
 Bundle-SymbolicName: de.desmoj
-Bundle-Version: 2.1.1
+Bundle-Version: 2.3.3.qualifier
 Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: desmoj.core.advancedModellingFeatures,
  desmoj.core.advancedModellingFeatures.report,
