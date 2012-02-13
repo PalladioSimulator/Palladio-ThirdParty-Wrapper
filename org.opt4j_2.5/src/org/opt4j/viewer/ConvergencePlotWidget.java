@@ -41,7 +41,6 @@ import org.opt4j.core.optimizer.Optimizer;
 import org.opt4j.core.optimizer.OptimizerIterationListener;
 import org.opt4j.viewer.ObjectivesMonitor.ObjectivesListener;
 
-import ptolemy.plot.Plot;
 
 import com.google.inject.Inject;
 
@@ -62,7 +61,6 @@ public class ConvergencePlotWidget implements Widget, OptimizerIterationListener
 	protected final Selection selection;
 
 	protected final JPanel panel;
-	protected final Plot plot;
 
 	/**
 	 * Constructs a {@link ConvergencePlotWidget}.
@@ -85,23 +83,10 @@ public class ConvergencePlotWidget implements Widget, OptimizerIterationListener
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
-		plot = new Plot();
-		plot.addLegend(0, "Max");
-		plot.addLegend(1, "Mean");
-		plot.addLegend(2, "Min");
-		Color[] colors = new Color[3];
-		colors[0] = Color.RED;
-		colors[1] = Color.LIGHT_GRAY;
-		colors[2] = Color.BLUE;
-		plot.setColors(colors);
-
-		panel.add(plot);
-
 		JToolBar menu = new JToolBar();
 		menu.setFloatable(false);
 		menu.add(selection);
 		menu.addSeparator();
-		autoZoom.setPlotBox(plot);
 		menu.add(autoZoom);
 
 		Border border = BorderFactory.createMatteBorder(0, 0, 1, 0, menu.getBackground().darker());
@@ -236,48 +221,11 @@ public class ConvergencePlotWidget implements Widget, OptimizerIterationListener
 	protected void paint() {
 		final Objective objective = selection.getSelected();
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				plot.clear(false);
-
-				plot.setXLabel("iteration");
-
-				if (objective != null) {
-					plot.setYLabel(objective.getName());
-
-					paintList(data.getMaxPoints(objective), 0);
-					paintList(data.getMeanPoints(objective), 1);
-					paintList(data.getMinPoints(objective), 2);
-				} else {
-					plot.setYLabel("");
-				}
-
-				plot.revalidate();
-				plot.repaint();
-			}
-		});
 	}
 
 	private void paintList(List<Double> list, int dataset) {
 		final int iteration = data.getIteration();
 
-		for (int i = 0; i < list.size(); i++) {
-			Point2D.Double p1 = list.get(i);
-
-			double x = p1.getX();
-			double y = p1.getY();
-
-			plot.addPoint(dataset, x, y, i != 0);
-		}
-
-		if (!list.isEmpty() && iteration > 0) {
-			Point2D.Double p1 = list.get(list.size() - 1);
-			double x = iteration;
-			double y = p1.getY();
-
-			plot.addPoint(dataset, x, y, true);
-		}
 	}
 
 	/*

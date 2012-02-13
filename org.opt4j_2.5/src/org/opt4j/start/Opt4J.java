@@ -30,8 +30,6 @@ import org.opt4j.config.visualization.Configurator;
 import org.opt4j.config.visualization.TasksPanel;
 import org.opt4j.viewer.DelayTask;
 
-import ptolemy.plot.DefaultFonts;
-
 import com.google.inject.Binder;
 import com.google.inject.Module;
 
@@ -113,9 +111,6 @@ public class Opt4J extends Configurator {
 	protected static void initVisualization(SplashDecorator splash) {
 		if (splash != null) {
 			splash.print("Initialize Visualization", Color.GRAY.darker());
-		}
-		if (DefaultFonts.LABElFONT == null) {
-			throw new IllegalStateException();
 		}
 		if (splash != null) {
 			splash.print("Initialized Visualization", Color.GRAY.darker());

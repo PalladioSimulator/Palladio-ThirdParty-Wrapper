@@ -132,7 +132,7 @@ public abstract class Opt4JModule extends AbstractModule {
 		config();
 	}
 
-	protected void multi(Class<?> clazz) {
+	public void multi(Class<?> clazz) {
 		Multibinder.newSetBinder(binder(), clazz);
 	}
 
@@ -285,7 +285,7 @@ public abstract class Opt4JModule extends AbstractModule {
 	 * @param listener
 	 *            the listener to be added
 	 */
-	protected void addOptimizerStateListener(Class<? extends OptimizerStateListener> listener) {
+	public void addOptimizerStateListener(Class<? extends OptimizerStateListener> listener) {
 		Multibinder<OptimizerStateListener> multibinder = Multibinder.newSetBinder(binder(),
 				OptimizerStateListener.class);
 		multibinder.addBinding().to(listener);
@@ -297,7 +297,7 @@ public abstract class Opt4JModule extends AbstractModule {
 	 * @param listener
 	 *            the listener to be added
 	 */
-	protected void addOptimizerIterationListener(Class<? extends OptimizerIterationListener> listener) {
+	public void addOptimizerIterationListener(Class<? extends OptimizerIterationListener> listener) {
 		assert binder() != null;
 		Multibinder<OptimizerIterationListener> multibinder = Multibinder.newSetBinder(binder(),
 				OptimizerIterationListener.class);
@@ -310,7 +310,7 @@ public abstract class Opt4JModule extends AbstractModule {
 	 * @param listener
 	 *            the listener to be added
 	 */
-	protected void addIndividualStateListener(Class<? extends IndividualStateListener> listener) {
+	public void addIndividualStateListener(Class<? extends IndividualStateListener> listener) {
 		Multibinder<IndividualStateListener> multibinder = Multibinder.newSetBinder(binder(),
 				IndividualStateListener.class);
 		multibinder.addBinding().to(listener);
@@ -322,7 +322,7 @@ public abstract class Opt4JModule extends AbstractModule {
 	 * @param listener
 	 *            the listener to be added
 	 */
-	protected void addControlListener(Class<? extends ControlListener> listener) {
+	public void addControlListener(Class<? extends ControlListener> listener) {
 		Multibinder<ControlListener> multibinder = Multibinder.newSetBinder(binder(), ControlListener.class);
 		multibinder.addBinding().to(listener);
 	}

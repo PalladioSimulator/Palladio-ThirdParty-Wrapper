@@ -52,7 +52,7 @@ public class EvolutionaryAlgorithm extends AbstractOptimizer {
 
 	protected final Mating mating;
 
-	private final IndividualFactory individualFactory;
+	protected final IndividualFactory individualFactory;
 
 	/**
 	 * Constructs an {@link EvolutionaryAlgorithm} with a {@link Population}, an

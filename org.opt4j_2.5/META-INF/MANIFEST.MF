@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Opt4j Wrapper Plug-In
+Bundle-Name: Opt4j 2.5 Wrapper Plug-In
 Bundle-SymbolicName: org.opt4j
 Bundle-Version: 2.5.0.qualifier
 Bundle-ClassPath: .
@@ -31,6 +31,7 @@ Export-Package:
    javax.swing.table,
    com.google.inject",
  org.opt4j.core;uses:="org.opt4j.core.problem,com.google.inject",
+ org.opt4j.core.domination,
  org.opt4j.core.optimizer;uses:="org.opt4j.start,org.opt4j.core",
  org.opt4j.core.problem;uses:="org.opt4j.start,org.opt4j.core",
  org.opt4j.genotype;uses:="org.opt4j.core.problem",
@@ -131,7 +132,8 @@ Export-Package:
    org.opt4j.core.optimizer,
    com.google.inject"
 Require-Bundle: com.google.inject;bundle-version="1.0.1",
- org.apache.commons.collections15;bundle-version="1.0.0"
+ org.apache.commons.collections15;bundle-version="1.0.0",
+ javax.inject;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-BuddyPolicy: dependent
 Bundle-Vendor: sdq.ipd.uka.de
