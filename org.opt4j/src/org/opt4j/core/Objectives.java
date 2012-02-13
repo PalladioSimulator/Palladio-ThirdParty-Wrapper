@@ -1,0 +1,376 @@
+/**
+ * Opt4J is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ * 
+ * Opt4J is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with Opt4J. If not, see http://www.gnu.org/licenses/. 
+ */
+
+package org.opt4j.core;
+
+import static org.opt4j.core.Objective.Sign.MAX;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import org.opt4j.core.domination.DominationStrategy;
+import org.opt4j.core.domination.ParetoDomination;
+
+import com.google.inject.Inject;
+
+
+
+/**
+ * The {@link Objectives} contains the {@link Objective}-{@link Value}s pairs of
+ * an {@link Individual}. Additionally, the feasibility of the
+ * {@link Objectives} can be set. The feasibility {@link #isFeasible()} is
+ * {@code true} by default. Set this value to {@code false} to indicate that the
+ * corresponding {@link Individual} is infeasible (e.g., it violates
+ * constraints).
+ * 
+ * @see Value
+ * @see Objective
+ * @author lukasiewycz, noorshams
+ * 
+ */
+public class Objectives extends CriterionSet<Objective> {
+
+	protected final SortedMap<Objective, Value<?>> map = new TreeMap<Objective, Value<?>>();
+	protected boolean feasible = true;
+
+	protected Constraints constraints = new Constraints();
+		
+	protected DominationStrategy dominationStrategy;
+		
+	
+	/**
+	 * Inject a {@code Provider<Objectives>} object instead 
+	 * and create {@code Objectives} objects with
+	 * {@code provider.get()}.
+	 */
+	@Deprecated
+	public Objectives(){
+		this.dominationStrategy = new ParetoDomination(); 
+	}
+	
+	@Inject
+	public Objectives(DominationStrategy strategy){
+		this.dominationStrategy = strategy;
+	}
+	
+	/**
+	 * Returns the constraints.
+	 * 
+	 * @return the constraints
+	 */
+	public Constraints getConstraints() {
+		return constraints;
+	}
+
+	/**
+	 * Sets the constraints.
+	 * 
+	 * @param constraints the constraints to set
+	 */
+	public void setConstraints(Constraints constraints) {
+		this.constraints = constraints;
+	}
+	
+	/**
+	 * Returns the domination strategy of the Objective.
+	 * 
+	 * @return the domination strategy of the Objective
+	 */
+	public DominationStrategy getDominationStrategy(){
+		return this.dominationStrategy;
+	}
+
+	/**
+	 * Returns the feasibility.
+	 * 
+	 * @return the feasibility
+	 */
+	public boolean isFeasible() {
+		return feasible;
+	}
+
+	/**
+	 * Sets the feasibility.
+	 * 
+	 * @param feasible
+	 *            the feasibility to set
+	 */
+	public void setFeasible(boolean feasible) {
+		this.feasible = feasible;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Iterable#iterator()
+	 */
+	@Override
+	public Iterator<Entry<Objective, Value<?>>> iterator() {
+		return map.entrySet().iterator();
+	}
+
+	/**
+	 * Returns an array of all values which all have to be minimized. Do not
+	 * call this method before all objectives were added!
+	 * 
+	 * @see Value#getDouble()
+	 * @return an array containing values which have to be minimized
+	 */
+	@Override
+	public double[] array() {
+		if (array == null) {
+			submit();
+		}
+
+		return array;
+	}
+
+	/**
+	 * Calculates the array.
+	 */
+	protected synchronized void submit() {
+		if (array == null) {
+			array = new double[size()];
+			int i = 0;
+			for (Entry<Objective, Value<?>> entry : this) {
+				Objective objective = entry.getKey();
+				Value<?> value = entry.getValue();
+
+				Double v = value.getDouble();
+
+				if (v == null) {
+					array[i] = Double.MAX_VALUE;
+				} else if (objective.getSign() == Objective.Sign.MAX) {
+					array[i] = -v;
+				} else {
+					array[i] = v;
+				}
+
+				i++;
+			}
+		}
+	}
+
+	/**
+	 * Returns the number of set {@link Objective}s.
+	 * 
+	 * @return the number of set objectives
+	 */
+	public int size() {
+		return map.size();
+	}
+
+	/**
+	 * Returns all objectives.
+	 * 
+	 * @return all objectives
+	 */
+	public Collection<Objective> getKeys() {
+		return map.keySet();
+	}
+
+	/**
+	 * Returns all values.
+	 * 
+	 * @return all values
+	 */
+	public Collection<Value<?>> getValues() {
+		return map.values();
+	}
+
+	/**
+	 * Returns the value that is assigned to the given objective. Returns
+	 * {@code null} if the objective does not exist.
+	 * 
+	 * @param objective
+	 *            the given objective
+	 * @return the value
+	 */
+	public Value<?> get(Objective objective) {
+		return map.get(objective);
+	}
+
+	/**
+	 * Returns the objective that is assigned to the given value. Returns
+	 * {@code null} if the value does not exist.
+	 * 
+	 * @param value
+	 *            the given value
+	 * @return the objective
+	 */
+	public Objective get(Value<?> value) {
+		Objective objective = null;
+		for (Entry<Objective, Value<?>> entry : this) {
+			Value<?> v = entry.getValue();
+			if (value.equals(v)) {
+				Objective o = entry.getKey();
+				objective = o;
+				break;
+			}
+		}
+		return objective;
+	}
+
+	/**
+	 * Adds the objective with the specified value.
+	 * 
+	 * @param objective
+	 *            the objective
+	 * @param value
+	 *            the value
+	 */
+	public void add(Objective objective, Value<?> value) {
+		if (value == null) {
+			map.put(objective, new DoubleValue(null));
+		} else {
+			map.put(objective, value);
+		}
+		array = null;
+	}
+
+	/**
+	 * Adds the objective with the specified double value.
+	 * 
+	 * @param objective
+	 *            the objective
+	 * @param value
+	 *            the value
+	 */
+	public void add(Objective objective, double value) {
+		add(objective, new DoubleValue(value));
+	}
+
+	/**
+	 * Adds the objective with the specified integer value.
+	 * 
+	 * @param objective
+	 *            the objective
+	 * @param value
+	 *            the value
+	 */
+	public void add(Objective objective, int value) {
+		add(objective, new IntegerValue(value));
+	}
+
+	/**
+	 * Adds all objective with the specified value specified in
+	 * {@link Objectives}.
+	 * 
+	 * @param objectives
+	 *            the objectives
+	 * @deprecated renamed to {@link #addAll(Objectives)}
+	 */
+	@Deprecated
+	public void add(Objectives objectives) {
+		addAll(objectives);
+	}
+
+	/**
+	 * Adds all objective with the specified value specified in
+	 * {@link Objectives}.
+	 * 
+	 * @param objectives
+	 *            the objectives
+	 */
+	public void addAll(Objectives objectives) {
+		map.putAll(objectives.map);
+		array = null;
+	}
+
+	/**
+	 * Returns {@code true} if this objectives weakly dominates the specified
+	 * objectives. This comparison depends on the chosen {@code DominationStrategy}.
+	 * 
+	 * @param opponent
+	 *            other objectives
+	 * @return {@code true} if this objectives weakly dominate the
+	 *         {@code opponent}
+	 */
+	public boolean weaklyDominates(Objectives opponent) {
+		return this.dominationStrategy.weaklyDominates(this, opponent);
+	}
+
+	/**
+	 * Returns {@code true} if this objectives dominate the specified
+	 * objectives. This comparison depends on the chosen {@code DominationStrategy}.
+	 * 
+	 * @param opponent
+	 *            other objectives
+	 * @return {@code true} if these objectives dominate the {@code opponent}
+	 */
+	public boolean dominates(Objectives opponent) {
+		return this.dominationStrategy.dominates(this, opponent);
+	}
+
+	/**
+	 * Returns {@code true} if this objectives are equal to the specified
+	 * objectives. This comparison is based on the {@link #array()} values.
+	 * 
+	 * @param opponent
+	 *            other objectives
+	 * @return {@code true} if these objectives dominate the {@code opponent}
+	 */
+	public boolean isEqual(Objectives opponent) {
+		double[] va = this.array();
+		double[] vb = opponent.array();
+
+		for (int i = 0; i < va.length; i++) {
+			if (va[i] != vb[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Calculates the euclidean distance of two {@link Objectives}. This
+	 * calculation is based on the {@link #array()} values.
+	 * 
+	 * @param other
+	 *            the second objectives
+	 * @return the euclidean distance
+	 */
+	public double distance(Objectives other) {
+		double[] va = this.array();
+		double[] vb = other.array();
+
+		double s = 0;
+		for (int i = 0; i < va.length; i++) {
+			s += (va[i] - vb[i]) * (va[i] - vb[i]);
+		}
+
+		return Math.sqrt(s);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String s = "";
+		for (Entry<Objective, Value<?>> entry : map.entrySet()) {
+			Objective o = entry.getKey();
+			Value<?> v = entry.getValue();
+			s += o + "=" + v + " ";
+		}
+		return s;
+	}
+
+}
