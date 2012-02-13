@@ -23,6 +23,13 @@ import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.opt4j.core.domination.DominationStrategy;
+import org.opt4j.core.domination.ParetoDomination;
+
+import com.google.inject.Inject;
+
+
+
 /**
  * The {@link Objectives} contains the {@link Objective}-{@link Value}s pairs of
  * an {@link Individual}. Additionally, the feasibility of the
@@ -33,16 +40,60 @@ import java.util.TreeMap;
  * 
  * @see Value
  * @see Objective
- * @author lukasiewycz
+ * @author lukasiewycz, noorshams
  * 
  */
-public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
+public class Objectives extends CriterionSet<Objective> {
 
 	protected final SortedMap<Objective, Value<?>> map = new TreeMap<Objective, Value<?>>();
-
-	protected double[] array = null;
-
 	protected boolean feasible = true;
+
+	protected Constraints constraints = new Constraints();
+		
+	protected DominationStrategy dominationStrategy;
+		
+	
+	/**
+	 * Inject a {@code Provider<Objectives>} object instead 
+	 * and create {@code Objectives} objects with
+	 * {@code provider.get()}.
+	 */
+	@Deprecated
+	public Objectives(){
+		this.dominationStrategy = new ParetoDomination(); 
+	}
+	
+	@Inject
+	public Objectives(DominationStrategy strategy){
+		this.dominationStrategy = strategy;
+	}
+	
+	/**
+	 * Returns the constraints.
+	 * 
+	 * @return the constraints
+	 */
+	public Constraints getConstraints() {
+		return constraints;
+	}
+
+	/**
+	 * Sets the constraints.
+	 * 
+	 * @param constraints the constraints to set
+	 */
+	public void setConstraints(Constraints constraints) {
+		this.constraints = constraints;
+	}
+	
+	/**
+	 * Returns the domination strategy of the Objective.
+	 * 
+	 * @return the domination strategy of the Objective
+	 */
+	public DominationStrategy getDominationStrategy(){
+		return this.dominationStrategy;
+	}
 
 	/**
 	 * Returns the feasibility.
@@ -80,6 +131,7 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 	 * @see Value#getDouble()
 	 * @return an array containing values which have to be minimized
 	 */
+	@Override
 	public double[] array() {
 		if (array == null) {
 			submit();
@@ -103,7 +155,7 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 
 				if (v == null) {
 					array[i] = Double.MAX_VALUE;
-				} else if (objective.getSign() == MAX) {
+				} else if (objective.getSign() == Objective.Sign.MAX) {
 					array[i] = -v;
 				} else {
 					array[i] = v;
@@ -242,7 +294,7 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 
 	/**
 	 * Returns {@code true} if this objectives weakly dominates the specified
-	 * objectives. This comparison is based on the {@link #array()} values.
+	 * objectives. This comparison depends on the chosen {@code DominationStrategy}.
 	 * 
 	 * @param opponent
 	 *            other objectives
@@ -250,37 +302,19 @@ public class Objectives implements Iterable<Entry<Objective, Value<?>>> {
 	 *         {@code opponent}
 	 */
 	public boolean weaklyDominates(Objectives opponent) {
-		double[] va = this.array();
-		double[] vb = opponent.array();
-		for (int i = 0; i < va.length; i++) {
-			if (vb[i] < va[i]) {
-				return false;
-			}
-		}
-		return true;
+		return this.dominationStrategy.weaklyDominates(this, opponent);
 	}
 
 	/**
 	 * Returns {@code true} if this objectives dominate the specified
-	 * objectives. This comparison is based on the {@link #array()} values.
+	 * objectives. This comparison depends on the chosen {@code DominationStrategy}.
 	 * 
 	 * @param opponent
 	 *            other objectives
 	 * @return {@code true} if these objectives dominate the {@code opponent}
 	 */
 	public boolean dominates(Objectives opponent) {
-		double[] va = this.array();
-		double[] vb = opponent.array();
-
-		boolean equal = true;
-		for (int i = 0; i < va.length; i++) {
-			if (va[i] > vb[i]) {
-				return false;
-			} else if (va[i] < vb[i]) {
-				equal = false;
-			}
-		}
-		return !equal;
+		return this.dominationStrategy.dominates(this, opponent);
 	}
 
 	/**

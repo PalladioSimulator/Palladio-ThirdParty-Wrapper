@@ -30,7 +30,7 @@ import org.opt4j.config.visualization.Configurator;
 import org.opt4j.config.visualization.TasksPanel;
 import org.opt4j.viewer.DelayTask;
 
-//import ptolemy.plot.DefaultFonts;
+import ptolemy.plot.DefaultFonts;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -86,7 +86,7 @@ public class Opt4J extends Configurator {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		System.out.println("Starting Opt4J 2.5 (Build 12/22/2011)");
+		System.out.println("Starting Opt4J @VERSION@ (Build @DATE@)");
 		if (args.length > 0 && args[0].equalsIgnoreCase("-s")) {
 			SplashScreen splash = SplashScreen.getSplashScreen();
 			if (splash != null) {
@@ -114,9 +114,9 @@ public class Opt4J extends Configurator {
 		if (splash != null) {
 			splash.print("Initialize Visualization", Color.GRAY.darker());
 		}
-//		if (DefaultFonts.LABElFONT == null) {
-//			throw new IllegalStateException();
-//		}
+		if (DefaultFonts.LABElFONT == null) {
+			throw new IllegalStateException();
+		}
 		if (splash != null) {
 			splash.print("Initialized Visualization", Color.GRAY.darker());
 		}
@@ -134,8 +134,8 @@ public class Opt4J extends Configurator {
 			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g.setColor(new Color(242, 130, 38));
 			g.setFont(new Font("SansSerif", Font.BOLD, 11));
-			g.drawString("version 2.5", 170, 76);
-			g.drawString("12/22/2011", 170, 91);
+			g.drawString("version @VERSION@", 170, 76);
+			g.drawString("@DATE@", 170, 91);
 			splash.update();
 		}
 	}

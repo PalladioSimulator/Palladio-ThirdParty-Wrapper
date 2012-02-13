@@ -44,7 +44,7 @@ import org.opt4j.core.optimizer.Population;
 import org.opt4j.viewer.ConvergencePlotWidget.ObjectiveDropDown;
 import org.opt4j.viewer.ObjectivesMonitor.ObjectivesListener;
 
-//import ptolemy.plot.Plot;
+import ptolemy.plot.Plot;
 
 import com.google.inject.Inject;
 
@@ -64,7 +64,7 @@ public class ParetoPlotWidget implements OptimizerIterationListener, Widget, Obj
 
 	protected final DelayTask task = new DelayTask(40);
 
-//	protected final Plot plot;
+	protected final Plot plot;
 
 	protected final Selection selection;
 
@@ -165,22 +165,22 @@ public class ParetoPlotWidget implements OptimizerIterationListener, Widget, Obj
 		selection.addSeparator();
 		selection.add(autoZoomButton);
 
-//		plot = new Plot();
-//		autoZoomButton.setPlotBox(plot);
-//
-//		plot.addLegend(0, "Archive");
-//		plot.addLegend(1, "Population");
-//		plot.setMarksStyle("dots");
-//
-//		Color[] colors = new Color[3];
-//		colors[0] = Color.RED;
-//		colors[1] = Color.LIGHT_GRAY;
-//		colors[2] = Color.BLUE;
-//		plot.setColors(colors);
-//
-//		panel.setLayout(new BorderLayout());
-//		panel.add(selection, BorderLayout.NORTH);
-//		panel.add(plot, BorderLayout.CENTER);
+		plot = new Plot();
+		autoZoomButton.setPlotBox(plot);
+
+		plot.addLegend(0, "Archive");
+		plot.addLegend(1, "Population");
+		plot.setMarksStyle("dots");
+
+		Color[] colors = new Color[3];
+		colors[0] = Color.RED;
+		colors[1] = Color.LIGHT_GRAY;
+		colors[2] = Color.BLUE;
+		plot.setColors(colors);
+
+		panel.setLayout(new BorderLayout());
+		panel.add(selection, BorderLayout.NORTH);
+		panel.add(plot, BorderLayout.CENTER);
 
 		objectivesMonitor.addListener(this);
 		optimizer.addOptimizerIterationListener(this);
@@ -280,20 +280,20 @@ public class ParetoPlotWidget implements OptimizerIterationListener, Widget, Obj
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-//				plot.clear(false);
-//				plot.setXLabel(one != null ? one.getName() : "");
-//				plot.setYLabel(two != null ? two.getName() : "");
-//
-//				for (Point2D.Double point : archivePoints) {
-//					plot.addPoint(0, point.getX(), point.getY(), false);
-//				}
-//
-//				for (Point2D.Double point : populationPoints) {
-//					plot.addPoint(1, point.getX(), point.getY(), false);
-//				}
-//
-//				plot.revalidate();
-//				plot.repaint();
+				plot.clear(false);
+				plot.setXLabel(one != null ? one.getName() : "");
+				plot.setYLabel(two != null ? two.getName() : "");
+
+				for (Point2D.Double point : archivePoints) {
+					plot.addPoint(0, point.getX(), point.getY(), false);
+				}
+
+				for (Point2D.Double point : populationPoints) {
+					plot.addPoint(1, point.getX(), point.getY(), false);
+				}
+
+				plot.revalidate();
+				plot.repaint();
 			}
 		});
 	}

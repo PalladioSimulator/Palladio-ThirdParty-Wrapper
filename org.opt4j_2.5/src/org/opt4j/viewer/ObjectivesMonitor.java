@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-//import javax.inject.Inject;
-//import javax.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.opt4j.core.Individual;
 import org.opt4j.core.Individual.State;
@@ -38,7 +38,7 @@ import org.opt4j.core.optimizer.Archive;
  * @author lukasiewycz
  * 
  */
-//@Singleton
+@Singleton
 public class ObjectivesMonitor implements IndividualStateListener {
 
 	protected boolean done = false;
@@ -71,7 +71,7 @@ public class ObjectivesMonitor implements IndividualStateListener {
 	 * 
 	 * @param individualFactory
 	 */
-//	@Inject
+	@Inject
 	public ObjectivesMonitor(IndividualFactory individualFactory, Archive archive) {
 		super();
 		individualFactory.addIndividualStateListener(this);

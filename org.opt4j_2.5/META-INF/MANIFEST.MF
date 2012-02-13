@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Opt4j Wrapper Plug-In
 Bundle-SymbolicName: org.opt4j
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 2.5.0.qualifier
 Bundle-ClassPath: .
 Export-Package: 
  org.opt4j.common.archive;uses:="org.opt4j.common.random,org.opt4j.start,org.opt4j.core",
@@ -131,10 +131,7 @@ Export-Package:
    org.opt4j.core.optimizer,
    com.google.inject"
 Require-Bundle: com.google.inject;bundle-version="1.0.1",
- org.apache.commons.collections15;bundle-version="1.0.0",
- org.sat4j.core;bundle-version="[2.1.0,2.1.2)",
- org.sat4j.pb;bundle-version="[2.1.0,2.1.2)",
- ptolemy.plot;bundle-version="1.0.0"
+ org.apache.commons.collections15;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-BuddyPolicy: dependent
 Bundle-Vendor: sdq.ipd.uka.de

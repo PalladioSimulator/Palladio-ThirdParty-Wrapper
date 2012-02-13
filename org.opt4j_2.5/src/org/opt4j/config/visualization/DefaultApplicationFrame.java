@@ -34,7 +34,7 @@ public class DefaultApplicationFrame extends ApplicationFrame {
 	protected final Menu menu;
 	protected final FileOperations fileOperations;
 
-	protected final String title = "Opt4J 2.5 Configurator";
+	protected final String title = "Opt4J @VERSION@ Configurator";
 
 	/**
 	 * Constructs a {@link DefaultApplicationFrame} .

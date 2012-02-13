@@ -38,10 +38,10 @@ import static org.opt4j.core.Objective.Sign.MIN;
  * 
  * @see Objectives
  * @see org.opt4j.viewer.ObjectivesMonitor
- * @author lukasiewycz
+ * @author lukasiewycz, noorshams
  * 
  */
-public class Objective implements Comparable<Objective> {
+public class Objective extends Criterion implements Comparable<Objective> {
 
 	/**
 	 * The sign of the objective.
@@ -73,8 +73,6 @@ public class Objective implements Comparable<Objective> {
 	public static final Value<?> INFEASIBLE = null;
 
 	protected final Sign sign;
-
-	protected final String name;
 
 	protected final int rank;
 
@@ -113,8 +111,7 @@ public class Objective implements Comparable<Objective> {
 	 *            the rank
 	 */
 	public Objective(String name, Sign sign, int rank) {
-		super();
-		this.name = name;
+		super(name);
 		this.sign = sign;
 		this.rank = rank;
 	}
@@ -126,15 +123,6 @@ public class Objective implements Comparable<Objective> {
 	 */
 	public Sign getSign() {
 		return sign;
-	}
-
-	/**
-	 * Returns the name.
-	 * 
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
 	}
 
 	/**

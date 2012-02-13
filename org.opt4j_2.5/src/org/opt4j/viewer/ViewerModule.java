@@ -32,7 +32,7 @@ public class ViewerModule extends VisualizationModule {
 
 	@Info("The title of the viewer frame.")
 	@Constant(value = "title", namespace = Viewer.class)
-	protected String title = "Opt4J 2.5 Viewer";
+	protected String title = "Opt4J @VERSION@ Viewer";
 
 	@Info("Event for the optimization process if the viewer is closed.")
 	@Constant(value = "closeEvent", namespace = Viewer.class)

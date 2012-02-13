@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-//import ptolemy.plot.PlotBox;
-//import ptolemy.plot.zoomBox.ZoomIcons;
+import ptolemy.plot.PlotBox;
+import ptolemy.plot.zoomBox.ZoomIcons;
 
 /**
  * The {@link AutoZoomButton} is a specialized {@link JButton} which reactivates
@@ -19,13 +19,13 @@ import javax.swing.JButton;
 public class AutoZoomButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-	//private PlotBox plotBox = null;
+	private PlotBox plotBox = null;
 
 	/**
 	 * Creates a new {@link AutoZoomButton}.
 	 */
 	public AutoZoomButton() {
-		//super(ZoomIcons.getIcon(ZoomIcons.ZOOMaUTO));
+		super(ZoomIcons.getIcon(ZoomIcons.ZOOMaUTO));
 		addActionListener(this);
 		setEnabled(false);
 		setToolTipText("Auto Zoom");
@@ -37,9 +37,9 @@ public class AutoZoomButton extends JButton implements ActionListener {
 	 * 
 	 * @return the plot box
 	 */
-/*	public PlotBox getPlotBox() {
+	public PlotBox getPlotBox() {
 		return plotBox;
-	}*/
+	}
 
 	/**
 	 * Set the {@link PlotBox} to listen for.
@@ -47,13 +47,13 @@ public class AutoZoomButton extends JButton implements ActionListener {
 	 * @param plotBox
 	 *            the plot box
 	 */
-/*	public void setPlotBox(PlotBox plotBox) {
+	public void setPlotBox(PlotBox plotBox) {
 		if (this.plotBox != null) {
 			this.plotBox.removeListener(this);
 		}
 		this.plotBox = plotBox;
 		plotBox.registerListener(this);
-	}*/
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -63,7 +63,7 @@ public class AutoZoomButton extends JButton implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-/*		if (plotBox != null) {
+		if (plotBox != null) {
 			if (e.getSource() == this) {
 				// this button was pressed
 				plotBox.reactivateAutoScale();
@@ -76,6 +76,6 @@ public class AutoZoomButton extends JButton implements ActionListener {
 				// the plot box has activated automatic zoom
 				setEnabled(false);
 			}
-		}*/
+		}
 	}
 }
