@@ -1,1 +1,0 @@
-This is a patched version of Google Guice 2.0, see discussion at http://groups.google.com/group/guice-osgi/browse_thread/thread/a1030d7500a29dec?pli=1
