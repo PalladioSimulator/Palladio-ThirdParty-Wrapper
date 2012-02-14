@@ -3,25 +3,31 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Opt4j 2.5 Wrapper Plug-In
 Bundle-SymbolicName: org.opt4j
 Bundle-Version: 2.5.0.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/guice-2.0.jar,
+ lib/guice-multibindings-2.0.jar,
+ lib/aopalliance.jar
 Export-Package: 
- org.opt4j.common.archive;uses:="org.opt4j.common.random,org.opt4j.start,org.opt4j.core",
+ com.google.inject,
+ com.google.inject.binder,
+ org.opt4j.common.archive;
+  uses:="org.opt4j.common.random,
+   org.opt4j.start,
+   org.opt4j.core.optimizer,
+   org.opt4j.core",
  org.opt4j.common.completer;
   uses:="org.opt4j.core.problem,
    org.opt4j.start,
    org.opt4j.core.optimizer,
    org.opt4j.core",
- org.opt4j.common.logger;
-  uses:="org.opt4j.viewer,
-   org.opt4j.core.problem,
-   org.opt4j.core.optimizer,
-   org.opt4j.core",
+ org.opt4j.common.logger;uses:="org.opt4j.viewer,org.opt4j.core.optimizer,org.opt4j.core",
  org.opt4j.common.random;uses:="org.opt4j.start",
  org.opt4j.config;
-  uses:="javax.swing,
+  uses:="org.w3c.dom,
+   javax.swing,
+   javax.xml.transform,
    org.apache.commons.collections15,
-   com.google.inject,
-   org.w3c.dom",
+   com.google.inject",
  org.opt4j.config.annotations,
  org.opt4j.config.visualization;
   uses:="org.opt4j.viewer,
@@ -30,43 +36,42 @@ Export-Package:
    javax.swing,
    javax.swing.table,
    com.google.inject",
- org.opt4j.core;uses:="org.opt4j.core.problem,com.google.inject",
- org.opt4j.core.domination,
+ org.opt4j.core;uses:="org.opt4j.core.problem,org.opt4j.core.domination,com.google.inject",
+ org.opt4j.core.domination;uses:="org.opt4j.start,org.opt4j.core.optimizer,org.opt4j.core",
  org.opt4j.core.optimizer;uses:="org.opt4j.start,org.opt4j.core",
  org.opt4j.core.problem;uses:="org.opt4j.start,org.opt4j.core",
- org.opt4j.genotype;uses:="org.opt4j.core.problem",
- org.opt4j.operator;uses:="org.opt4j.start",
+ org.opt4j.genotype;uses:="org.opt4j.core",
+ org.opt4j.operator;uses:="org.opt4j.start,org.opt4j.core,com.google.inject",
  org.opt4j.operator.algebra;
   uses:="org.opt4j.operator,
-   org.opt4j.core.problem,
    org.opt4j.genotype,
    org.opt4j.core.optimizer,
-   org.opt4j.operator.normalize",
+   org.opt4j.operator.normalize,
+   org.opt4j.core",
  org.opt4j.operator.copy;
   uses:="org.opt4j.operator,
-   org.opt4j.core.problem,
    org.opt4j.genotype,
    org.opt4j.core.optimizer,
+   org.opt4j.core,
    com.google.inject",
  org.opt4j.operator.crossover;
   uses:="org.opt4j.common.random,
    org.opt4j.optimizer.ea,
    org.opt4j.operator,
-   org.opt4j.core.problem,
    org.opt4j.genotype,
    org.opt4j.core.optimizer,
    org.opt4j.operator.normalize,
+   org.opt4j.core,
    com.google.inject",
  org.opt4j.operator.diversity;
   uses:="org.opt4j.operator,
-   org.opt4j.core.problem,
    org.opt4j.genotype,
    org.opt4j.core.optimizer,
+   org.opt4j.core,
    com.google.inject",
  org.opt4j.operator.mutate;
   uses:="org.opt4j.common.random,
    org.opt4j.operator,
-   org.opt4j.core.problem,
    org.opt4j.genotype,
    org.opt4j.core.optimizer,
    org.opt4j.operator.normalize,
@@ -75,10 +80,10 @@ Export-Package:
  org.opt4j.operator.neighbor;
   uses:="org.opt4j.common.random,
    org.opt4j.operator,
-   org.opt4j.core.problem,
    org.opt4j.genotype,
    org.opt4j.core.optimizer,
    org.opt4j.operator.normalize,
+   org.opt4j.core,
    com.google.inject",
  org.opt4j.operator.normalize;uses:="org.opt4j.genotype,org.opt4j.core.optimizer",
  org.opt4j.optimizer.de;
@@ -92,8 +97,8 @@ Export-Package:
   uses:="org.opt4j.common.random,
    org.opt4j.operator.crossover,
    org.opt4j.start,
-   org.opt4j.operator.mutate,
    org.opt4j.core.optimizer,
+   org.opt4j.operator.mutate,
    org.opt4j.operator.copy,
    org.opt4j.core",
  org.opt4j.optimizer.mopso;
@@ -123,13 +128,11 @@ Export-Package:
    com.google.inject.binder,
    com.google.inject",
  org.opt4j.viewer;
-  uses:="org.opt4j.start,
-   org.opt4j.core,
-   ptolemy.plot,
-   javax.swing,
-   org.opt4j.core.problem,
+  uses:="javax.swing,
    javax.swing.table,
+   org.opt4j.start,
    org.opt4j.core.optimizer,
+   org.opt4j.core,
    com.google.inject"
 Require-Bundle: org.apache.commons.collections15;bundle-version="1.0.0",
  javax.inject;bundle-version="1.0.0"
