@@ -59,6 +59,7 @@ ptolemyplot                   | Tcl-style               | http://ptolemy.eecs.be
 jarjar                        | Apache (*)              | ...
 JRI                           | LGPL (*1)               | http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 flanagan                      | BSD-style               | http://www.ee.ucl.ac.uk/~mflanaga/java/
+javautil                      | BSD-style               | https://github.com/bmc/javautil/blob/master/LICENSE.md
 ---------------------------------------------------------------------------------------------------
 
 (*) Apache License:
