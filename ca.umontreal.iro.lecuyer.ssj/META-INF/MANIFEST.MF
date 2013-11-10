@@ -76,3 +76,4 @@ Export-Package: cern.clhep,
   umontreal.iro.lecuyer.stat,
  umontreal.iro.lecuyer.util
 Bundle-Vendor: sdq.ipd.uka.de
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
