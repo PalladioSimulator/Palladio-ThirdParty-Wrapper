@@ -19,4 +19,4 @@ Export-Package: org.apache.commons.collections15,
  org.apache.commons.collections15.map,
  org.apache.commons.collections15.multimap,
  org.apache.commons.collections15.set
-Bundle-Vendor: sdq.ipd.uka.de
+Bundle-Vendor: palladiosimulator.org

@@ -65,3 +65,4 @@ Export-Package: com.keypoint,
  org.jfree.ui.tabbedui,
  org.jfree.util
 Require-Bundle: org.eclipse.swt
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
