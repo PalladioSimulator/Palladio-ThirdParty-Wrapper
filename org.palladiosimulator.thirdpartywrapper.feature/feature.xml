@@ -219,6 +219,8 @@ litigation.
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="javax.activation"/>
       <import plugin="org.apache.log4j" version="1.2.13" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.swt"/>
@@ -267,25 +269,6 @@ litigation.
 
    <plugin
          id="javax.mail"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.antlr"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.apache.commons.cli"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.apache.commons.codec"
          download-size="0"
          install-size="0"
          version="0.0.0"
