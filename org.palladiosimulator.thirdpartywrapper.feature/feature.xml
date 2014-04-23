@@ -219,8 +219,6 @@ litigation.
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.transaction"/>
-      <import plugin="org.eclipse.osgi"/>
-      <import plugin="javax.activation"/>
       <import plugin="org.apache.log4j" version="1.2.13" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.swt"/>
