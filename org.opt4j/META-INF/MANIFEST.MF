@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Opt4j 2.5 Wrapper Plug-In
 Bundle-SymbolicName: org.opt4j
-Bundle-Version: 2.5.0.qualifier
+Bundle-Version: 2.5.0
 Bundle-ClassPath: .,
  lib/guice-2.0.jar,
  lib/guice-multibindings-2.0.jar,
