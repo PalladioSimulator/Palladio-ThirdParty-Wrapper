@@ -214,7 +214,6 @@ litigation.
    </license>
 
    <requires>
-      <import plugin="ca.umontreal.iro.lecuyer.ssj" version="1.2.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
@@ -231,20 +230,6 @@ litigation.
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-   <plugin
-         id="ca.umontreal.iro.lecuyer.ssj.linux"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
-
-   <plugin
-         id="ca.umontreal.iro.lecuyer.ssj.win32"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
 
    <plugin
          id="de.desmoj"
