@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RJavaAndRserve
+Bundle-SymbolicName: org.rosuda.rJavaAndRserve
+Bundle-Version: 1.0.0
+Bundle-ClassPath: REngine.jar,
+ RserveEngine.jar,
+ JRI.jar,
+ JRIEngine.jar
+Export-Package: org.rosuda.JRI,
+ org.rosuda.REngine,
+ org.rosuda.REngine.JRI,
+ org.rosuda.REngine.Rserve,
+ org.rosuda.REngine.Rserve.protocol
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
