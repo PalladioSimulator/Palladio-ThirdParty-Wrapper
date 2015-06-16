@@ -11,12 +11,6 @@
       Wraps commonly used third-party libraries.
    </description>
 
-   <copyright>
-      This plugin is protected by copyright held by the members of
-the Palladio Research Group, University of Karlsruhe.
-   </copyright>
-
-   
    <requires>
       <import plugin="org.eclipse.emf"/>
       <import plugin="org.eclipse.emf.ecore"/>
