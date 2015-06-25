@@ -63,18 +63,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.clapper.util"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.hibernate"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.jfree.jfreechart"
          download-size="0"
          install-size="0"
@@ -102,12 +90,6 @@
          unpack="false"/>
 
    <plugin
-         id="uc.ac.ucl.ee.flanagan"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.apache.chemistry.opencmis"
          download-size="0"
          install-size="0"
@@ -133,5 +115,11 @@
          install-size="0"
          version="0.0.0"
          fragment="true"/>
+
+   <plugin
+         id="org.hibernate"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>
