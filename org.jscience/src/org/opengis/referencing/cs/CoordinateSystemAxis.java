@@ -1,8 +1,8 @@
 /*$************************************************************************************************
  **
- ** $Id: CoordinateSystemAxis.java,v 1.9 2005/05/23 05:13:21 desruisseaux Exp $
+ ** $Id: CoordinateSystemAxis.java,v 1.1 2007-10-03 07:14:51 dautelle Exp $
  **
- ** $Source: /cvsroot/geoapi/src/org/opengis/referencing/cs/CoordinateSystemAxis.java,v $
+ ** $Source: /zpool01/javanet/scm/svn/tmp/cvs2svn/jscience/src/org/opengis/referencing/cs/CoordinateSystemAxis.java,v $
  **
  ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
  ** All Rights Reserved. http://www.opengis.org/legal/
