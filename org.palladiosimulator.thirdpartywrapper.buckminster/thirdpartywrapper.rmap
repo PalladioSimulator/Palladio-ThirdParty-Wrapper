@@ -2,26 +2,27 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 
   <rm:locator pattern="^org\.palladiosimulator\.thirdpartywrapper.*" searchPathRef="thirdparty" failOnError="true"/>
-  <rm:locator pattern="^org\.jfree\..*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^org\.apache\..*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^org\.jscience.*" searchPathRef="thirdparty" failOnError="false"/>  
-  <rm:locator pattern="^org\.hibernate.*" searchPathRef="thirdparty" failOnError="false"/>  
-  <rm:locator pattern="^org\.rosuda.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^org\.opt4j.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^ca\.umontreal\.iro.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^ch\.ethz.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^de\.desmoj.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^de\.ikv\.medini.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^uc\.ac\.ucl.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^org\.clapper.*" searchPathRef="thirdparty" failOnError="false"/>
 
-  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Build/trunk/org.palladiosimulator.targetPlatformBuild/commons.rmap"/>
+  <rm:locator pattern="^ca\.umontreal\.iro.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^ch\.ethz\.iks\.r_osgi.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^de\.desmoj.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^de\.ikv\.medini\.qvt.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.apache\..*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.jfree\.jfreechart.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.jscience.*" searchPathRef="thirdparty" failOnError="false"/>  
+  <rm:locator pattern="^org\.opt4j.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.rosuda.*" searchPathRef="thirdparty" failOnError="false"/>
+
+  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Build/trunk/org.palladiosimulator.targetPlatformBuild/license.rmap"/>
 
   <rm:searchPath name="thirdparty">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true" mutable="true">
       <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk#{0}">
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/nightly/"/>
     </rm:provider>
   </rm:searchPath>
 
