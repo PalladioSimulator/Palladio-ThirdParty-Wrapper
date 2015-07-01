@@ -3,11 +3,13 @@
 
   <rm:locator pattern="^org\.palladiosimulator\.thirdpartywrapper.*" searchPathRef="thirdparty" failOnError="true"/>
 
-  <rm:locator pattern="^ca\.umontreal\.iro.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^ca\.umontreal\.iro\.lecuyer\.ssj.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^ch\.ethz\.iks\.r_osgi.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^de\.desmoj.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^de\.ikv\.medini\.qvt.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:locator pattern="^org\.apache\..*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.apache\.chemistry\.opencmis.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.apache\.commons\.collections15.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.apache\.commons\.logging\.fragment.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.jfree\.jfreechart.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.jscience.*" searchPathRef="thirdparty" failOnError="false"/>  
   <rm:locator pattern="^org\.opt4j.*" searchPathRef="thirdparty" failOnError="false"/>
