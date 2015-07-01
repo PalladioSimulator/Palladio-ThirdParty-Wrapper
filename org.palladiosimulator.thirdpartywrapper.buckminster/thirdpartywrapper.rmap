@@ -19,7 +19,7 @@
 
   <rm:searchPath name="thirdparty">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true" mutable="true">
-      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk#{0}">
+      <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
