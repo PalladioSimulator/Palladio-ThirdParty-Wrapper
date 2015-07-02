@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   
-  <rm:property key="buildType" value="nightly"/>
+  <rm:property key="resolveFrom" value="release"/>
   
   <rm:locator pattern="^org\.palladiosimulator\.thirdpartywrapper.*" searchPathRef="thirdparty"/>
   <rm:locator pattern="^ca\.umontreal\.iro\.lecuyer\.ssj.*" searchPathRef="thirdparty" failOnError="false"/>
@@ -18,15 +18,11 @@
   <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Build/trunk/org.palladiosimulator.targetPlatformBuild/license.rmap"/>
   
   <rm:searchPath name="thirdparty">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(buildType=nightly)" readerType="p2" source="false" mutable="false">
-      <rm:property key="buckminster.source" value="false"/>
-      <rm:property key="buckminster.mutable" value="false"/>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=nightly)" readerType="p2" source="false" mutable="false">
       <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/nightly/"/>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(buildType=release)" readerType="p2" source="false" mutable="false">
-      <rm:property key="buckminster.source" value="false"/>
-      <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/releases/latest/"/>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=release)" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/releases/latest/" />
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn">
       <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
