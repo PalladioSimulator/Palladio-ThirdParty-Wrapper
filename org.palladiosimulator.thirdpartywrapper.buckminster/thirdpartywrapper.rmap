@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 
+  <bc:property name="buildType" value="nightly" mutable="true" />
+  
   <rm:locator pattern="^org\.palladiosimulator\.thirdpartywrapper.*" searchPathRef="thirdparty" failOnError="true"/>
 
   <rm:locator pattern="^ca\.umontreal\.iro\.lecuyer\.ssj.*" searchPathRef="thirdparty" failOnError="false"/>
@@ -18,8 +20,11 @@
   <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Build/trunk/org.palladiosimulator.targetPlatformBuild/license.rmap"/>
 
   <rm:searchPath name="thirdparty">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+    <rm:provider filter="(buildType=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/nightly/"/>
+    </rm:provider>
+    <rm:provider filter="(buildType=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/thirdpartywrapper/releases/latest/"/>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true" mutable="true">
       <rm:uri format="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/ThirdPartyWrapper/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
