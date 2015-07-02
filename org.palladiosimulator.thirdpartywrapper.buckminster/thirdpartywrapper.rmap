@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 
-  <bc:property name="buildType" value="nightly" mutable="true" />
+  <rm:property name="buildType" value="nightly" mutable="true" />
   
   <rm:locator pattern="^org\.palladiosimulator\.thirdpartywrapper.*" searchPathRef="thirdparty" failOnError="true"/>
 
