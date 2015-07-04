@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="thirdpartywrapper.rmap">
     <cq:rootRequest name="org.palladiosimulator.thirdpartywrapper.buckminster" componentType="eclipse.feature"/>
     <cq:advisorNode namePattern="^org\.palladiosimulator\.license$" sourceLevel="REQUIRE" useWorkspace="false"/>
+    <cq:advisorNode namePattern="^org\.palladiosimulator\.branding$" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^org\.palladiosimulator\.thirdpartywrapper.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^ca\.umontreal\.iro\.lecuyer\.ssj.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^ch\.ethz\.iks\.r_osgi.*" sourceLevel="REQUIRE" useWorkspace="false"/>
