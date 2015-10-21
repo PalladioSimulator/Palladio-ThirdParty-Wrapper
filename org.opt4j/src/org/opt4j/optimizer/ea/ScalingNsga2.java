@@ -102,13 +102,14 @@ public class ScalingNsga2 extends AlternativeNsga2 implements IndividualSetListe
 				double pv = dist[p];
 				double qv = dist[q];
 
-				if (pv - qv > 0) {
+				/*if (pv - qv > 0) {
 					return -1;
 				} else if (qv - pv > 0) {
 					return 1;
 				} else {
 					return 0;
-				}
+				}*/
+				return Double.compare(pv, qv);
 			}
 		});
 
