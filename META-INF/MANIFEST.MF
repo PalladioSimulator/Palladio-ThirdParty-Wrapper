@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Kryo
+Bundle-SymbolicName: com.esotericsoftware.kryo
+Bundle-Version: 3.0.3
+Bundle-Vendor: Esoteric Software
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.esotericsoftware.kryo,
+ com.esotericsoftware.kryo.factories,
+ com.esotericsoftware.kryo.io,
+ com.esotericsoftware.kryo.pool,
+ com.esotericsoftware.kryo.serializers,
+ com.esotericsoftware.kryo.util,
+ com.esotericsoftware.minlog,
+ com.esotericsoftware.reflectasm,
+ com.esotericsoftware.reflectasm.shaded.org.objectweb.asm
+Bundle-ActivationPolicy: lazy
