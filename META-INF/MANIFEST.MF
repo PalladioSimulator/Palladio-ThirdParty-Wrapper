@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: quasar-core
 Bundle-SymbolicName: co.paralleluniverse
-Bundle-Version: 0.7.3
+Bundle-Version: 0.7.4
 Bundle-Vendor: Parallel Universe Software Co.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: co.paralleluniverse.asm,
@@ -29,7 +29,6 @@ Export-Package: co.paralleluniverse.asm,
  co.paralleluniverse.remote,
  co.paralleluniverse.strands,
  co.paralleluniverse.strands.channels,
- co.paralleluniverse.strands.channels.disruptor,
  co.paralleluniverse.strands.channels.transfer,
  co.paralleluniverse.strands.concurrent,
  co.paralleluniverse.strands.dataflow,
@@ -38,4 +37,4 @@ Export-Package: co.paralleluniverse.asm,
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.esotericsoftware.kryo;bundle-version="1.0.0";visibility:=reexport,
  com.google.guava;bundle-version="15.0.0"
-Bundle-ClassPath: quasar-core-0.7.3-jdk8.jar
+Bundle-ClassPath: quasar-core-0.7.4-jdk8.jar
