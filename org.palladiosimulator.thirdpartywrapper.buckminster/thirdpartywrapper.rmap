@@ -11,7 +11,7 @@
   <rm:locator pattern="^org\.apache\.chemistry\.opencmis.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.apache\.commons\.collections15.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.apache\.commons\.logging\.fragment.*" searchPathRef="thirdparty" failOnError="false"/>
-    <rm:locator pattern="^org\.apache\.commons\.math3.*" searchPathRef="thirdparty" failOnError="false"/>
+  <rm:locator pattern="^org\.apache\.commons\.math3.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.jfree\.jfreechart.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.jscience.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.opt4j.*" searchPathRef="thirdparty" failOnError="false"/>
