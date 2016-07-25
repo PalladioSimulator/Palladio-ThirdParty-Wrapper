@@ -11,6 +11,7 @@
     <cq:advisorNode namePattern="^org\.apache\.commons\.collections15.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^org\.apache\.commons\.logging\.fragment.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^org\.apache\.commons\.math3.*" sourceLevel="REQUIRE" useWorkspace="false"/>
+    <cq:advisorNode namePattern="^org\.apache\.commons\.csv.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^org\.jfree\.jfreechart.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^org\.jscience.*" sourceLevel="REQUIRE" useWorkspace="false"/>
     <cq:advisorNode namePattern="^org\.opt4j.*" sourceLevel="REQUIRE" useWorkspace="false"/>
