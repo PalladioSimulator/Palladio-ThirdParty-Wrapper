@@ -17,7 +17,7 @@
   <rm:locator pattern="^org\.jscience.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.opt4j.*" searchPathRef="thirdparty" failOnError="false"/>
   <rm:locator pattern="^org\.rosuda.*" searchPathRef="thirdparty" failOnError="false"/>
-  <rm:redirect pattern=".*" href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Build/trunk/org.palladiosimulator.targetPlatformBuild/license.rmap"/>
+  <rm:redirect pattern=".*" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-Build-Infrastructure/master/org.palladiosimulator.targetPlatformBuild/eclipse-platform.rmap"/>
   
   <rm:searchPath name="thirdparty">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolveFrom=nightly)" readerType="p2" source="false" mutable="false">
