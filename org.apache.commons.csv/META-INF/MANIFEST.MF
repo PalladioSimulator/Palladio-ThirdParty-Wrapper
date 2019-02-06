@@ -6,3 +6,4 @@ Bundle-Version: 1.4
 Bundle-Vendor: Apache Foundation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.apache.commons.csv
+Bundle-ClassPath: lib/commons-csv-1.4.jar
