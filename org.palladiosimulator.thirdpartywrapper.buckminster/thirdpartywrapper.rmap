@@ -31,7 +31,7 @@
         <bc:propertyRef key="workspace.root" />
         <bc:propertyRef key="buckminster.component" />
       </rm:uri>
-      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-ThirdParty-Library"/>
+      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-ThirdParty-Wrapper"/>
       <rm:property key="git.auto.fetch" value="true"/>
     </rm:provider>
   </rm:searchPath>
