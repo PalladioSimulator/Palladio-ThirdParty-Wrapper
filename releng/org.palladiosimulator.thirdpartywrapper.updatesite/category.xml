@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<feature url="features/org.palladiosimulator.thirdpartywrapper.feature_1.0.2.qualifier.jar" id="org.palladiosimulator.thirdpartywrapper.feature" version="1.0.2.qualifier">
+	   <category name="org.palladiosimulator.support.category"/>
+	</feature>
+	<category-def name="org.palladiosimulator.support.category" label="Palladio Supporting Features">
+	   <description>
+	      Features that support the Palladio Bench tooling, but also could be used independently
+	   </description>
+	  </category-def>
+</site>
