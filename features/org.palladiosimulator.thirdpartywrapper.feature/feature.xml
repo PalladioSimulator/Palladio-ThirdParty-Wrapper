@@ -4,7 +4,7 @@
       label="Third Party Wrapper"
       version="1.0.2.qualifier"
       plugin="org.palladiosimulator.branding"
-      license-feature="org.palladiosimulator.license"
+      license-feature="org.palladiosimulator.license.epl2"
       license-feature-version="1.0.0">
 
    <description url="http://palladiosimulator.org">
@@ -22,13 +22,13 @@
       <import plugin="org.apache.commons.collections15" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
    </requires>
-
+<!--
    <plugin
          id="ca.umontreal.iro.lecuyer.ssj"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
+-->
    <plugin
          id="de.desmoj"
          download-size="0"
@@ -96,7 +96,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+<!--
    <plugin
          id="ca.umontreal.iro.lecuyer.ssj.linux"
          os="linux"
@@ -116,7 +116,7 @@
          install-size="0"
          version="0.0.0"
          fragment="true"/>
-
+-->
    <plugin
          id="org.palladiosimulator.branding"
          download-size="0"
