@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: SSJ Linux Fragment
-Bundle-SymbolicName: ca.umontreal.iro.lecuyer.ssj.linux
-Bundle-Version: 2.1.3
-Bundle-Vendor: sdq.ipd.uka.de
-Fragment-Host: ca.umontreal.iro.lecuyer.ssj;bundle-version="2.1.3"
-Eclipse-PlatformFilter: (& (osgi.ws=gtk) (osgi.os=linux) (osgi.arch=x86))
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
