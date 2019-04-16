@@ -12,11 +12,6 @@
 	<packaging>pom</packaging>
 	
 	<modules>
-	<!--
-		<module>ca.umontreal.iro.lecuyer.ssj</module>
-		<module>ca.umontreal.iro.lecuyer.ssj.linux</module>
-		<module>ca.umontreal.iro.lecuyer.ssj.win32</module>
-		-->
 		<module>ch.ethz.iks.r_osgi.remote</module>
 		<module>de.desmoj</module>
 		<module>de.ikv.medini.qvt.plugin</module>

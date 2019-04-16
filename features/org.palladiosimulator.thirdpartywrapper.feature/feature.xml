@@ -21,14 +21,9 @@
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.apache.commons.collections15" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.branding"/>
    </requires>
-<!--
-   <plugin
-         id="ca.umontreal.iro.lecuyer.ssj"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
--->
+
    <plugin
          id="de.desmoj"
          download-size="0"
@@ -92,33 +87,6 @@
 
    <plugin
          id="org.apache.chemistry.opencmis"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-<!--
-   <plugin
-         id="ca.umontreal.iro.lecuyer.ssj.linux"
-         os="linux"
-         ws="gtk"
-         arch="x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
-
-   <plugin
-         id="ca.umontreal.iro.lecuyer.ssj.win32"
-         os="win32"
-         ws="win32"
-         arch="x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
--->
-   <plugin
-         id="org.palladiosimulator.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
