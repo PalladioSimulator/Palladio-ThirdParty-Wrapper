@@ -1,4 +1,4 @@
 PalladioPipeline {
     deployUpdatesite 'releng/org.palladiosimulator.thirdpartywrapper.updatesite/target/repository'
-    skipCodeQuality = true
+    skipQualityMetrics true
 }
