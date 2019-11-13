@@ -4,5 +4,5 @@ Bundle-Name: Test Plugin for Palladio's third-party wrapper
 Bundle-SymbolicName: org.palladiosimulator.thirdpartywrapper.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: palladiosimulator.org
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.junit

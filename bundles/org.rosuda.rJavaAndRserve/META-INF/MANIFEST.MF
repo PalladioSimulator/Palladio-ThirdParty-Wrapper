@@ -12,4 +12,4 @@ Export-Package: org.rosuda.JRI,
  org.rosuda.REngine.JRI,
  org.rosuda.REngine.Rserve,
  org.rosuda.REngine.Rserve.protocol
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11

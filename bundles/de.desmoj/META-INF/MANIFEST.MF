@@ -13,4 +13,4 @@ Export-Package: desmoj.core.advancedModellingFeatures,
  desmoj.core.statistic,
  desmoj.core.util
 Bundle-ClassPath: desmoj-2.3.3-core-bin.jar
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
