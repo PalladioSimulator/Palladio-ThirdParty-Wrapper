@@ -2,7 +2,7 @@
 <feature
       id="org.palladiosimulator.thirdpartywrapper.feature"
       label="Third Party Wrapper"
-      version="1.0.2.qualifier"
+      version="4.2.0.qualifier"
       plugin="org.palladiosimulator.branding">
 
    <description url="http://palladiosimulator.org">
@@ -1414,7 +1414,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
       <import plugin="org.apache.log4j" version="1.2.13" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.swt"/>
-      <import plugin="org.apache.commons.collections15" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.collections15"/>
       <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.branding"/>
    </requires>
