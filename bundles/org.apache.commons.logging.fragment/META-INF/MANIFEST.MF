@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Commons Logging Log4J Bridge Fragment
 Bundle-SymbolicName: org.apache.commons.logging.fragment
-Bundle-Version: 1.0.0
+Bundle-Version: 5.0.0.qualifier
 Bundle-Vendor: sdq.ipd.uka.de
 Fragment-Host: org.apache.commons.logging;bundle-version="1.1.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
