@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Opencmis Third-Party Libraries
 Bundle-SymbolicName: org.apache.chemistry.opencmis
-Bundle-Version: 5.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-Vendor: palladiosimulator.org
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ClassPath: chemistry-opencmis-client-api-0.12.0.jar,

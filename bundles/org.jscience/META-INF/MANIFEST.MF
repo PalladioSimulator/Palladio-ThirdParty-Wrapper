@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Jscience Plug-in
 Bundle-SymbolicName: org.jscience
-Bundle-Version: 5.0.0.qualifier
+Bundle-Version: 4.3.1
 Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: javax.measure;uses:="javax.measure.unit",
  javax.measure.converter,
