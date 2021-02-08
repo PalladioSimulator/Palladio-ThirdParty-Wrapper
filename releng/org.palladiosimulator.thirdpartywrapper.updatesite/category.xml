@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<feature url="features/org.palladiosimulator.thirdpartywrapper.feature_4.3.0.qualifier.jar" id="org.palladiosimulator.thirdpartywrapper.feature" version="4.3.0.qualifier">
+	<feature id="org.palladiosimulator.thirdpartywrapper.feature">
 	   <category name="org.palladiosimulator.support.category"/>
 	</feature>
 	<category-def name="org.palladiosimulator.support.category" label="Palladio Supporting Features">
