@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Apache Commons Collections
 Bundle-SymbolicName: org.apache.commons.collections15
-Bundle-Version: 1.0.0
+Bundle-Version: 5.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ClassPath: collections-generic-4.01.jar,
  .

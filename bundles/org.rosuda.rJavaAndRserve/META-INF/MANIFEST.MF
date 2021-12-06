@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: RJavaAndRserve
 Bundle-SymbolicName: org.rosuda.rJavaAndRserve
-Bundle-Version: 1.0.0
+Bundle-Version: 5.1.0.qualifier
 Bundle-ClassPath: REngine.jar,
  RserveEngine.jar,
  JRI.jar,

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Remote Plug-in Wrapper
 Bundle-SymbolicName: ch.ethz.iks.r_osgi.remote
-Bundle-Version: 1.0.0
+Bundle-Version: 5.1.0.qualifier
 Bundle-ClassPath: ch.ethz.iks.r_osgi.remote_1.0.0.RC2_v20081224-1728.jar
 Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: ch.ethz.iks.r_osgi,

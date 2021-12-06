@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: medini QVT Engine Plug-in
 Bundle-SymbolicName: de.ikv.medini.qvt.plugin;singleton:=true
-Bundle-Version: 1.4.0.25263
+Bundle-Version: 5.1.0.qualifier
 Bundle-ClassPath: qvtemf.jar
 Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: de.ikv.emf.qvt,
