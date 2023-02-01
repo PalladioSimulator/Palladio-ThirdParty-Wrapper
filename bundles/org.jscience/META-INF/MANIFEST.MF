@@ -82,4 +82,4 @@ Bundle-ClassPath: .,
  lib/javolution.jar,
  lib/geoapi.jar,
  lib/colapi.jar
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17

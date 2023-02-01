@@ -4,7 +4,7 @@ Bundle-Name: Opencmis Third-Party Libraries
 Bundle-SymbolicName: org.apache.chemistry.opencmis
 Bundle-Version: 1.0.0
 Bundle-Vendor: palladiosimulator.org
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ClassPath: chemistry-opencmis-client-api-0.12.0.jar,
  chemistry-opencmis-client-bindings-0.12.0.jar,
  chemistry-opencmis-client-impl-0.12.0.jar,

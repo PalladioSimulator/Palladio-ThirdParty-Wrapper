@@ -13,4 +13,4 @@ Export-Package: ch.ethz.iks.r_osgi,
  ch.ethz.iks.r_osgi.streams,
  ch.ethz.iks.r_osgi.types,
  ch.ethz.iks.util
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17

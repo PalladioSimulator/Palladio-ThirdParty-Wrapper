@@ -5,4 +5,4 @@ Bundle-SymbolicName: org.apache.commons.logging.fragment
 Bundle-Version: 1.0.0
 Bundle-Vendor: sdq.ipd.uka.de
 Fragment-Host: org.apache.commons.logging;bundle-version="1.1.1"
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
