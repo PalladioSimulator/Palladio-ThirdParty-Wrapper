@@ -6,9 +6,9 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
-import javax.measure.quantity.Quantity;
+import jakarta.measure.quantity.Quantity;
 
 /**
  * <p> This class identifies the units created by combining or transforming

@@ -6,12 +6,12 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure;
+package jakarta.measure;
 
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.CompoundUnit;
-import javax.measure.unit.Unit;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Quantity;
+import jakarta.measure.unit.CompoundUnit;
+import jakarta.measure.unit.Unit;
 
 /**
  * <p> This class represents a measurement vector of two or more dimensions.

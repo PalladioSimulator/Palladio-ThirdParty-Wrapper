@@ -6,7 +6,7 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
 import java.io.IOException;
 import java.lang.CharSequence;
@@ -17,13 +17,13 @@ import java.text.ParsePosition;
 import java.util.HashMap;
 import java.util.Locale;
 //@RETROWEAVER import javolution.text.Appendable;
-import javax.measure.converter.AddConverter;
-import javax.measure.converter.MultiplyConverter;
-import javax.measure.converter.RationalConverter;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Quantity;
+import jakarta.measure.converter.AddConverter;
+import jakarta.measure.converter.MultiplyConverter;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Quantity;
 
-import static javax.measure.unit.SI.*;
+import static jakarta.measure.unit.SI.*;
 
 /**
  * <p> This class provides the interface for formatting and parsing {@link 

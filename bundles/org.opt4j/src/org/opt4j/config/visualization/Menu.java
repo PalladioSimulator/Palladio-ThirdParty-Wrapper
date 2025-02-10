@@ -20,10 +20,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-import javax.swing.JDialog;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import jakarta.swing.JDialog;
+import jakarta.swing.JMenu;
+import jakarta.swing.JMenuBar;
+import jakarta.swing.JMenuItem;
 
 import org.opt4j.config.Icons;
 import org.opt4j.config.visualization.FileOperations.FileOperationsListener;

@@ -6,15 +6,15 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure;
+package jakarta.measure;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.CompoundUnit;
-import javax.measure.unit.Unit;
+import jakarta.measure.quantity.Quantity;
+import jakarta.measure.unit.CompoundUnit;
+import jakarta.measure.unit.Unit;
 
 /**
  * <p> This class represents the result of a measurement stated in a 

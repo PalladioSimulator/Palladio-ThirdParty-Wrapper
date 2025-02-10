@@ -6,10 +6,10 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.quantity;
-import javax.measure.unit.ProductUnit;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+package jakarta.measure.quantity;
+import jakarta.measure.unit.ProductUnit;
+import jakarta.measure.unit.SI;
+import jakarta.measure.unit.Unit;
 
 /**
  * This interface represents the moment of a force. The system unit for this

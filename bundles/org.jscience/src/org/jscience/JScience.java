@@ -12,8 +12,8 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.Random;
 
-import javax.measure.quantity.*;
-import javax.measure.unit.*;
+import jakarta.measure.quantity.*;
+import jakarta.measure.unit.*;
 
 import org.jscience.economics.money.Currency;
 import org.jscience.economics.money.Money;
@@ -48,8 +48,8 @@ import javolution.text.TextBuilder;
 import javolution.context.ConcurrentContext;
 import javolution.context.LocalContext;
 import javolution.context.StackContext;
-import static javax.measure.unit.NonSI.*;
-import static javax.measure.unit.SI.*;
+import static jakarta.measure.unit.NonSI.*;
+import static jakarta.measure.unit.SI.*;
 import static org.jscience.economics.money.Currency.*;
 
 /**

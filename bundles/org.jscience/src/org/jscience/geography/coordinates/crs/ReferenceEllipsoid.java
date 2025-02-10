@@ -8,10 +8,10 @@
  */
 package org.jscience.geography.coordinates.crs;
 
-import javax.measure.Measure;
-import javax.measure.Measurable;
-import javax.measure.quantity.*;
-import javax.measure.unit.SI;
+import jakarta.measure.Measure;
+import jakarta.measure.Measurable;
+import jakarta.measure.quantity.*;
+import jakarta.measure.unit.SI;
 
 /**
  * <p> The ReferenceEllipsoid class defines a geodetic reference ellipsoid

@@ -15,7 +15,7 @@
 
 package org.opt4j.config.visualization;
 
-import javax.swing.JPanel;
+import jakarta.swing.JPanel;
 
 import com.google.inject.ImplementedBy;
 

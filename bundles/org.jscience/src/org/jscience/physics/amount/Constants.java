@@ -9,9 +9,9 @@
 package org.jscience.physics.amount;
 import javolution.lang.MathLib;
 
-import javax.measure.quantity.*;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+import jakarta.measure.quantity.*;
+import jakarta.measure.unit.SI;
+import jakarta.measure.unit.Unit;
 
 /**
  * <p> This class provides most accurate physical constants measurement;

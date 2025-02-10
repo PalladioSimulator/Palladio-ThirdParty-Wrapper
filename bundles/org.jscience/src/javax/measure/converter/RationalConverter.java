@@ -6,7 +6,7 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.converter;
+package jakarta.measure.converter;
 
 /**
  * <p> This class represents a converter multiplying numeric values by an

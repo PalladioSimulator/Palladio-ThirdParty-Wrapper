@@ -10,12 +10,12 @@ package org.jscience.geography.coordinates;
 
 import static org.jscience.geography.coordinates.crs.ReferenceEllipsoid.WGS84;
 
-import javax.measure.Measure;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.*;
-import javax.measure.unit.*;
-import static javax.measure.unit.SI.*;
-import static javax.measure.unit.NonSI.*;
+import jakarta.measure.Measure;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.*;
+import jakarta.measure.unit.*;
+import static jakarta.measure.unit.SI.*;
+import static jakarta.measure.unit.NonSI.*;
 
 import javolution.context.ObjectFactory;
 import javolution.xml.XMLFormat;

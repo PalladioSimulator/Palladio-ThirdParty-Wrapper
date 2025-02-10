@@ -6,10 +6,10 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Quantity;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Quantity;
         
 /**
  * <p> This class represents the units derived from other units using

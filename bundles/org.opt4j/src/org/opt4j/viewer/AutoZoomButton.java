@@ -3,7 +3,7 @@ package org.opt4j.viewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import jakarta.swing.JButton;
 
 
 /**

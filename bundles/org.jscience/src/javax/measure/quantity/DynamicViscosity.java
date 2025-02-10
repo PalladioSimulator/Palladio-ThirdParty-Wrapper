@@ -6,11 +6,11 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.quantity;
+package jakarta.measure.quantity;
 
-import javax.measure.unit.ProductUnit;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+import jakarta.measure.unit.ProductUnit;
+import jakarta.measure.unit.SI;
+import jakarta.measure.unit.Unit;
 
 /**
  * This interface represents the dynamic viscosity. 

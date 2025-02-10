@@ -17,7 +17,7 @@ package org.opt4j.config.visualization;
 
 import java.lang.reflect.Field;
 
-import javax.swing.ImageIcon;
+import jakarta.swing.ImageIcon;
 
 import org.opt4j.config.Icons;
 import org.opt4j.config.Property;

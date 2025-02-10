@@ -19,7 +19,7 @@
  * org.opt4j.viewer.Viewer}.
  * </p>
  * <p>
- * The {@link org.opt4j.viewer.Viewer} is a {@link javax.swing.JFrame} consisting of the
+ * The {@link org.opt4j.viewer.Viewer} is a {@link jakarta.swing.JFrame} consisting of the
  * following elements:
  * <ul>
  * <li>{@link org.opt4j.viewer.ToolBar} - a panel for arbitrary buttons</li>
@@ -28,7 +28,7 @@
  * </p>
  * <p>
  * The {@link org.opt4j.viewer.Viewport} is a desktop for {@link org.opt4j.viewer.Widget} elements.
- * A widget is similar to a {@link javax.swing.JInternalFrame}, several properties are
+ * A widget is similar to a {@link jakarta.swing.JInternalFrame}, several properties are
  * defined in the {@link org.opt4j.viewer.WidgetParameters}. Widgets are added
  * directly to the viewport.
  * </p>

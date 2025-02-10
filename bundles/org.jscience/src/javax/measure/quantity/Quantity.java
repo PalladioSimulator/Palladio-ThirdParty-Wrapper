@@ -6,7 +6,7 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.quantity;
+package jakarta.measure.quantity;
 
 /**
  * <p> This interface represents any type of quantitative properties or 

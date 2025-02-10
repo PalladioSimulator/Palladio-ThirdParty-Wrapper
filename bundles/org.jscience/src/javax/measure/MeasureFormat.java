@@ -6,7 +6,7 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure;
+package jakarta.measure;
 
 import java.math.BigDecimal;
 import java.text.FieldPosition;
@@ -15,9 +15,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 
-import javax.measure.unit.CompoundUnit;
-import javax.measure.unit.Unit;
-import javax.measure.unit.UnitFormat;
+import jakarta.measure.unit.CompoundUnit;
+import jakarta.measure.unit.Unit;
+import jakarta.measure.unit.UnitFormat;
 
 /**
  * <p> This class provides the interface for formatting and parsing {@link 

@@ -6,13 +6,13 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
 import java.io.Serializable;
 
-import javax.measure.converter.ConversionException;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Quantity;
+import jakarta.measure.converter.ConversionException;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Quantity;
 
 /**
  * <p> This class represents units formed by the product of rational powers of

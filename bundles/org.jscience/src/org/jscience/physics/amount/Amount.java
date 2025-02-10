@@ -21,14 +21,14 @@ import javolution.xml.stream.XMLStreamException;
 
 import org.jscience.mathematics.structure.Field;
 
-import javax.measure.converter.ConversionException;
-import javax.measure.converter.RationalConverter;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Dimensionless;
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.Unit;
-import javax.measure.Measurable;
-import javax.realtime.MemoryArea;
+import jakarta.measure.converter.ConversionException;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Dimensionless;
+import jakarta.measure.quantity.Quantity;
+import jakarta.measure.unit.Unit;
+import jakarta.measure.Measurable;
+import jakarta.realtime.MemoryArea;
 
 /**
  * <p> This class represents a determinate or estimated amount for which 

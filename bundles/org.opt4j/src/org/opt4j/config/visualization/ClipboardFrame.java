@@ -26,13 +26,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JFrame;
+import jakarta.swing.JLabel;
+import jakarta.swing.JPanel;
+import jakarta.swing.JTextPane;
+import jakarta.swing.text.BadLocationException;
+import jakarta.swing.text.StyledDocument;
 
 /**
  * The {@link ClipboardFrame} is a tooltip that copies the text to the clipboard

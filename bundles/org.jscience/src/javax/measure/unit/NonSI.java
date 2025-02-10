@@ -6,17 +6,17 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.measure.converter.LogConverter;
-import javax.measure.converter.RationalConverter;
-import javax.measure.quantity.*;
+import jakarta.measure.converter.LogConverter;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.quantity.*;
 
-import static javax.measure.unit.SI.*;
+import static jakarta.measure.unit.SI.*;
 
 /**
  * <p> This class contains units that are not part of the International

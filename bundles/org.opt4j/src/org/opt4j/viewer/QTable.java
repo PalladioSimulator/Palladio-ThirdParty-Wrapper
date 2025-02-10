@@ -16,11 +16,11 @@ package org.opt4j.viewer;
 
 import java.awt.Component;
 
-import javax.swing.JComponent;
-import javax.swing.JTable;
-import javax.swing.JToolTip;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
+import jakarta.swing.JComponent;
+import jakarta.swing.JTable;
+import jakarta.swing.JToolTip;
+import jakarta.swing.table.TableCellRenderer;
+import jakarta.swing.table.TableModel;
 
 /**
  * The {@link QTable} extends the {@link JTable} by automatically adding
@@ -47,7 +47,7 @@ class QTable extends JTable {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * javax.swing.JTable#prepareRenderer(javax.swing.table.TableCellRenderer,
+	 * jakarta.swing.JTable#prepareRenderer(jakarta.swing.table.TableCellRenderer,
 	 * int, int)
 	 */
 	@Override
@@ -86,7 +86,7 @@ class QTable extends JTable {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.JToolTip#setTipText(java.lang.String)
+		 * @see jakarta.swing.JToolTip#setTipText(java.lang.String)
 		 */
 		@Override
 		public void setTipText(String tipText) {
@@ -108,7 +108,7 @@ class QTable extends JTable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.JComponent#createToolTip()
+	 * @see jakarta.swing.JComponent#createToolTip()
 	 */
 	@Override
 	public JToolTip createToolTip() {

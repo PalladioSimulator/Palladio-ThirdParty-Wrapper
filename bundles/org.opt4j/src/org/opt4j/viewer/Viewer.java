@@ -20,10 +20,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
+import jakarta.swing.ImageIcon;
+import jakarta.swing.JFrame;
+import jakarta.swing.UIManager;
+import jakarta.swing.WindowConstants;
 
 import org.opt4j.config.Icons;
 import org.opt4j.config.annotations.Info;

@@ -14,7 +14,7 @@
 
 package org.opt4j.config.visualization;
 
-import javax.swing.JFrame;
+import jakarta.swing.JFrame;
 
 import org.opt4j.config.visualization.FileOperations.FileOperationsListener;
 

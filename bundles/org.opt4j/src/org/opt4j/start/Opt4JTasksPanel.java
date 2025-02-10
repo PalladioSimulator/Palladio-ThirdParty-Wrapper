@@ -24,15 +24,15 @@ import java.awt.event.MouseEvent;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-import javax.swing.JProgressBar;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JComponent;
+import jakarta.swing.JMenuItem;
+import jakarta.swing.JPopupMenu;
+import jakarta.swing.JProgressBar;
+import jakarta.swing.JTable;
+import jakarta.swing.table.AbstractTableModel;
+import jakarta.swing.table.DefaultTableCellRenderer;
+import jakarta.swing.table.TableCellRenderer;
 
 import org.opt4j.config.ExecutionEnvironment;
 import org.opt4j.config.Icons;
@@ -97,7 +97,7 @@ public class Opt4JTasksPanel extends DefaultTasksPanel {
 		 * (non-Javadoc)
 		 * 
 		 * @see
-		 * javax.swing.JTable#prepareRenderer(javax.swing.table.TableCellRenderer
+		 * jakarta.swing.JTable#prepareRenderer(jakarta.swing.table.TableCellRenderer
 		 * , int, int)
 		 */
 		@Override

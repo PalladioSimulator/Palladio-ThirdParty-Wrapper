@@ -6,10 +6,10 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure;
+package jakarta.measure;
 
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.Unit;
+import jakarta.measure.quantity.Quantity;
+import jakarta.measure.unit.Unit;
 
 /**
  * <p> This interface represents the measurable, countable, or comparable 

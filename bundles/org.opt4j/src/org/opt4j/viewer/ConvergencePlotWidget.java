@@ -24,16 +24,16 @@ import java.awt.geom.Point2D.Double;
 import java.util.Collection;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.ListCellRenderer;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.DefaultListCellRenderer;
+import jakarta.swing.JComboBox;
+import jakarta.swing.JLabel;
+import jakarta.swing.JList;
+import jakarta.swing.JPanel;
+import jakarta.swing.JToolBar;
+import jakarta.swing.ListCellRenderer;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.border.Border;
 
 import org.opt4j.config.Icons;
 import org.opt4j.core.Objective;

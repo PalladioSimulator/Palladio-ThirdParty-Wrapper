@@ -19,14 +19,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.text.DecimalFormat;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JComponent;
+import jakarta.swing.JLabel;
+import jakarta.swing.JPanel;
+import jakarta.swing.JProgressBar;
+import jakarta.swing.SwingConstants;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.border.Border;
 
 import org.opt4j.core.optimizer.Optimizer;
 import org.opt4j.core.optimizer.OptimizerIterationListener;

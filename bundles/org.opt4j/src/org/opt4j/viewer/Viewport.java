@@ -20,14 +20,14 @@ import java.beans.PropertyVetoException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.Icon;
-import javax.swing.JComponent;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
+import jakarta.swing.Icon;
+import jakarta.swing.JComponent;
+import jakarta.swing.JDesktopPane;
+import jakarta.swing.JInternalFrame;
+import jakarta.swing.JPanel;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.event.InternalFrameAdapter;
+import jakarta.swing.event.InternalFrameEvent;
 
 import org.opt4j.config.Icons;
 

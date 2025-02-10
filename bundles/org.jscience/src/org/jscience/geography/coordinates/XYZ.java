@@ -8,11 +8,11 @@
  */
 package org.jscience.geography.coordinates;
 
-import javax.measure.Measure;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.*;
-import static javax.measure.unit.SI.*;
-import javax.measure.unit.Unit;
+import jakarta.measure.Measure;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.*;
+import static jakarta.measure.unit.SI.*;
+import jakarta.measure.unit.Unit;
 
 import javolution.context.ObjectFactory;
 import javolution.xml.XMLFormat;

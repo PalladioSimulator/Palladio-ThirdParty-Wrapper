@@ -17,7 +17,7 @@ package org.opt4j.viewer;
 import java.awt.Component;
 import java.awt.Point;
 
-import javax.swing.JPopupMenu;
+import jakarta.swing.JPopupMenu;
 
 import org.opt4j.core.Individual;
 

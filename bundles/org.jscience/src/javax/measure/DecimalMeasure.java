@@ -6,16 +6,16 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure;
+package jakarta.measure;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import javax.measure.converter.AddConverter;
-import javax.measure.converter.RationalConverter;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.Unit;
+import jakarta.measure.converter.AddConverter;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Quantity;
+import jakarta.measure.unit.Unit;
 
 /**
  * <p> This class represents a measure whose value is an arbitrary-precision 

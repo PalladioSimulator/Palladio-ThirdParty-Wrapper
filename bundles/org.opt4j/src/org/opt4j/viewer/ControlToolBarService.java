@@ -14,7 +14,7 @@
  */
 package org.opt4j.viewer;
 
-import javax.swing.JToolBar;
+import jakarta.swing.JToolBar;
 
 import org.opt4j.core.optimizer.Control;
 import org.opt4j.core.optimizer.Optimizer;

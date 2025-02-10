@@ -8,8 +8,8 @@
  */
 package org.jscience.economics.money;
 
-import javax.measure.quantity.Quantity;
-import javax.measure.unit.BaseUnit;
+import jakarta.measure.quantity.Quantity;
+import jakarta.measure.unit.BaseUnit;
 
 /**
  * This interface represents something generally accepted as a medium of 

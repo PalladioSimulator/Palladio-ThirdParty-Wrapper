@@ -29,16 +29,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.filechooser.FileFilter;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JButton;
+import jakarta.swing.JCheckBox;
+import jakarta.swing.JComboBox;
+import jakarta.swing.JFileChooser;
+import jakarta.swing.JLabel;
+import jakarta.swing.JPanel;
+import jakarta.swing.JTextField;
+import jakarta.swing.SwingConstants;
+import jakarta.swing.filechooser.FileFilter;
 
 import org.opt4j.config.Icons;
 import org.opt4j.config.Property;

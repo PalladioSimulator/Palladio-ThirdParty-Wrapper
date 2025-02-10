@@ -8,11 +8,11 @@
  */
 package org.jscience.physics.model;
 
-import javax.measure.converter.RationalConverter;
-import javax.measure.converter.UnitConverter;
-import javax.measure.unit.BaseUnit;
-import javax.measure.unit.Dimension;
-import javax.measure.unit.SI;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.unit.BaseUnit;
+import jakarta.measure.unit.Dimension;
+import jakarta.measure.unit.SI;
 
 /**
  * This class represents the natural model.

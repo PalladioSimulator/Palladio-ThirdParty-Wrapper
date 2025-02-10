@@ -24,17 +24,17 @@ Export-Package:
  org.opt4j.common.random;uses:="org.opt4j.start",
  org.opt4j.config;
   uses:="org.w3c.dom,
-   javax.swing,
-   javax.xml.transform,
+   jakarta.swing,
+   jakarta.xml.transform,
    org.apache.commons.collections15,
    com.google.inject",
  org.opt4j.config.annotations,
  org.opt4j.config.visualization;
   uses:="org.opt4j.viewer,
-   javax.swing.tree,
+   jakarta.swing.tree,
    org.opt4j.config,
-   javax.swing,
-   javax.swing.table,
+   jakarta.swing,
+   jakarta.swing.table,
    com.google.inject",
  org.opt4j.core;uses:="org.opt4j.core.problem,org.opt4j.core.domination,com.google.inject",
  org.opt4j.core.domination;uses:="org.opt4j.start,org.opt4j.core.optimizer,org.opt4j.core",
@@ -121,21 +121,21 @@ Export-Package:
  org.opt4j.start;
   uses:="org.opt4j.viewer,
    org.opt4j.config,
-   javax.swing,
+   jakarta.swing,
    org.opt4j.config.visualization,
-   javax.swing.table,
+   jakarta.swing.table,
    org.opt4j.core.optimizer,
    com.google.inject.binder,
    com.google.inject",
  org.opt4j.viewer;
-  uses:="javax.swing,
-   javax.swing.table,
+  uses:="jakarta.swing,
+   jakarta.swing.table,
    org.opt4j.start,
    org.opt4j.core.optimizer,
    org.opt4j.core,
    com.google.inject"
 Require-Bundle: org.apache.commons.collections15;bundle-version="1.0.0",
- javax.inject;bundle-version="1.0.0"
+ jakarta.inject;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Eclipse-BuddyPolicy: dependent
 Bundle-Vendor: sdq.ipd.uka.de

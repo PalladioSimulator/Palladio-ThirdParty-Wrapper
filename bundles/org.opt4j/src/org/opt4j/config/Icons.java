@@ -21,7 +21,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
-import javax.swing.ImageIcon;
+import jakarta.swing.ImageIcon;
 
 /**
  * The {@link Icons} class is used to get {@link ImageIcon}s from a given

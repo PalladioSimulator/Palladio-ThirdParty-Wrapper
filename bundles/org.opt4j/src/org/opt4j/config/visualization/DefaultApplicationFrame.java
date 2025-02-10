@@ -9,9 +9,9 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingUtilities;
+import jakarta.swing.JPanel;
+import jakarta.swing.JSeparator;
+import jakarta.swing.SwingUtilities;
 
 import org.opt4j.config.Icons;
 

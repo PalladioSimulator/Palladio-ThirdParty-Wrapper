@@ -14,7 +14,7 @@
  */
 package org.opt4j.viewer;
 
-import javax.swing.JToolBar;
+import jakarta.swing.JToolBar;
 
 /**
  * The {@link ToolBarService} is an interface for arbitrary components that are

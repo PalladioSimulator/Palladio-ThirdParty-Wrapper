@@ -24,14 +24,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
+import jakarta.swing.JPanel;
+import jakarta.swing.JScrollPane;
+import jakarta.swing.JTable;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.table.AbstractTableModel;
+import jakarta.swing.table.TableCellRenderer;
+import jakarta.swing.table.TableColumnModel;
+import jakarta.swing.table.TableModel;
 
 import org.opt4j.config.Icons;
 import org.opt4j.core.Individual;

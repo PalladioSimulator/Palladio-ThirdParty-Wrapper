@@ -22,8 +22,8 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.JButton;
-import javax.swing.JToolBar;
+import jakarta.swing.JButton;
+import jakarta.swing.JToolBar;
 
 import org.opt4j.config.ExecutionEnvironment;
 import org.opt4j.config.Icons;

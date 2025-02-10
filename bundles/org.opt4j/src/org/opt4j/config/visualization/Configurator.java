@@ -17,8 +17,8 @@ package org.opt4j.config.visualization;
 
 import java.io.File;
 
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.UIManager;
 
 import org.opt4j.config.Task;
 

@@ -6,13 +6,13 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
 import java.io.Serializable;
 
-import javax.measure.converter.RationalConverter;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Dimensionless;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Dimensionless;
 
 /**
  * <p> This class represents the dimension of an unit. Two units <code>u1</code>

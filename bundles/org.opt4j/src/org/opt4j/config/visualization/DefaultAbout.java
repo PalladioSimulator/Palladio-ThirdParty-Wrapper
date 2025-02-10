@@ -17,9 +17,9 @@ package org.opt4j.config.visualization;
 
 import java.awt.Color;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.WindowConstants;
+import jakarta.swing.JDialog;
+import jakarta.swing.JLabel;
+import jakarta.swing.WindowConstants;
 
 import com.google.inject.Singleton;
 

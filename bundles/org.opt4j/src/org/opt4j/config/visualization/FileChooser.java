@@ -18,7 +18,7 @@ package org.opt4j.config.visualization;
 import java.io.File;
 import java.util.concurrent.RejectedExecutionException;
 
-import javax.swing.JFileChooser;
+import jakarta.swing.JFileChooser;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

@@ -18,14 +18,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableCellRenderer;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JComponent;
+import jakarta.swing.JScrollPane;
+import jakarta.swing.JTable;
+import jakarta.swing.ScrollPaneConstants;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.table.AbstractTableModel;
+import jakarta.swing.table.TableCellRenderer;
 
 import org.opt4j.config.ExecutionEnvironment;
 import org.opt4j.config.Task;
@@ -63,7 +63,7 @@ public class DefaultTasksPanel extends TasksPanel implements TaskListener {
 		 * (non-Javadoc)
 		 * 
 		 * @see
-		 * javax.swing.JTable#prepareRenderer(javax.swing.table.TableCellRenderer
+		 * jakarta.swing.JTable#prepareRenderer(jakarta.swing.table.TableCellRenderer
 		 * , int, int)
 		 */
 		@Override

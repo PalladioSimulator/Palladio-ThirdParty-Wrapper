@@ -11,7 +11,7 @@
 package org.opengis.referencing.cs;
 
 // Direct dependencies
-import javax.measure.unit.Unit;
+import jakarta.measure.unit.Unit;
 import org.opengis.referencing.IdentifiedObject;
 
 // Annotations

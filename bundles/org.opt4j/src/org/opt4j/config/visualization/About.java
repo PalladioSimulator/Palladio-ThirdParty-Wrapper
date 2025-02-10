@@ -15,7 +15,7 @@
 
 package org.opt4j.config.visualization;
 
-import javax.swing.JDialog;
+import jakarta.swing.JDialog;
 
 import com.google.inject.ImplementedBy;
 

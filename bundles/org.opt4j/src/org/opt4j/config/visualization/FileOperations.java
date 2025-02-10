@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import javax.swing.JFileChooser;
+import jakarta.swing.JFileChooser;
 
 import org.opt4j.config.ModuleLoader;
 import org.opt4j.config.ModuleRegister;

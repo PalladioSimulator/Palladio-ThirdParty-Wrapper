@@ -15,7 +15,7 @@
 
 package org.opt4j.viewer;
 
-import javax.swing.JPanel;
+import jakarta.swing.JPanel;
 
 /**
  * The {@link Widget} is an interface for standard panel for the

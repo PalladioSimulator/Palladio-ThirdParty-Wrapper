@@ -46,16 +46,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
+import jakarta.swing.AbstractButton;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.ImageIcon;
+import jakarta.swing.JButton;
+import jakarta.swing.JLabel;
+import jakarta.swing.JPanel;
+import jakarta.swing.JScrollPane;
+import jakarta.swing.JTabbedPane;
+import jakarta.swing.ScrollPaneConstants;
+import jakarta.swing.SwingConstants;
 
 import org.opt4j.config.Icons;
 import org.opt4j.config.ModuleSaver;

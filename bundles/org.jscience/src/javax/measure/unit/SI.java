@@ -6,15 +6,15 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.measure.converter.MultiplyConverter;
-import javax.measure.converter.RationalConverter;
-import javax.measure.quantity.*;
+import jakarta.measure.converter.MultiplyConverter;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.quantity.*;
 
 /**
  * <p> This class contains SI (Système International d'Unités) base units,

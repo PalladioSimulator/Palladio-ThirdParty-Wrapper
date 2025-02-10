@@ -17,9 +17,9 @@ package org.opt4j.viewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import jakarta.swing.JButton;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.UIManager;
 
 import org.opt4j.config.Icons;
 import org.opt4j.core.optimizer.Control;

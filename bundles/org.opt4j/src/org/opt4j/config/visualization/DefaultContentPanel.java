@@ -18,9 +18,9 @@ package org.opt4j.config.visualization;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
+import jakarta.swing.JPanel;
+import jakarta.swing.JSplitPane;
+import jakarta.swing.JTabbedPane;
 
 import org.opt4j.config.ExecutionEnvironment;
 import org.opt4j.config.Icons;

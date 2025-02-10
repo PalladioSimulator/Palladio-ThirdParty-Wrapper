@@ -14,8 +14,8 @@ import java.text.ParseException;
 import org.jscience.economics.money.Currency;
 import org.jscience.economics.money.Money;
 
-import javax.measure.unit.Unit;
-import javax.measure.unit.UnitFormat;
+import jakarta.measure.unit.Unit;
+import jakarta.measure.unit.UnitFormat;
 
 import javolution.lang.MathLib;
 import javolution.text.Text;

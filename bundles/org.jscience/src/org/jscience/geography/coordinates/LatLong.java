@@ -8,12 +8,12 @@
  */
 package org.jscience.geography.coordinates;
 
-import javax.measure.Measure;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Angle;
-import static javax.measure.unit.NonSI.DEGREE_ANGLE;
-import static javax.measure.unit.SI.RADIAN;
-import javax.measure.unit.Unit;
+import jakarta.measure.Measure;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Angle;
+import static jakarta.measure.unit.NonSI.DEGREE_ANGLE;
+import static jakarta.measure.unit.SI.RADIAN;
+import jakarta.measure.unit.Unit;
 
 import javolution.context.ObjectFactory;
 import javolution.xml.XMLFormat;
@@ -87,7 +87,7 @@ public final class LatLong extends Coordinates<GeographicCRS<?>> {
      * @param latitude the latitude value stated in the specified unit.
      * @param longitude the longitude value stated in the specified unit.
      * @param unit the angle unit in which the coordinates are stated
-     *        ({@link javax.measure.unit.NonSI#DEGREE_ANGLE Degree} typically).
+     *        ({@link jakarta.measure.unit.NonSI#DEGREE_ANGLE Degree} typically).
      * @return the corresponding surface position.
      */
     public static LatLong valueOf(double latitude, double longitude,

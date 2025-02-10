@@ -19,9 +19,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.BorderFactory;
-import javax.swing.JToolBar;
-import javax.swing.border.Border;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JToolBar;
+import jakarta.swing.border.Border;
 
 import com.google.inject.Inject;
 

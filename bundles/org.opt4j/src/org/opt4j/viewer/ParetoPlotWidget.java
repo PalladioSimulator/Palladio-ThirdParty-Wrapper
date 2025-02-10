@@ -25,12 +25,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import jakarta.swing.BorderFactory;
+import jakarta.swing.JLabel;
+import jakarta.swing.JPanel;
+import jakarta.swing.JToolBar;
+import jakarta.swing.SwingUtilities;
+import jakarta.swing.border.Border;
 
 import org.opt4j.config.Icons;
 import org.opt4j.core.Individual;

@@ -10,11 +10,11 @@ package org.jscience.geography.coordinates;
 
 import java.util.Date;
 
-import javax.measure.Measurable;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Duration;
-import static javax.measure.unit.SI.*;
-import javax.measure.unit.Unit;
+import jakarta.measure.Measurable;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Duration;
+import static jakarta.measure.unit.SI.*;
+import jakarta.measure.unit.Unit;
 
 import javolution.context.ObjectFactory;
 import javolution.xml.XMLFormat;

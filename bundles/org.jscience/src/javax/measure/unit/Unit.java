@@ -6,24 +6,24 @@
  * Permission to use, copy, modify, and distribute this software is
  * freely granted, provided that this notice is preserved.
  */
-package javax.measure.unit;
+package jakarta.measure.unit;
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.HashMap;
 
-import javax.measure.MeasureFormat;
-import javax.measure.converter.AddConverter;
-import javax.measure.converter.ConversionException;
-import javax.measure.converter.MultiplyConverter;
-import javax.measure.converter.RationalConverter;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Dimensionless;
-import javax.measure.quantity.Quantity;
+import jakarta.measure.MeasureFormat;
+import jakarta.measure.converter.AddConverter;
+import jakarta.measure.converter.ConversionException;
+import jakarta.measure.converter.MultiplyConverter;
+import jakarta.measure.converter.RationalConverter;
+import jakarta.measure.converter.UnitConverter;
+import jakarta.measure.quantity.Dimensionless;
+import jakarta.measure.quantity.Quantity;
 
 /**
- * <p> This class represents a determinate {@link javax.measure.quantity.Quantity
+ * <p> This class represents a determinate {@link jakarta.measure.quantity.Quantity
  *     quantity} (as of length, time, heat, or value) adopted as a standard
  *     of measurement.</p>
  *
@@ -78,7 +78,7 @@ public abstract class Unit<Q extends Quantity> implements Serializable {
      * Returns the {@link BaseUnit base unit}, {@link AlternateUnit alternate
      * unit} or product of base units and alternate units this unit is derived
      * from. The standard unit identifies the "type" of 
-     * {@link javax.measure.quantity.Quantity quantity} for which this unit is employed.
+     * {@link jakarta.measure.quantity.Quantity quantity} for which this unit is employed.
      * For example:[code]
      *    boolean isAngularVelocity(Unit<?> u) {
      *       return u.getStandardUnit().equals(RADIAN.divide(SECOND));
@@ -121,7 +121,7 @@ public abstract class Unit<Q extends Quantity> implements Serializable {
     /**
      * Indicates if this unit is a standard unit (base units and 
      * alternate units are standard units). The standard unit identifies 
-     * the "type" of {@link javax.measure.quantity.Quantity quantity} for 
+     * the "type" of {@link jakarta.measure.quantity.Quantity quantity} for 
      * which the unit is employed.
      * 
      * @return <code>getStandardUnit().equals(this)</code>
