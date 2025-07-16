@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.palladiosimulator</groupId>
 		<artifactId>eclipse-parent-updatesite</artifactId>
-		<version>0.9.0</version>
+		<version>0.10.0</version>
 	</parent>
 	<groupId>org.palladiosimulator.thirdpartywrapper</groupId>
 	<artifactId>parent</artifactId>	
@@ -18,6 +18,10 @@
 		<module>features</module>
 		<module>releng</module>
 	</modules>
+
+	<properties>
+		<targetPlatform.relativePath>releng/org.palladiosimulator.thirdpartywrapper.targetplatform/tp.target</targetPlatform.relativePath>
+	</properties>
 
 	<build>
 		<plugins>
