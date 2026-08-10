@@ -82,7 +82,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
 
 ====================================================================================
 
-Bundles de.desmoj, org.apache.chemistry.opencmis, org.apache.commons.collections15, org.apache.commons.csv, org.apache.commons.logging.fragment, org.apache.commons.math3 are licensed under the following license:
+Bundles com.google.dagger, de.desmoj, org.apache.chemistry.opencmis, org.apache.commons.collections15, org.apache.commons.csv, org.apache.commons.logging.fragment, org.apache.commons.math3 are licensed under the following license:
 
                                  Apache License
                            Version 2.0, January 2004
@@ -1415,7 +1415,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.apache.commons.collections15"/>
-      <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="jakarta.inject.jakarta.inject-api" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.branding"/>
    </requires>
 
@@ -1501,6 +1501,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
    <plugin
          id="org.apache.commons.csv"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.google.dagger"
          download-size="0"
          install-size="0"
          version="0.0.0"
