@@ -4,7 +4,7 @@ Bundle-Name: Dagger
 Bundle-SymbolicName: com.google.dagger
 Bundle-Version: 2.60.1
 Bundle-Vendor: Google
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ClassPath: lib/dagger-2.60.1.jar
 Export-Package: dagger;version="2.60.1",
  dagger.assisted;version="2.60.1",
